@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "ritwickdey.liveserver",
+    "esbenp.prettier-vscode",
+    "ms-vscode.vscode-json",
+    "streetsidesoftware.code-spell-checker",
+    "usernamehw.errorlens",
+    "wayou.vscode-todo-highlight",
+    "snyk-security.snyk-vulnerability-scanner",
+    "ms-vscode.live-server"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.tabSize": 2,
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "html.validate.scripts": true,
+  "html.validate.styles": true,
+  "css.validate": true,
+  "json.validate.enable": true,
+  "liveServer.settings.port": 5500,
+  "liveServer.settings.donotShowInfoMsg": true,
+  "files.exclude": {
+    "**/.env": true,
+    "**/.env.local": true,
+    "**/.env.*.local": true
+  },
+  "search.exclude": {
+    "**/.env": true,
+    "**/node_modules": true,
+    "**/dist": true
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "company": {
+    "name": "BlueSand Digital",
+    "tagline": "Website Enhancement for U.S. Small Businesses",
+    "phone": "(555) 123-4567",
+    "email": "hello@bluesanddigital.com",
+    "location": "Serving Small Businesses Nationwide"
+  },
+  "hero": {
+    "eyebrow": "Website Enhancement Studio",
+    "heading": "Your business already has a website. Let's make it work harder.",
+    "description": "Most U.S. small business owners have a website — but it's not converting. We take what you already have and transform the UI and UX into something your visitors actually want to use."
+  },
+  "services": [
+    {
+      "icon": "🚀",
+      "name": "Landing Pages",
+      "bestFor": "Promotions, lead generation, product launches",
+      "timeline": "5–7 days",
+      "startingAt": "from $499"
+    },
+    {
+      "icon": "🔐",
+      "name": "Membership Portal",
+      "bestFor": "Online courses, communities, gated content",
+      "timeline": "2–3 weeks",
+      "startingAt": "from $1,499"
+    },
+    {
+      "icon": "📋",
+      "name": "Workshop / Opt-in Pages",
+      "bestFor": "Webinars, events, lead magnet delivery",
+      "timeline": "3–5 days",
+      "startingAt": "from $299"
+    },
+    {
+      "icon": "🛍️",
+      "name": "E-commerce & Business Sites",
+      "bestFor": "Full store, coaching, personal or business profile",
+      "timeline": "3–4 weeks",
+      "startingAt": "from $2,499"
+    }
+  ],
+  "process": [
+    {
+      "title": "Discovery Call",
+      "description": "We review your current site, learn your goals, and map out what's holding you back. Free 30-minute call — no obligation.",
+      "timeframe": "Day 1"
+    },
+    {
+      "title": "Design Mockup",
+      "description": "We create a visual mockup of your enhanced pages so you can approve the direction before we write a single line of code.",
+      "timeframe": "Days 2–4"
+    },
+    {
+      "title": "Build & Review",
+      "description": "We build your site. You review. Two rounds of revisions are included so we get it exactly right.",
+      "timeframe": "Days 5–12"
+    },
+    {
+      "title": "Launch & Handoff",
+      "description": "We push your site live, test across all devices, and hand over full ownership with a complete walkthrough video.",
+      "timeframe": "Days 13–21"
+    }
+  ],
+  "whyUs": [
+    {
+      "icon": "🎯",
+      "title": "Built for Small Business",
+      "body": "We work exclusively with U.S. small business owners. Your constraints, timelines, and budget matter — not just the project specs."
+    },
+    {
+      "icon": "⚡",
+      "title": "Fast Turnaround",
+      "body": "Most agencies take months. We deliver in weeks. You get a first draft within days of kickoff, not a 6-week waiting period."
+    },
+    {
+      "icon": "🤝",
+      "title": "Direct with Your Designer",
+      "body": "No account managers or middlemen. You work directly with the person building your site from day one through launch."
+    },
+    {
+      "icon": "📊",
+      "title": "UI + UX That Converts",
+      "body": "Every design decision is tied to keeping visitors engaged and moving toward your goal. We don't just make it look good — we make it work."
+    },
+    {
+      "icon": "💰",
+      "title": "Flat, Published Pricing",
+      "body": "No surprise invoices. Our pricing is posted publicly so you know exactly what you're paying before the first conversation."
+    },
+    {
+      "icon": "🔒",
+      "title": "Secure by Default",
+      "body": "Every site we build ships with SSL, security headers, and best-practice configurations. Your visitors and data are protected."
+    }
+  ]
+}

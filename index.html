@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Security headers (also enforced server-side via vercel.json) -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self';
+                 style-src 'self' https://fonts.googleapis.com 'unsafe-inline';
+                 font-src 'self' https://fonts.gstatic.com;
+                 script-src 'self' 'unsafe-inline';
+                 img-src 'self' data: https:;
+                 connect-src 'self';
+                 frame-ancestors 'none';
+                 base-uri 'self';" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="X-Frame-Options" content="DENY" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+  <title>BlueSand Digital — Website Enhancement for U.S. Small Businesses</title>
+  <meta name="description" content="We enhance websites for U.S. small business owners — better UI, better UX, stronger conversions. Landing pages, membership portals, e-commerce, and more." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,800;1,600;1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ===== STICKY HEADER ===== -->
+  <header class="site-header" id="top">
+    <div class="header-inner">
+
+      <a href="#top" class="brand-logo" aria-label="BlueSand Digital — home">
+        <span class="logo-wave" aria-hidden="true">〰</span>
+        <span class="logo-text">BlueSand <strong>Digital</strong></span>
+      </a>
+
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="#services">Services</a>
+        <a href="#process">How It Works</a>
+        <a href="#why-us">Why Us</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="header-cta">
+        <a href="tel:+15551234567" class="header-phone">📞 (555) 123-4567</a>
+        <a href="#contact" class="btn-seafoam">Book a Free Call</a>
+      </div>
+
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- ===== VALUE-PROP BAR ===== -->
+  <div class="tagline-bar" role="complementary" aria-label="Key value propositions">
+    <div class="tagline-inner">
+      <span>✦ U.S. Small Business Specialists</span>
+      <span>✦ 1–3 Week Turnaround</span>
+      <span>✦ Direct with Your Designer</span>
+      <span>✦ Transparent Flat Pricing</span>
+    </div>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero-section" aria-labelledby="hero-heading">
+    <div class="container">
+      <div class="hero-content">
+        <p class="eyebrow">Website Enhancement Studio</p>
+        <h1 id="hero-heading">
+          Your business already has a website.<br>
+          <em>Let's make it work harder.</em>
+        </h1>
+        <p class="hero-desc">
+          Most U.S. small business owners have a website — but it's not converting visitors into customers.
+          We take what you already have and transform the UI and UX into something your visitors
+          actually want to use.
+        </p>
+        <div class="hero-actions">
+          <a href="#services" class="btn-primary">See Our Services</a>
+          <a href="#process" class="btn-outline">How It Works</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-wave" aria-hidden="true"></div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section id="services" class="services-section" aria-labelledby="services-heading">
+    <div class="container">
+
+      <div class="section-head">
+        <p class="eyebrow">What we build</p>
+        <h2 id="services-heading">Four types of sites. One studio.</h2>
+        <p class="section-desc">
+          Every project starts with your existing brand and business goals. We enhance what's there
+          and build what's missing — fast.
+        </p>
+      </div>
+
+      <!-- Table populated dynamically from content.json via main.js -->
+      <div class="services-table-wrap" hidden>
+        <table class="services-table" aria-label="Services, timelines, and pricing">
+          <thead>
+            <tr>
+              <th scope="col">Service</th>
+              <th scope="col">Best For</th>
+              <th scope="col">Timeline</th>
+              <th scope="col">Starting At</th>
+              <th scope="col"><span class="sr-only">Action</span></th>
+            </tr>
+          </thead>
+          <tbody id="services-tbody">
+            <!-- Populated by main.js -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Static fallback if JavaScript is disabled -->
+      <div class="services-cards" id="services-fallback">
+        <article class="service-card">
+          <div class="service-icon" aria-hidden="true">🚀</div>
+          <div class="service-card-body">
+            <h3>Landing Pages</h3>
+            <p>High-converting pages for lead generation, promotions, or product launches that turn visitors into leads.</p>
+            <span class="service-badge">5–7 days · from $499</span>
+          </div>
+          <a href="#contact" class="btn-sm">Get Started</a>
+        </article>
+        <article class="service-card">
+          <div class="service-icon" aria-hidden="true">🔐</div>
+          <div class="service-card-body">
+            <h3>Membership Portal</h3>
+            <p>Gated content, online courses, and community access pages designed for your paying members.</p>
+            <span class="service-badge">2–3 weeks · from $1,499</span>
+          </div>
+          <a href="#contact" class="btn-sm">Get Started</a>
+        </article>
+        <article class="service-card">
+          <div class="service-icon" aria-hidden="true">📋</div>
+          <div class="service-card-body">
+            <h3>Workshop / Opt-in Pages</h3>
+            <p>Event registration, webinar sign-ups, and lead magnet delivery pages that grow your list.</p>
+            <span class="service-badge">3–5 days · from $299</span>
+          </div>
+          <a href="#contact" class="btn-sm">Get Started</a>
+        </article>
+        <article class="service-card">
+          <div class="service-icon" aria-hidden="true">🛍️</div>
+          <div class="service-card-body">
+            <h3>E-commerce &amp; Business Sites</h3>
+            <p>Full online store, coaching website, or personal/business profile site — built to impress and convert.</p>
+            <span class="service-badge">3–4 weeks · from $2,499</span>
+          </div>
+          <a href="#contact" class="btn-sm">Get Started</a>
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== PROCESS ===== -->
+  <section id="process" class="process-section" aria-labelledby="process-heading">
+    <div class="container">
+
+      <div class="section-head">
+        <p class="eyebrow">How it works</p>
+        <h2 id="process-heading">Discovery to launch — in weeks, not months.</h2>
+      </div>
+
+      <!-- Populated by main.js; static fallback below -->
+      <div id="process-timeline" class="process-steps" aria-live="polite">
+        <article class="process-step">
+          <div class="step-num" aria-hidden="true">01</div>
+          <div class="step-body">
+            <h3>Discovery Call</h3>
+            <p>We review your current site, learn your goals, and map out what's holding you back. Free 30-minute call — no obligation.</p>
+            <span class="step-time">Day 1</span>
+          </div>
+        </article>
+        <article class="process-step">
+          <div class="step-num" aria-hidden="true">02</div>
+          <div class="step-body">
+            <h3>Design Mockup</h3>
+            <p>We create a visual mockup of your enhanced pages so you can approve the direction before we write a single line of code.</p>
+            <span class="step-time">Days 2–4</span>
+          </div>
+        </article>
+        <article class="process-step">
+          <div class="step-num" aria-hidden="true">03</div>
+          <div class="step-body">
+            <h3>Build &amp; Review</h3>
+            <p>We build your site. You review. Two rounds of revisions are included so we get it exactly right.</p>
+            <span class="step-time">Days 5–12</span>
+          </div>
+        </article>
+        <article class="process-step">
+          <div class="step-num" aria-hidden="true">04</div>
+          <div class="step-body">
+            <h3>Launch &amp; Handoff</h3>
+            <p>We push your site live, test across all devices, and hand over full ownership with a complete walkthrough video.</p>
+            <span class="step-time">Days 13–21</span>
+          </div>
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== WHY US ===== -->
+  <section id="why-us" class="why-section" aria-labelledby="why-heading">
+    <div class="container">
+
+      <div class="section-head">
+        <p class="eyebrow">Why BlueSand Digital</p>
+        <h2 id="why-heading">We enhance what you have.<br><em>We build what you need.</em></h2>
+      </div>
+
+      <div class="why-grid">
+        <article class="why-card">
+          <div class="why-icon" aria-hidden="true">🎯</div>
+          <h3>Built for Small Business</h3>
+          <p>We work exclusively with U.S. small business owners. Your constraints, timelines, and budget matter — not just the project specs.</p>
+        </article>
+        <article class="why-card">
+          <div class="why-icon" aria-hidden="true">⚡</div>
+          <h3>Fast Turnaround</h3>
+          <p>Most agencies take months. We deliver in weeks. You get a first draft within days of kickoff, not a 6-week waiting period.</p>
+        </article>
+        <article class="why-card">
+          <div class="why-icon" aria-hidden="true">🤝</div>
+          <h3>Direct with Your Designer</h3>
+          <p>No account managers or middlemen. You work directly with the person building your site from day one through launch.</p>
+        </article>
+        <article class="why-card">
+          <div class="why-icon" aria-hidden="true">📊</div>
+          <h3>UI + UX That Converts</h3>
+          <p>Every decision is tied to keeping visitors engaged and moving toward your goal. We don't just make it look good — we make it work.</p>
+        </article>
+        <article class="why-card">
+          <div class="why-icon" aria-hidden="true">💰</div>
+          <h3>Flat, Published Pricing</h3>
+          <p>No surprise invoices. Our pricing is posted so you know exactly what you're paying before the first conversation.</p>
+        </article>
+        <article class="why-card">
+          <div class="why-icon" aria-hidden="true">🔒</div>
+          <h3>Secure by Default</h3>
+          <p>Every site we build ships with SSL, security headers, and best-practice configurations. Your visitors and data are protected.</p>
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" class="contact-section" aria-labelledby="contact-heading">
+    <div class="container">
+
+      <div class="contact-panel">
+        <div class="contact-text">
+          <p class="eyebrow">Start today</p>
+          <h2 id="contact-heading">Ready to turn your website into your best salesperson?</h2>
+          <p>Book a free 30-minute discovery call. We'll look at your current site together and map out exactly what needs to change — no pressure, no pitch.</p>
+          <ul class="contact-details">
+            <li><strong>Email:</strong> <a href="mailto:hello@bluesanddigital.com">hello@bluesanddigital.com</a></li>
+            <li><strong>Phone:</strong> <a href="tel:+15551234567">(555) 123-4567</a></li>
+            <li><strong>Response:</strong> Within 24 hours</li>
+          </ul>
+        </div>
+
+        <div class="contact-form-wrap">
+          <!-- Add data-action="https://formspree.io/f/YOUR_CODE" to connect to Formspree -->
+          <form class="contact-form" id="contact-form" novalidate aria-label="Contact form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" placeholder="Jane Smith"
+                       required autocomplete="name" />
+              </div>
+              <div class="form-group">
+                <label for="email">Business Email</label>
+                <input type="email" id="email" name="email"
+                       placeholder="jane@yourbusiness.com"
+                       required autocomplete="email" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="website">Your Current Website URL</label>
+              <input type="url" id="website" name="website"
+                     placeholder="https://yourbusiness.com"
+                     autocomplete="url" />
+            </div>
+            <div class="form-group">
+              <label for="service">Service You're Interested In</label>
+              <select id="service" name="service">
+                <option value="">Select a service…</option>
+                <option value="landing-page">Landing Page</option>
+                <option value="membership">Membership Portal</option>
+                <option value="workshop">Workshop / Opt-in Page</option>
+                <option value="ecommerce">E-commerce / Business Site</option>
+                <option value="not-sure">Not Sure Yet</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Tell Us About Your Goals</label>
+              <textarea id="message" name="message" rows="3"
+                        placeholder="What's not working on your current site? What do you want visitors to do?"></textarea>
+            </div>
+            <button type="submit" class="btn-primary btn-full">
+              Book My Free Discovery Call →
+            </button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="container">
+
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="logo-text">BlueSand <strong>Digital</strong></span>
+          <p>Website enhancement for U.S. small businesses. We make your existing site work better — and build new pages that drive real results.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#services">Landing Pages</a></li>
+            <li><a href="#services">Membership Portals</a></li>
+            <li><a href="#services">Workshop Pages</a></li>
+            <li><a href="#services">E-commerce Sites</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#process">How It Works</a></li>
+            <li><a href="#why-us">Why Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Talk to Us</h4>
+          <ul>
+            <li><a href="tel:+15551234567">(555) 123-4567</a></li>
+            <li><a href="mailto:hello@bluesanddigital.com">hello@bluesanddigital.com</a></li>
+            <li>U.S. Small Businesses Only</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 BlueSand Digital. All rights reserved.</p>
+        <p>Built with care for American small business owners.</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

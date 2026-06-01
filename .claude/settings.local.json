@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:richwood-industries.vercel.app)",
+      "WebFetch(domain:claude.ai)"
+    ]
+  }
+}
