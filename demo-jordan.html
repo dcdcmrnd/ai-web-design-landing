@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jordan Mercer — Business Coach</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --bg:     #FAFAF8;
+      --navy:   #10243E;
+      --navy-2: #1C3A5E;
+      --amber:  #D97706;
+      --amber-l:#FEF3C7;
+      --teal:   #0E7490;
+      --teal-l: #CFFAFE;
+      --text-h: #0D1F35;
+      --text-b: #2C4460;
+      --text-m: #5A7A96;
+      --border: rgba(16,36,62,0.1);
+      --surface:#FFFFFF;
+      --shadow: 0 2px 16px rgba(16,36,62,0.07);
+      --shadow-md:0 8px 36px rgba(16,36,62,0.11);
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans:  'Inter', sans-serif;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--sans);background:var(--bg);color:var(--text-b);-webkit-font-smoothing:antialiased}
+    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
+    ul{list-style:none}
+
+    /* ── NAV ── */
+    .nav{
+      position:fixed;top:0;left:0;right:0;z-index:100;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:0 56px;height:68px;
+      background:rgba(250,250,248,0.88);backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--border);
+      transition:box-shadow 0.3s;
+    }
+    .nav.scrolled{box-shadow:0 2px 20px rgba(16,36,62,0.08)}
+    .nav-brand{
+      font-family:var(--serif);font-size:1.2rem;font-weight:600;
+      color:var(--text-h);letter-spacing:0.01em;
+    }
+    .nav-brand span{font-style:italic;color:var(--teal)}
+    .nav-links{display:flex;gap:32px;align-items:center}
+    .nav-links a{
+      font-size:0.82rem;font-weight:500;color:var(--text-b);
+      transition:color 0.2s;
+    }
+    .nav-links a:hover{color:var(--text-h)}
+    .nav-cta{
+      padding:9px 22px;background:var(--navy);color:#fff;
+      font-size:0.82rem;font-weight:700;border-radius:6px;
+      transition:background 0.2s,transform 0.15s;
+    }
+    .nav-cta:hover{background:var(--navy-2);transform:translateY(-1px)}
+
+    /* ── HERO ── */
+    .hero{
+      min-height:100vh;
+      background:linear-gradient(135deg,var(--navy) 0%,#183058 55%,#1A3A68 100%);
+      display:grid;grid-template-columns:1fr 1fr;
+      align-items:center;
+      padding:0 56px;
+      gap:64px;
+      padding-top:68px;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero::before{
+      content:"";position:absolute;inset:0;
+      background:radial-gradient(ellipse at 70% 50%,rgba(14,116,144,0.25) 0%,transparent 55%);
+      pointer-events:none;
+    }
+    .hero-text{position:relative;z-index:1}
+    .hero-badge{
+      display:inline-flex;align-items:center;gap:8px;
+      border:1px solid rgba(255,255,255,0.15);border-radius:100px;
+      padding:6px 16px;font-size:0.7rem;font-weight:600;
+      color:rgba(255,255,255,0.7);letter-spacing:0.08em;
+      text-transform:uppercase;margin-bottom:28px;
+      background:rgba(255,255,255,0.05);
+    }
+    .badge-dot-hero{
+      width:6px;height:6px;border-radius:50%;
+      background:#34D399;box-shadow:0 0 6px rgba(52,211,153,0.6);
+      flex-shrink:0;
+    }
+    .hero h1{
+      font-family:var(--serif);
+      font-size:clamp(3.5rem,6vw,6rem);
+      font-weight:400;line-height:1.05;
+      color:#fff;margin-bottom:8px;
+      letter-spacing:-0.01em;
+    }
+    .hero h1 em{font-style:italic;color:#7DD3FC;font-weight:300}
+    .hero-role{
+      font-family:var(--serif);font-size:1.25rem;font-weight:300;
+      color:rgba(255,255,255,0.5);margin-bottom:24px;
+      font-style:italic;
+    }
+    .hero-desc{
+      font-size:1rem;color:rgba(255,255,255,0.7);
+      max-width:480px;line-height:1.8;margin-bottom:36px;
+    }
+    .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:52px}
+    .btn-white{
+      padding:14px 32px;background:#fff;color:var(--navy);
+      font-size:0.9rem;font-weight:700;border-radius:8px;
+      transition:transform 0.2s,box-shadow 0.2s;
+      box-shadow:0 4px 20px rgba(0,0,0,0.2);
+    }
+    .btn-white:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,0.25)}
+    .btn-outline-white{
+      padding:13px 30px;border:1.5px solid rgba(255,255,255,0.3);
+      color:rgba(255,255,255,0.85);font-size:0.9rem;font-weight:600;
+      border-radius:8px;transition:border-color 0.2s,background 0.2s;
+    }
+    .btn-outline-white:hover{border-color:rgba(255,255,255,0.6);background:rgba(255,255,255,0.05)}
+
+    .hero-social-proof{
+      display:flex;align-items:center;gap:12px;
+    }
+    .avatars-stack{display:flex}
+    .av{
+      width:34px;height:34px;border-radius:50%;border:2px solid rgba(255,255,255,0.3);
+      display:flex;align-items:center;justify-content:center;
+      font-size:0.7rem;font-weight:700;color:#fff;
+      margin-left:-8px;flex-shrink:0;
+    }
+    .av:first-child{margin-left:0}
+    .hero-proof-text{font-size:0.78rem;color:rgba(255,255,255,0.6);line-height:1.5}
+    .hero-proof-text strong{color:rgba(255,255,255,0.9);font-weight:700}
+
+    /* Hero right — profile card */
+    .hero-right{position:relative;z-index:1;display:flex;justify-content:center}
+    .profile-card{
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.12);
+      border-radius:20px;padding:32px;
+      backdrop-filter:blur(8px);
+      max-width:340px;width:100%;
+    }
+    .profile-photo{
+      width:120px;height:120px;border-radius:50%;
+      background:linear-gradient(135deg,#7DD3FC,var(--teal));
+      display:flex;align-items:center;justify-content:center;
+      font-family:var(--serif);font-size:3rem;font-weight:600;
+      color:#fff;margin:0 auto 18px;
+      border:3px solid rgba(255,255,255,0.2);
+      box-shadow:0 12px 40px rgba(0,0,0,0.3);
+    }
+    .profile-name{
+      font-family:var(--serif);font-size:1.6rem;font-weight:600;
+      color:#fff;text-align:center;margin-bottom:4px;
+    }
+    .profile-title{
+      font-size:0.78rem;font-weight:500;color:rgba(255,255,255,0.5);
+      text-align:center;margin-bottom:20px;letter-spacing:0.05em;
+      text-transform:uppercase;
+    }
+    .profile-stats{
+      display:grid;grid-template-columns:repeat(3,1fr);
+      gap:0;border-top:1px solid rgba(255,255,255,0.1);
+      padding-top:18px;
+    }
+    .ps-item{text-align:center}
+    .ps-num{
+      font-family:var(--serif);font-size:1.6rem;font-weight:600;
+      color:#fff;line-height:1;
+    }
+    .ps-lbl{font-size:0.65rem;color:rgba(255,255,255,0.45);letter-spacing:0.05em;text-transform:uppercase;margin-top:3px}
+    .ps-divider{width:1px;background:rgba(255,255,255,0.1)}
+
+    .floating-review{
+      position:absolute;bottom:-16px;right:-16px;
+      background:#fff;border-radius:12px;padding:12px 16px;
+      box-shadow:0 8px 32px rgba(16,36,62,0.18);
+      max-width:220px;
+    }
+    .fr-stars{font-size:0.75rem;margin-bottom:4px}
+    .fr-text{font-size:0.72rem;color:var(--text-b);line-height:1.4;margin-bottom:6px}
+    .fr-author{font-size:0.65rem;font-weight:700;color:var(--text-h)}
+
+    /* ── ABOUT ── */
+    .about{
+      padding:100px 56px;
+      display:grid;grid-template-columns:1fr 1fr;gap:80px;
+      align-items:center;background:var(--surface);
+    }
+    .about-img{
+      width:100%;aspect-ratio:4/5;
+      background:linear-gradient(160deg,var(--navy),var(--navy-2));
+      border-radius:16px;position:relative;
+      display:flex;align-items:center;justify-content:center;
+      overflow:hidden;
+      box-shadow:var(--shadow-md);
+    }
+    .about-img-inner{
+      font-family:var(--serif);font-size:8rem;font-weight:600;
+      color:rgba(255,255,255,0.08);
+      user-select:none;
+    }
+    .about-img-badge{
+      position:absolute;bottom:24px;left:24px;right:24px;
+      background:rgba(255,255,255,0.1);backdrop-filter:blur(8px);
+      border:1px solid rgba(255,255,255,0.12);border-radius:10px;
+      padding:14px 16px;
+      display:flex;align-items:center;gap:12px;
+    }
+    .aib-icon{font-size:1.5rem}
+    .aib-text{font-size:0.78rem;color:rgba(255,255,255,0.8);line-height:1.4}
+    .aib-text strong{color:#fff;display:block}
+
+    .about-label{
+      font-size:0.7rem;font-weight:700;letter-spacing:0.18em;
+      text-transform:uppercase;color:var(--teal);
+      display:flex;align-items:center;gap:10px;margin-bottom:16px;
+    }
+    .about-label::before{
+      content:"";width:24px;height:2px;
+      background:var(--teal);border-radius:2px;flex-shrink:0;
+    }
+    .about h2{
+      font-family:var(--serif);font-size:clamp(2.2rem,4vw,3.5rem);
+      font-weight:400;color:var(--text-h);line-height:1.15;
+      margin-bottom:20px;
+    }
+    .about h2 em{font-style:italic;color:var(--teal)}
+    .about p{font-size:0.92rem;line-height:1.85;color:var(--text-b);margin-bottom:16px}
+    .creds{
+      display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 32px;
+    }
+    .cred-tag{
+      font-size:0.72rem;font-weight:600;color:var(--navy);
+      background:rgba(16,36,62,0.06);border:1px solid rgba(16,36,62,0.12);
+      border-radius:100px;padding:5px 14px;
+    }
+    .btn-navy{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:13px 28px;background:var(--navy);color:#fff;
+      font-size:0.88rem;font-weight:700;border-radius:8px;
+      transition:background 0.2s,transform 0.2s;
+    }
+    .btn-navy:hover{background:var(--navy-2);transform:translateY(-1px)}
+
+    /* ── SERVICES ── */
+    .services{padding:100px 56px;background:var(--bg)}
+    .section-head{margin-bottom:52px}
+    .sect-label{
+      font-size:0.7rem;font-weight:700;letter-spacing:0.18em;
+      text-transform:uppercase;color:var(--teal);
+      display:flex;align-items:center;gap:10px;margin-bottom:14px;
+    }
+    .sect-label::before{content:"";width:24px;height:2px;background:var(--teal);border-radius:2px;flex-shrink:0}
+    .section-head h2{
+      font-family:var(--serif);font-size:clamp(2.2rem,4vw,3.8rem);
+      font-weight:400;color:var(--text-h);line-height:1.1;
+    }
+    .section-head h2 em{font-style:italic;color:var(--teal)}
+    .section-head p{font-size:0.92rem;color:var(--text-b);margin-top:12px;max-width:560px;line-height:1.75}
+
+    .services-grid{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+    }
+    .service-pkg{
+      background:var(--surface);border:1px solid var(--border);
+      border-radius:16px;padding:36px 32px;
+      display:flex;flex-direction:column;
+      box-shadow:var(--shadow);
+      transition:transform 0.3s,box-shadow 0.3s,border-color 0.3s;
+    }
+    .service-pkg:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:rgba(14,116,144,0.25)}
+    .service-pkg.featured{
+      background:var(--navy);border-color:var(--navy);
+      box-shadow:0 16px 48px rgba(16,36,62,0.25);
+    }
+    .pkg-label{
+      font-size:0.65rem;font-weight:700;letter-spacing:0.15em;
+      text-transform:uppercase;color:var(--teal);margin-bottom:10px;
+    }
+    .service-pkg.featured .pkg-label{color:#7DD3FC}
+    .pkg-icon{font-size:2rem;margin-bottom:14px}
+    .pkg-name{
+      font-family:var(--serif);font-size:1.55rem;font-weight:600;
+      color:var(--text-h);margin-bottom:10px;line-height:1.2;
+    }
+    .service-pkg.featured .pkg-name{color:#fff}
+    .pkg-price{
+      font-family:var(--serif);font-size:2.8rem;font-weight:300;
+      color:var(--text-h);line-height:1;margin-bottom:4px;
+    }
+    .service-pkg.featured .pkg-price{color:#7DD3FC}
+    .pkg-price-note{font-size:0.72rem;color:var(--text-m);margin-bottom:20px}
+    .service-pkg.featured .pkg-price-note{color:rgba(255,255,255,0.45)}
+    .pkg-list{
+      display:flex;flex-direction:column;gap:0;margin-bottom:28px;flex:1;
+    }
+    .pkg-list li{
+      font-size:0.83rem;color:var(--text-b);
+      padding:9px 0;border-bottom:1px solid var(--border);
+      display:flex;align-items:flex-start;gap:8px;line-height:1.4;
+    }
+    .service-pkg.featured .pkg-list li{color:rgba(255,255,255,0.72);border-bottom-color:rgba(255,255,255,0.08)}
+    .pkg-list li::before{content:"✓";color:var(--teal);font-weight:700;font-size:0.78rem;flex-shrink:0;margin-top:1px}
+    .service-pkg.featured .pkg-list li::before{color:#7DD3FC}
+    .pkg-btn{
+      display:block;width:100%;padding:13px;text-align:center;
+      font-size:0.82rem;font-weight:700;letter-spacing:0.05em;
+      border-radius:8px;border:1.5px solid var(--border);color:var(--text-h);
+      background:transparent;cursor:pointer;font-family:var(--sans);
+      transition:background 0.2s,border-color 0.2s,color 0.2s;
+    }
+    .pkg-btn:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+    .service-pkg.featured .pkg-btn{
+      background:linear-gradient(135deg,#38BDF8,#2DD4BF);
+      color:var(--navy);border-color:transparent;
+    }
+    .service-pkg.featured .pkg-btn:hover{opacity:0.9}
+
+    /* ── TESTIMONIALS ── */
+    .testimonials{padding:100px 56px;background:var(--surface)}
+    .testi-grid{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+    }
+    .testi-card{
+      background:var(--bg);border:1px solid var(--border);
+      border-radius:14px;padding:28px;
+      box-shadow:var(--shadow);
+      transition:transform 0.3s,box-shadow 0.3s;
+    }
+    .testi-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+    .testi-stars{font-size:0.88rem;margin-bottom:14px}
+    .testi-quote{
+      font-family:var(--serif);font-size:1.05rem;font-weight:400;
+      color:var(--text-h);line-height:1.6;font-style:italic;
+      margin-bottom:20px;
+    }
+    .testi-author{display:flex;align-items:center;gap:12px}
+    .testi-av{
+      width:40px;height:40px;border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      font-size:0.82rem;font-weight:700;color:#fff;flex-shrink:0;
+    }
+    .testi-name{font-size:0.83rem;font-weight:700;color:var(--text-h)}
+    .testi-role{font-size:0.72rem;color:var(--text-m)}
+    .testi-result{
+      display:inline-block;margin-top:8px;
+      font-size:0.7rem;font-weight:700;color:var(--teal);
+      background:var(--teal-l);border-radius:100px;
+      padding:3px 10px;
+    }
+
+    /* ── BOOKING ── */
+    .booking{
+      padding:100px 56px;background:var(--bg);
+      display:grid;grid-template-columns:1fr 1fr;gap:72px;
+      align-items:start;
+    }
+    .booking-left .sect-label{margin-bottom:14px}
+    .booking-left h2{
+      font-family:var(--serif);font-size:clamp(2.2rem,4vw,3.4rem);
+      font-weight:400;color:var(--text-h);margin-bottom:16px;line-height:1.1;
+    }
+    .booking-left h2 em{font-style:italic;color:var(--teal)}
+    .booking-left p{font-size:0.9rem;line-height:1.8;color:var(--text-b);margin-bottom:24px}
+    .booking-contact{
+      display:flex;flex-direction:column;gap:10px;
+    }
+    .bc-item{
+      display:flex;align-items:center;gap:10px;
+      font-size:0.84rem;color:var(--text-b);
+    }
+    .bc-icon{font-size:1rem;width:20px;text-align:center;flex-shrink:0}
+
+    .booking-widget{
+      background:var(--surface);border:1px solid var(--border);
+      border-radius:16px;padding:28px;box-shadow:var(--shadow-md);
+    }
+    .bw-title{font-size:0.88rem;font-weight:700;color:var(--text-h);margin-bottom:20px}
+    .session-types{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+    .session-type{
+      display:flex;align-items:center;gap:14px;
+      border:1.5px solid var(--border);border-radius:10px;
+      padding:13px 16px;cursor:pointer;
+      transition:border-color 0.2s,background 0.2s;
+    }
+    .session-type.selected{border-color:var(--teal);background:rgba(14,116,144,0.04)}
+    .session-type:hover{border-color:rgba(14,116,144,0.4)}
+    .st-radio{
+      width:18px;height:18px;border-radius:50%;border:2px solid var(--border);
+      flex-shrink:0;position:relative;
+      transition:border-color 0.2s;
+    }
+    .session-type.selected .st-radio{border-color:var(--teal)}
+    .session-type.selected .st-radio::after{
+      content:"";position:absolute;inset:3px;
+      border-radius:50%;background:var(--teal);
+    }
+    .st-info{flex:1}
+    .st-name{font-size:0.84rem;font-weight:600;color:var(--text-h);margin-bottom:2px}
+    .st-dur{font-size:0.72rem;color:var(--text-m)}
+    .st-price{font-size:0.88rem;font-weight:700;color:var(--text-h);white-space:nowrap}
+
+    .cal-header{
+      display:flex;align-items:center;justify-content:space-between;
+      margin-bottom:14px;
+    }
+    .cal-month{font-size:0.88rem;font-weight:700;color:var(--text-h)}
+    .cal-nav{
+      display:flex;gap:6px;
+    }
+    .cal-btn{
+      width:28px;height:28px;border-radius:6px;
+      border:1px solid var(--border);background:transparent;
+      font-size:0.85rem;cursor:pointer;color:var(--text-b);
+      display:flex;align-items:center;justify-content:center;
+      transition:background 0.15s;
+    }
+    .cal-btn:hover{background:var(--bg)}
+    .cal-grid{
+      display:grid;grid-template-columns:repeat(7,1fr);
+      gap:4px;margin-bottom:18px;
+    }
+    .cal-day-label{
+      font-size:0.62rem;font-weight:600;text-align:center;
+      color:var(--text-m);letter-spacing:0.05em;padding:4px 0;
+    }
+    .cal-day{
+      height:30px;border-radius:6px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:0.75rem;color:var(--text-b);cursor:pointer;
+      transition:background 0.15s;
+    }
+    .cal-day:hover:not(.empty):not(.past){background:rgba(14,116,144,0.1);color:var(--text-h)}
+    .cal-day.today{background:var(--navy);color:#fff;font-weight:700}
+    .cal-day.selected{background:var(--teal);color:#fff;font-weight:700}
+    .cal-day.available{color:var(--text-h);font-weight:600}
+    .cal-day.past{color:var(--text-m);cursor:default}
+    .cal-day.empty{cursor:default}
+    .cal-day.has-dot::after{
+      content:"";display:block;width:3px;height:3px;border-radius:50%;
+      background:var(--teal);margin:1px auto 0;
+    }
+
+    .time-slots{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+    .time-slot{
+      padding:7px 14px;border:1.5px solid var(--border);
+      border-radius:7px;font-size:0.76rem;font-weight:600;
+      color:var(--text-b);cursor:pointer;
+      transition:border-color 0.15s,background 0.15s,color 0.15s;
+    }
+    .time-slot:hover{border-color:var(--teal);color:var(--teal)}
+    .time-slot.selected{background:var(--teal);border-color:var(--teal);color:#fff}
+    .time-slot.booked{
+      background:var(--bg);color:var(--text-m);
+      cursor:not-allowed;text-decoration:line-through;
+    }
+
+    .book-btn{
+      display:block;width:100%;padding:14px;
+      background:var(--navy);color:#fff;
+      font-size:0.88rem;font-weight:700;letter-spacing:0.04em;
+      border-radius:8px;text-align:center;cursor:pointer;
+      border:none;font-family:var(--sans);
+      transition:background 0.2s,transform 0.15s;
+      box-shadow:0 4px 16px rgba(16,36,62,0.25);
+    }
+    .book-btn:hover{background:var(--navy-2);transform:translateY(-1px)}
+
+    /* ── CTA BANNER ── */
+    .cta-banner{
+      background:linear-gradient(135deg,var(--navy) 0%,#1A3A68 100%);
+      padding:80px 56px;text-align:center;
+      position:relative;overflow:hidden;
+    }
+    .cta-banner::before{
+      content:"";position:absolute;inset:0;
+      background:radial-gradient(ellipse at 50% 0%,rgba(14,116,144,0.3) 0%,transparent 60%);
+    }
+    .cta-banner h2{
+      font-family:var(--serif);font-size:clamp(2.5rem,5vw,4.5rem);
+      font-weight:400;color:#fff;margin-bottom:16px;
+      position:relative;z-index:1;
+    }
+    .cta-banner h2 em{font-style:italic;color:#7DD3FC}
+    .cta-banner p{
+      font-size:1rem;color:rgba(255,255,255,0.65);
+      max-width:480px;margin:0 auto 36px;line-height:1.7;
+      position:relative;z-index:1;
+    }
+    .cta-banner-btn{
+      position:relative;z-index:1;
+      display:inline-flex;align-items:center;gap:8px;
+      padding:16px 40px;background:#fff;color:var(--navy);
+      font-size:0.95rem;font-weight:700;border-radius:8px;
+      box-shadow:0 6px 24px rgba(0,0,0,0.2);
+      transition:transform 0.2s,box-shadow 0.2s;
+    }
+    .cta-banner-btn:hover{transform:translateY(-2px);box-shadow:0 10px 36px rgba(0,0,0,0.25)}
+
+    /* ── FOOTER ── */
+    .footer{
+      background:var(--navy);padding:40px 56px;
+      display:flex;align-items:center;justify-content:space-between;
+      flex-wrap:wrap;gap:16px;
+    }
+    .footer-brand{
+      font-family:var(--serif);font-size:1rem;
+      font-weight:600;color:rgba(255,255,255,0.7);
+    }
+    .footer-brand em{font-style:italic;color:#7DD3FC}
+    .footer-links{display:flex;gap:24px}
+    .footer-links a{font-size:0.8rem;color:rgba(255,255,255,0.45);transition:color 0.2s}
+    .footer-links a:hover{color:rgba(255,255,255,0.8)}
+    .footer-credit{
+      display:flex;align-items:center;gap:7px;
+      font-size:0.72rem;color:rgba(255,255,255,0.3);
+    }
+    .footer-credit a{color:rgba(255,255,255,0.5);transition:color 0.2s}
+    .footer-credit a:hover{color:rgba(255,255,255,0.8)}
+    .credit-dot{width:5px;height:5px;border-radius:50%;background:#38BDF8;flex-shrink:0}
+
+    /* ── BACK LINK ── */
+    .back-link{
+      position:fixed;bottom:24px;right:24px;z-index:100;
+      display:flex;align-items:center;gap:7px;
+      background:#fff;border:1px solid var(--border);
+      border-radius:100px;padding:8px 16px;
+      font-size:0.72rem;font-weight:600;color:var(--text-b);
+      box-shadow:var(--shadow-md);
+      transition:border-color 0.2s,color 0.2s;
+    }
+    .back-link:hover{border-color:var(--teal);color:var(--teal)}
+    .bl-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0}
+
+    @media(max-width:1024px){
+      .hero,.about,.booking{grid-template-columns:1fr;gap:48px;padding:80px 32px}
+      .services,.testimonials,.cta-banner{padding:80px 32px}
+      .services-grid,.testi-grid{grid-template-columns:1fr}
+      .hero-right,.about-img{display:none}
+      .nav{padding:0 32px}
+      .footer{padding:32px}
+    }
+    @media(max-width:640px){
+      .hero,.about,.services,.testimonials,.booking,.cta-banner{padding:60px 20px}
+      .nav{padding:0 20px}
+      .nav-links{display:none}
+      .footer{padding:24px 20px;flex-direction:column;text-align:center}
+      .footer-links{justify-content:center}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav-brand">Jordan <em>Mercer</em></div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#testimonials">Results</a>
+      <a href="#booking">Book a Session</a>
+    </div>
+    <a href="#booking" class="nav-cta">Book Now</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero-text">
+      <div class="hero-badge">
+        <span class="badge-dot-hero"></span>
+        Accepting New Clients · June 2026
+      </div>
+      <h1>Build a business<br>you're <em>proud of.</em></h1>
+      <div class="hero-role">Business Coach &amp; Strategist</div>
+      <p class="hero-desc">
+        I help U.S. small business owners get out of the day-to-day grind and build systems that create real, sustainable growth. No fluff — just strategy that works.
+      </p>
+      <div class="hero-actions">
+        <a href="#booking" class="btn-white">Book a Free Discovery Call</a>
+        <a href="#services" class="btn-outline-white">See How I Work</a>
+      </div>
+      <div class="hero-social-proof">
+        <div class="avatars-stack">
+          <div class="av" style="background:linear-gradient(135deg,#6366F1,#8B5CF6)">MK</div>
+          <div class="av" style="background:linear-gradient(135deg,#10B981,#059669)">JT</div>
+          <div class="av" style="background:linear-gradient(135deg,#F59E0B,#D97706)">SR</div>
+          <div class="av" style="background:linear-gradient(135deg,#EF4444,#B91C1C)">AL</div>
+        </div>
+        <div class="hero-proof-text">
+          <strong>120+ business owners</strong><br>transformed in the last 3 years
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div style="position:relative">
+        <div class="profile-card">
+          <div class="profile-photo">JM</div>
+          <div class="profile-name">Jordan Mercer</div>
+          <div class="profile-title">Business Coach · Speaker · Strategist</div>
+          <div class="profile-stats">
+            <div class="ps-item">
+              <div class="ps-num">120+</div>
+              <div class="ps-lbl">Clients</div>
+            </div>
+            <div class="ps-divider"></div>
+            <div class="ps-item">
+              <div class="ps-num">$2M+</div>
+              <div class="ps-lbl">Revenue</div>
+            </div>
+            <div class="ps-divider"></div>
+            <div class="ps-item">
+              <div class="ps-num">8yr</div>
+              <div class="ps-lbl">Experience</div>
+            </div>
+          </div>
+        </div>
+        <div class="floating-review">
+          <div class="fr-stars">⭐⭐⭐⭐⭐</div>
+          <div class="fr-text">"Jordan helped me 3x my revenue in 6 months. Game-changing."</div>
+          <div class="fr-author">— Sarah L., Founder, Bloom Studio</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="about-img">
+      <div class="about-img-inner">JM</div>
+      <div class="about-img-badge">
+        <span class="aib-icon">🏆</span>
+        <div class="aib-text">
+          <strong>Forbes 30 Under 30</strong>
+          Business category, 2021
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="about-label">About Jordan</div>
+      <h2>Helping small businesses <em>scale smart</em> since 2017.</h2>
+      <p>After building and selling my first business at 28, I realized most small business owners are working harder, not smarter. I became a coach to change that.</p>
+      <p>My approach is direct, data-driven, and built for the real world — not theory. Together we identify what's slowing you down, build systems to fix it, and set targets you can actually hit.</p>
+      <p>Whether you're stuck at six figures or scaling past a million, I'll give you a clear roadmap and hold you accountable every step of the way.</p>
+      <div class="creds">
+        <span class="cred-tag">Harvard Business School Online</span>
+        <span class="cred-tag">ICF Certified Coach (ACC)</span>
+        <span class="cred-tag">Forbes 30 Under 30</span>
+        <span class="cred-tag">$2M+ Client Revenue Generated</span>
+      </div>
+      <a href="#booking" class="btn-navy">Work With Me →</a>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="section-head">
+      <div class="sect-label">How I Work</div>
+      <h2>Three ways to work<br>with <em>Jordan.</em></h2>
+      <p>Choose the coaching format that fits where you are right now. Every engagement starts with a free discovery call.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-pkg">
+        <div class="pkg-label">Foundation</div>
+        <div class="pkg-icon">🔍</div>
+        <div class="pkg-name">Discovery Session</div>
+        <div class="pkg-price">$297</div>
+        <div class="pkg-price-note">single session · 90 minutes</div>
+        <ul class="pkg-list">
+          <li>Deep-dive business audit</li>
+          <li>Identify your #1 growth blocker</li>
+          <li>Custom 90-day action plan</li>
+          <li>Recording + written summary</li>
+          <li>30-day email follow-up</li>
+        </ul>
+        <button class="pkg-btn" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book a Session</button>
+      </div>
+
+      <div class="service-pkg featured">
+        <div class="pkg-label">Most Popular</div>
+        <div class="pkg-icon">🚀</div>
+        <div class="pkg-name">Growth Coaching Package</div>
+        <div class="pkg-price">$1,497</div>
+        <div class="pkg-price-note">per month · 3-month minimum</div>
+        <ul class="pkg-list">
+          <li>2× 60-min calls per month</li>
+          <li>Weekly check-in messages</li>
+          <li>Full business system audit</li>
+          <li>Revenue growth roadmap</li>
+          <li>Accountability tracking</li>
+          <li>Priority Slack access</li>
+          <li>Resource library access</li>
+        </ul>
+        <button class="pkg-btn" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Apply Now</button>
+      </div>
+
+      <div class="service-pkg">
+        <div class="pkg-label">Intensive</div>
+        <div class="pkg-icon">⚡</div>
+        <div class="pkg-name">VIP Full-Day Intensive</div>
+        <div class="pkg-price">$4,500</div>
+        <div class="pkg-price-note">one-day retreat · virtual or in-person</div>
+        <ul class="pkg-list">
+          <li>6-hour private strategy session</li>
+          <li>Complete business overhaul</li>
+          <li>12-month strategic roadmap</li>
+          <li>Pricing &amp; offer restructure</li>
+          <li>60-day implementation support</li>
+          <li>Two 30-min check-in calls</li>
+        </ul>
+        <button class="pkg-btn" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book Intensive</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="testimonials">
+    <div class="section-head">
+      <div class="sect-label">Client Results</div>
+      <h2>Real businesses,<br><em>real results.</em></h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">⭐⭐⭐⭐⭐</div>
+        <div class="testi-quote">"In 90 days, Jordan helped me go from chaos to systems. I finally have a business that doesn't need me 24/7."</div>
+        <div class="testi-author">
+          <div class="testi-av" style="background:linear-gradient(135deg,#6366F1,#8B5CF6)">MK</div>
+          <div>
+            <div class="testi-name">Marcus Kim</div>
+            <div class="testi-role">Owner, Pacific HVAC Services</div>
+            <div class="testi-result">↑ Revenue up 142% in 6 months</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">⭐⭐⭐⭐⭐</div>
+        <div class="testi-quote">"Jordan's VIP day was the best investment I've ever made. I left with a plan so clear I knew exactly what to do Monday morning."</div>
+        <div class="testi-author">
+          <div class="testi-av" style="background:linear-gradient(135deg,#EC4899,#BE185D)">SR</div>
+          <div>
+            <div class="testi-name">Sarah Reynolds</div>
+            <div class="testi-role">Founder, Bloom Wellness Studio</div>
+            <div class="testi-result">↑ 3× monthly recurring revenue</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">⭐⭐⭐⭐⭐</div>
+        <div class="testi-quote">"I was stuck at $80k for two years. After 3 months with Jordan I crossed $200k. The accountability alone was worth every dollar."</div>
+        <div class="testi-author">
+          <div class="testi-av" style="background:linear-gradient(135deg,#10B981,#059669)">AT</div>
+          <div>
+            <div class="testi-name">Alex Torres</div>
+            <div class="testi-role">CEO, Torres Digital Agency</div>
+            <div class="testi-result">↑ $80K → $200K annual revenue</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING -->
+  <section class="booking" id="booking">
+    <div class="booking-left">
+      <div class="sect-label">Book a Session</div>
+      <h2>Let's build something <em>together.</em></h2>
+      <p>Start with a free 30-minute discovery call to see if we're a good fit. No sales pressure — just an honest conversation about where you are and where you want to go.</p>
+      <div class="booking-contact">
+        <div class="bc-item"><span class="bc-icon">📧</span> jordan@jordanmercer.com</div>
+        <div class="bc-item"><span class="bc-icon">📞</span> (415) 555-0182</div>
+        <div class="bc-item"><span class="bc-icon">⏱</span> Response within 4 hours</div>
+        <div class="bc-item"><span class="bc-icon">🌎</span> Working with U.S. clients only</div>
+      </div>
+    </div>
+    <div class="booking-widget">
+      <div class="bw-title">Choose a Session Type</div>
+      <div class="session-types">
+        <div class="session-type selected">
+          <div class="st-radio"></div>
+          <div class="st-info">
+            <div class="st-name">Free Discovery Call</div>
+            <div class="st-dur">30 min · Video call</div>
+          </div>
+          <div class="st-price">Free</div>
+        </div>
+        <div class="session-type">
+          <div class="st-radio"></div>
+          <div class="st-info">
+            <div class="st-name">Discovery Session</div>
+            <div class="st-dur">90 min · Deep-dive strategy</div>
+          </div>
+          <div class="st-price">$297</div>
+        </div>
+        <div class="session-type">
+          <div class="st-radio"></div>
+          <div class="st-info">
+            <div class="st-name">Growth Coaching Call</div>
+            <div class="st-dur">60 min · Monthly clients only</div>
+          </div>
+          <div class="st-price">Included</div>
+        </div>
+        <div class="session-type">
+          <div class="st-radio"></div>
+          <div class="st-info">
+            <div class="st-name">VIP Intensive</div>
+            <div class="st-dur">Full day · Strategy retreat</div>
+          </div>
+          <div class="st-price">$4,500</div>
+        </div>
+      </div>
+
+      <div class="cal-header">
+        <div class="cal-month">June 2026</div>
+        <div class="cal-nav">
+          <button class="cal-btn">‹</button>
+          <button class="cal-btn">›</button>
+        </div>
+      </div>
+      <div class="cal-grid">
+        <div class="cal-day-label">Su</div><div class="cal-day-label">Mo</div><div class="cal-day-label">Tu</div><div class="cal-day-label">We</div><div class="cal-day-label">Th</div><div class="cal-day-label">Fr</div><div class="cal-day-label">Sa</div>
+        <div class="cal-day empty"></div><div class="cal-day past">2</div><div class="cal-day today">3</div><div class="cal-day available has-dot">4</div><div class="cal-day available has-dot">5</div><div class="cal-day available">6</div><div class="cal-day past">7</div>
+        <div class="cal-day past">8</div><div class="cal-day available has-dot">9</div><div class="cal-day available">10</div><div class="cal-day selected has-dot">11</div><div class="cal-day available has-dot">12</div><div class="cal-day available">13</div><div class="cal-day past">14</div>
+        <div class="cal-day past">15</div><div class="cal-day available has-dot">16</div><div class="cal-day available">17</div><div class="cal-day available has-dot">18</div><div class="cal-day available has-dot">19</div><div class="cal-day available">20</div><div class="cal-day past">21</div>
+        <div class="cal-day past">22</div><div class="cal-day available">23</div><div class="cal-day available has-dot">24</div><div class="cal-day available">25</div><div class="cal-day available has-dot">26</div><div class="cal-day available">27</div><div class="cal-day past">28</div>
+        <div class="cal-day past">29</div><div class="cal-day available has-dot">30</div>
+      </div>
+
+      <div class="time-slots">
+        <div class="time-slot booked">9:00 AM</div>
+        <div class="time-slot">10:00 AM</div>
+        <div class="time-slot selected">11:00 AM</div>
+        <div class="time-slot">1:00 PM</div>
+        <div class="time-slot booked">2:00 PM</div>
+        <div class="time-slot">3:00 PM</div>
+        <div class="time-slot">4:00 PM</div>
+      </div>
+
+      <button class="book-btn">Confirm — June 11 at 11:00 AM EST →</button>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner">
+    <h2>Ready to stop spinning your wheels<br>and start <em>growing?</em></h2>
+    <p>Book your free 30-minute discovery call today. No pitch, no pressure — just clarity on your next best move.</p>
+    <a href="#booking" class="cta-banner-btn">Book Your Free Call →</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-brand">Jordan <em>Mercer</em> — Business Coach</div>
+    <div class="footer-links">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#testimonials">Results</a>
+      <a href="#booking">Book</a>
+    </div>
+    <div class="footer-credit">
+      <span class="credit-dot"></span>
+      Site by <a href="page2.html">&nbsp;BlueSand Digital</a>
+    </div>
+  </footer>
+
+  <a href="page2.html#work" class="back-link">
+    <span class="bl-dot"></span>
+    Built by BlueSand Digital
+  </a>
+
+  <script>
+    /* Nav scroll */
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), {passive:true});
+
+    /* Session type selector */
+    document.querySelectorAll('.session-type').forEach(el => {
+      el.addEventListener('click', () => {
+        document.querySelectorAll('.session-type').forEach(e => e.classList.remove('selected'));
+        el.classList.add('selected');
+      });
+    });
+
+    /* Calendar days */
+    document.querySelectorAll('.cal-day.available').forEach(el => {
+      el.addEventListener('click', () => {
+        document.querySelectorAll('.cal-day').forEach(e => e.classList.remove('selected'));
+        el.classList.add('selected');
+      });
+    });
+
+    /* Time slots */
+    document.querySelectorAll('.time-slot:not(.booked)').forEach(el => {
+      el.addEventListener('click', () => {
+        document.querySelectorAll('.time-slot').forEach(e => e.classList.remove('selected'));
+        el.classList.add('selected');
+      });
+    });
+  </script>
+
+</body>
+</html>

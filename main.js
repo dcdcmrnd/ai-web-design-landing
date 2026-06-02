@@ -1,75 +1,55 @@
-/* main.js */
+/* main.js — contact form handler only (nav/scroll handled by animations.js) */
 
-/* ── SCROLL DOT ── */
-function initScrollDot() {
-  const dot = document.getElementById('scroll-dot');
-  if (!dot) return;
+function initContactForm() {
+  const form = document.getElementById('contact-form');
+  if (!form) return;
 
-  const darkSections = document.querySelectorAll('.work-section, .contact-section');
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const btn  = form.querySelector('[type="submit"]');
+    const orig = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
 
-  function update() {
-    const scrolled   = window.scrollY;
-    const docHeight  = document.documentElement.scrollHeight - window.innerHeight;
-    const pct        = docHeight > 0 ? scrolled / docHeight : 0;
-    const minTop     = 80;
-    const maxTop     = window.innerHeight - 80;
-    dot.style.top    = (minTop + (maxTop - minTop) * pct) + 'px';
+    const ACTION = form.dataset.action || '#';
+    if (ACTION === '#') {
+      await new Promise(r => setTimeout(r, 700));
+      btn.textContent = '✓ Sent — we\'ll reply within 24 hours.';
+      btn.style.background = 'var(--teal)';
+      btn.style.color = 'var(--dark)';
+      form.reset();
+      setTimeout(() => {
+        btn.textContent = orig;
+        btn.style.background = '';
+        btn.style.color = '';
+        btn.disabled = false;
+      }, 5000);
+      return;
+    }
 
-    let onDark = false;
-    const mid = window.innerHeight / 2;
-    darkSections.forEach(s => {
-      const r = s.getBoundingClientRect();
-      if (r.top < mid && r.bottom > mid) onDark = true;
-    });
-    dot.classList.toggle('on-dark', onDark);
-  }
+    try {
+      const res = await fetch(ACTION, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: new FormData(form)
+      });
+      if (res.ok) {
+        btn.textContent = '✓ Sent!';
+        form.reset();
+      } else throw new Error();
+    } catch {
+      btn.textContent = 'Error — please email us directly.';
+      btn.style.background = '#aa3333';
+      btn.disabled = false;
+    }
 
-  window.addEventListener('scroll', update, { passive: true });
-  window.addEventListener('resize', update, { passive: true });
-  update();
-}
-
-/* ── MOBILE NAV ── */
-function initMobileNav() {
-  const toggle = document.querySelector('.nav-toggle');
-  const nav    = document.querySelector('.site-nav');
-  if (!toggle || !nav) return;
-
-  toggle.addEventListener('click', () => {
-    const open = toggle.getAttribute('aria-expanded') === 'true';
-    toggle.setAttribute('aria-expanded', String(!open));
-    nav.classList.toggle('nav-open', !open);
+    setTimeout(() => {
+      btn.textContent = orig;
+      btn.style.background = '';
+      btn.style.color = '';
+      btn.disabled = false;
+    }, 5000);
   });
-
-  nav.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      toggle.setAttribute('aria-expanded', 'false');
-      nav.classList.remove('nav-open');
-    });
-  });
 }
 
-/* ── SCROLL SPY ── */
-function initScrollSpy() {
-  const sections = document.querySelectorAll('section[id]');
-  const links    = document.querySelectorAll('.site-nav a[href^="#"]');
-  if (!sections.length) return;
-
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        links.forEach(l => l.classList.remove('active'));
-        const a = document.querySelector(`.site-nav a[href="#${e.target.id}"]`);
-        if (a) a.classList.add('active');
-      }
-    });
-  }, { rootMargin: '-35% 0px -60% 0px' });
-
-  sections.forEach(s => io.observe(s));
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  initScrollDot();
-  initMobileNav();
-  initScrollSpy();
-});
+document.addEventListener('DOMContentLoaded', initContactForm);

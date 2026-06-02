@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elevate Academy — Member Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:       #0A1628;
+      --sidebar:  #06101C;
+      --surface:  #112035;
+      --surface-2:#162940;
+      --accent:   #38BDF8;
+      --accent-2: #2DD4BF;
+      --purple:   #A78BFA;
+      --amber:    #FBB347;
+      --green:    #34D399;
+      --rose:     #FB7185;
+      --border:   rgba(56,189,248,0.1);
+      --border-s: rgba(255,255,255,0.06);
+      --text-h:   #F0F9FF;
+      --text-b:   rgba(186,230,253,0.78);
+      --text-m:   rgba(186,230,253,0.42);
+      --sidebar-w: 230px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{height:100%}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text-b);min-height:100vh;display:flex;-webkit-font-smoothing:antialiased}
+
+    /* ── SIDEBAR ── */
+    .sidebar{
+      width:var(--sidebar-w);flex-shrink:0;
+      background:var(--sidebar);
+      border-right:1px solid var(--border-s);
+      display:flex;flex-direction:column;
+      position:fixed;top:0;left:0;bottom:0;
+      z-index:50;overflow-y:auto;
+    }
+    .sb-logo{
+      display:flex;align-items:center;gap:10px;
+      padding:24px 20px 20px;
+      border-bottom:1px solid var(--border-s);
+    }
+    .sb-logo-icon{
+      width:32px;height:32px;border-radius:8px;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      display:flex;align-items:center;justify-content:center;
+      font-size:1rem;flex-shrink:0;
+    }
+    .sb-logo-text{font-size:0.9rem;font-weight:800;color:var(--text-h);letter-spacing:-0.01em}
+    .sb-logo-text span{color:var(--accent);font-weight:400}
+
+    .sb-user{
+      display:flex;align-items:center;gap:10px;
+      padding:16px 20px;border-bottom:1px solid var(--border-s);
+    }
+    .sb-avatar{
+      width:36px;height:36px;border-radius:50%;
+      background:linear-gradient(135deg,#6366F1,var(--purple));
+      display:flex;align-items:center;justify-content:center;
+      font-size:0.85rem;font-weight:700;color:#fff;flex-shrink:0;
+    }
+    .sb-user-info{overflow:hidden}
+    .sb-user-name{font-size:0.82rem;font-weight:600;color:var(--text-h);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .sb-user-plan{font-size:0.66rem;color:var(--accent);letter-spacing:0.05em;text-transform:uppercase;font-weight:600}
+
+    .sb-section-label{
+      font-size:0.62rem;font-weight:700;letter-spacing:0.15em;
+      text-transform:uppercase;color:var(--text-m);
+      padding:16px 20px 6px;
+    }
+    .sb-nav{display:flex;flex-direction:column;gap:2px;padding:0 10px}
+    .sb-item{
+      display:flex;align-items:center;gap:10px;
+      padding:9px 12px;border-radius:8px;
+      font-size:0.83rem;font-weight:500;color:var(--text-b);
+      text-decoration:none;cursor:pointer;
+      transition:background 0.15s,color 0.15s;
+    }
+    .sb-item:hover{background:rgba(56,189,248,0.08);color:var(--text-h)}
+    .sb-item.active{background:rgba(56,189,248,0.12);color:var(--accent)}
+    .sb-item-icon{font-size:1rem;width:20px;text-align:center;flex-shrink:0}
+    .sb-badge{
+      margin-left:auto;background:var(--accent);color:var(--bg);
+      font-size:0.6rem;font-weight:800;border-radius:100px;
+      padding:1px 7px;min-width:18px;text-align:center;
+    }
+    .sb-bottom{margin-top:auto;padding:16px 10px;border-top:1px solid var(--border-s)}
+    .sb-streak{
+      display:flex;align-items:center;gap:8px;
+      background:rgba(251,179,71,0.1);border:1px solid rgba(251,179,71,0.2);
+      border-radius:10px;padding:10px 14px;
+    }
+    .sb-streak-icon{font-size:1.1rem}
+    .sb-streak-text{font-size:0.75rem;color:var(--amber);font-weight:600}
+    .sb-streak-days{font-size:1rem;font-weight:800;color:var(--amber)}
+
+    /* ── MAIN ── */
+    .main{margin-left:var(--sidebar-w);flex:1;display:flex;flex-direction:column;min-height:100vh}
+
+    /* Top bar */
+    .topbar{
+      position:sticky;top:0;z-index:40;
+      display:flex;align-items:center;gap:16px;
+      padding:0 32px;height:60px;
+      background:rgba(10,22,40,0.85);backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--border-s);
+    }
+    .topbar-title{font-size:1rem;font-weight:700;color:var(--text-h);flex:1}
+    .topbar-search{
+      display:flex;align-items:center;gap:8px;
+      background:var(--surface);border:1px solid var(--border-s);
+      border-radius:8px;padding:7px 14px;
+      font-size:0.8rem;color:var(--text-m);
+      width:200px;
+    }
+    .topbar-notif{
+      width:36px;height:36px;border-radius:8px;
+      background:var(--surface);border:1px solid var(--border-s);
+      display:flex;align-items:center;justify-content:center;
+      font-size:1rem;cursor:pointer;position:relative;
+    }
+    .notif-dot{
+      position:absolute;top:7px;right:7px;
+      width:7px;height:7px;border-radius:50%;
+      background:var(--rose);border:1.5px solid var(--bg);
+    }
+    .topbar-avatar{
+      width:36px;height:36px;border-radius:50%;
+      background:linear-gradient(135deg,#6366F1,var(--purple));
+      display:flex;align-items:center;justify-content:center;
+      font-size:0.82rem;font-weight:700;color:#fff;cursor:pointer;
+    }
+
+    /* Content */
+    .content{padding:32px;flex:1}
+
+    .welcome-row{
+      display:flex;align-items:flex-start;justify-content:space-between;
+      margin-bottom:28px;gap:16px;
+    }
+    .welcome-text h1{
+      font-size:1.45rem;font-weight:800;color:var(--text-h);
+      letter-spacing:-0.02em;margin-bottom:4px;
+    }
+    .welcome-text p{font-size:0.83rem;color:var(--text-b)}
+    .welcome-date{
+      font-size:0.75rem;color:var(--text-m);
+      background:var(--surface);border:1px solid var(--border-s);
+      border-radius:8px;padding:8px 14px;white-space:nowrap;
+    }
+
+    /* Stats strip */
+    .stats-row{
+      display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
+      margin-bottom:28px;
+    }
+    .stat-card{
+      background:var(--surface);border:1px solid var(--border-s);
+      border-radius:12px;padding:18px 20px;
+      display:flex;align-items:center;gap:14px;
+    }
+    .stat-icon{
+      width:42px;height:42px;border-radius:10px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:1.2rem;flex-shrink:0;
+    }
+    .stat-icon.blue{background:rgba(56,189,248,0.12)}
+    .stat-icon.teal{background:rgba(45,212,191,0.12)}
+    .stat-icon.amber{background:rgba(251,179,71,0.12)}
+    .stat-icon.purple{background:rgba(167,139,250,0.12)}
+    .stat-info{}
+    .stat-val{font-size:1.4rem;font-weight:800;color:var(--text-h);line-height:1;margin-bottom:3px}
+    .stat-lbl{font-size:0.7rem;color:var(--text-m);letter-spacing:0.03em}
+
+    /* Section headers */
+    .section-title{
+      font-size:0.7rem;font-weight:700;letter-spacing:0.14em;
+      text-transform:uppercase;color:var(--text-m);
+      margin-bottom:14px;display:flex;align-items:center;gap:10px;
+    }
+    .section-title a{
+      margin-left:auto;font-size:0.72rem;font-weight:600;
+      color:var(--accent);text-decoration:none;text-transform:none;letter-spacing:0;
+    }
+
+    /* Continue learning */
+    .continue-card{
+      background:var(--surface);border:1px solid var(--border-s);
+      border-radius:14px;padding:24px;
+      display:grid;grid-template-columns:1fr auto;gap:24px;
+      align-items:center;margin-bottom:28px;
+      position:relative;overflow:hidden;
+    }
+    .continue-card::before{
+      content:"";position:absolute;top:0;right:0;
+      width:300px;height:100%;
+      background:radial-gradient(ellipse at right center,rgba(56,189,248,0.07) 0%,transparent 60%);
+      pointer-events:none;
+    }
+    .continue-tag{
+      display:inline-flex;align-items:center;gap:6px;
+      font-size:0.66rem;font-weight:700;letter-spacing:0.12em;
+      text-transform:uppercase;color:var(--accent);
+      background:rgba(56,189,248,0.1);border-radius:100px;
+      padding:3px 10px;margin-bottom:10px;
+    }
+    .continue-title{
+      font-size:1.15rem;font-weight:800;color:var(--text-h);
+      margin-bottom:8px;letter-spacing:-0.01em;
+    }
+    .continue-meta{
+      font-size:0.78rem;color:var(--text-m);margin-bottom:16px;
+    }
+    .progress-row{display:flex;align-items:center;gap:12px}
+    .progress-bar{
+      flex:1;height:6px;background:rgba(255,255,255,0.08);
+      border-radius:3px;overflow:hidden;
+    }
+    .progress-fill{
+      height:100%;
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      border-radius:3px;transition:width 0.6s;
+    }
+    .progress-pct{font-size:0.75rem;font-weight:700;color:var(--accent);white-space:nowrap}
+    .continue-btn{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:11px 22px;border-radius:8px;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      color:var(--bg);font-size:0.82rem;font-weight:700;
+      text-decoration:none;white-space:nowrap;cursor:pointer;
+      border:none;
+      transition:opacity 0.2s,transform 0.2s;
+    }
+    .continue-btn:hover{opacity:0.88;transform:translateY(-1px)}
+
+    /* Two-col layout */
+    .two-col{display:grid;grid-template-columns:1fr 340px;gap:24px;margin-bottom:28px}
+
+    /* Courses grid */
+    .courses-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .course-card{
+      background:var(--surface);border:1px solid var(--border-s);
+      border-radius:12px;overflow:hidden;cursor:pointer;
+      transition:border-color 0.2s,transform 0.25s;
+    }
+    .course-card:hover{border-color:var(--border);transform:translateY(-2px)}
+    .course-thumb{
+      height:80px;display:flex;align-items:center;justify-content:center;
+      font-size:1.8rem;
+    }
+    .course-thumb.t1{background:linear-gradient(135deg,#1E3A5F,#1A4A8F)}
+    .course-thumb.t2{background:linear-gradient(135deg,#1A3040,#0F5F5F)}
+    .course-thumb.t3{background:linear-gradient(135deg,#3A1A5F,#5F1A8F)}
+    .course-thumb.t4{background:linear-gradient(135deg,#3A2010,#7A3A10)}
+    .course-body{padding:12px 14px}
+    .course-label{
+      font-size:0.62rem;font-weight:700;letter-spacing:0.1em;
+      text-transform:uppercase;margin-bottom:5px;
+    }
+    .course-label.blue{color:var(--accent)}
+    .course-label.teal{color:var(--accent-2)}
+    .course-label.purple{color:var(--purple)}
+    .course-label.amber{color:var(--amber)}
+    .course-name{font-size:0.83rem;font-weight:700;color:var(--text-h);margin-bottom:8px;line-height:1.3}
+    .course-progress{display:flex;align-items:center;gap:8px}
+    .course-bar{flex:1;height:3px;background:rgba(255,255,255,0.07);border-radius:2px;overflow:hidden}
+    .course-fill{height:100%;border-radius:2px}
+    .course-fill.blue{background:var(--accent)}
+    .course-fill.teal{background:var(--accent-2)}
+    .course-fill.purple{background:var(--purple)}
+    .course-fill.amber{background:var(--amber)}
+    .course-pct{font-size:0.65rem;color:var(--text-m);font-weight:600;white-space:nowrap}
+    .course-lessons{font-size:0.65rem;color:var(--text-m);margin-top:3px}
+
+    /* Right panel */
+    .right-panel{display:flex;flex-direction:column;gap:20px}
+    .panel-card{
+      background:var(--surface);border:1px solid var(--border-s);
+      border-radius:12px;padding:18px;
+    }
+
+    /* Upcoming calls */
+    .call-item{
+      display:flex;align-items:center;gap:12px;
+      padding:10px 0;border-bottom:1px solid var(--border-s);
+    }
+    .call-item:last-child{border-bottom:none;padding-bottom:0}
+    .call-date{
+      width:40px;height:44px;border-radius:8px;
+      background:rgba(56,189,248,0.1);border:1px solid var(--border);
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      flex-shrink:0;
+    }
+    .call-date-day{font-size:1rem;font-weight:800;color:var(--accent);line-height:1}
+    .call-date-mon{font-size:0.55rem;font-weight:600;text-transform:uppercase;color:var(--text-m)}
+    .call-info{flex:1;overflow:hidden}
+    .call-name{font-size:0.8rem;font-weight:600;color:var(--text-h);margin-bottom:2px;
+      white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .call-time{font-size:0.7rem;color:var(--text-m)}
+    .call-join{
+      font-size:0.68rem;font-weight:700;color:var(--accent-2);
+      border:1px solid rgba(45,212,191,0.3);border-radius:6px;
+      padding:4px 10px;text-decoration:none;white-space:nowrap;
+      transition:background 0.15s;
+    }
+    .call-join:hover{background:rgba(45,212,191,0.1)}
+
+    /* Recordings */
+    .rec-item{
+      display:flex;align-items:center;gap:12px;
+      padding:10px 0;border-bottom:1px solid var(--border-s);
+    }
+    .rec-item:last-child{border-bottom:none;padding-bottom:0}
+    .rec-thumb{
+      width:52px;height:36px;border-radius:6px;
+      background:var(--surface-2);
+      display:flex;align-items:center;justify-content:center;
+      flex-shrink:0;font-size:0.9rem;
+      border:1px solid var(--border-s);
+    }
+    .rec-info{flex:1;overflow:hidden}
+    .rec-name{font-size:0.78rem;font-weight:600;color:var(--text-h);margin-bottom:2px;
+      white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .rec-meta{font-size:0.66rem;color:var(--text-m)}
+    .rec-play{
+      width:28px;height:28px;border-radius:50%;
+      background:rgba(56,189,248,0.12);border:1px solid var(--border);
+      display:flex;align-items:center;justify-content:center;
+      font-size:0.7rem;cursor:pointer;flex-shrink:0;
+      transition:background 0.15s;
+    }
+    .rec-play:hover{background:rgba(56,189,248,0.22)}
+
+    /* Leaderboard */
+    .lb-item{
+      display:flex;align-items:center;gap:10px;
+      padding:8px 0;border-bottom:1px solid var(--border-s);
+    }
+    .lb-item:last-child{border-bottom:none;padding-bottom:0}
+    .lb-rank{
+      width:22px;font-size:0.7rem;font-weight:700;
+      color:var(--text-m);text-align:center;flex-shrink:0;
+    }
+    .lb-rank.gold{color:#F59E0B}
+    .lb-rank.silver{color:#94A3B8}
+    .lb-rank.bronze{color:#B87333}
+    .lb-avatar{
+      width:28px;height:28px;border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      font-size:0.65rem;font-weight:700;color:#fff;flex-shrink:0;
+    }
+    .lb-name{flex:1;font-size:0.78rem;font-weight:600;color:var(--text-h)}
+    .lb-pts{font-size:0.72rem;font-weight:700;color:var(--accent)}
+
+    /* Back link */
+    .back-link{
+      position:fixed;bottom:24px;right:24px;z-index:100;
+      display:flex;align-items:center;gap:7px;
+      background:var(--surface);border:1px solid var(--border);
+      border-radius:100px;padding:8px 16px;
+      font-size:0.72rem;font-weight:600;color:var(--text-b);
+      text-decoration:none;
+      box-shadow:0 4px 20px rgba(0,0,0,0.3);
+      transition:border-color 0.2s,color 0.2s;
+    }
+    .back-link:hover{border-color:var(--accent);color:var(--accent)}
+    .back-link-dot{
+      width:6px;height:6px;border-radius:50%;
+      background:var(--accent);
+    }
+
+    @media(max-width:900px){
+      .sidebar{display:none}
+      .main{margin-left:0}
+      .stats-row{grid-template-columns:repeat(2,1fr)}
+      .two-col{grid-template-columns:1fr}
+      .right-panel{display:none}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sb-logo">
+      <div class="sb-logo-icon">🎓</div>
+      <div class="sb-logo-text">Elevate<span> Academy</span></div>
+    </div>
+    <div class="sb-user">
+      <div class="sb-avatar">SM</div>
+      <div class="sb-user-info">
+        <div class="sb-user-name">Sarah Mitchell</div>
+        <div class="sb-user-plan">Pro Member</div>
+      </div>
+    </div>
+
+    <p class="sb-section-label">Main Menu</p>
+    <nav class="sb-nav">
+      <a class="sb-item active">
+        <span class="sb-item-icon">⊞</span> Dashboard
+      </a>
+      <a class="sb-item">
+        <span class="sb-item-icon">📚</span> Course Library
+        <span class="sb-badge">6</span>
+      </a>
+      <a class="sb-item">
+        <span class="sb-item-icon">📹</span> Recordings
+      </a>
+      <a class="sb-item">
+        <span class="sb-item-icon">📅</span> Weekly Calls
+        <span class="sb-badge">2</span>
+      </a>
+      <a class="sb-item">
+        <span class="sb-item-icon">👥</span> Community
+      </a>
+      <a class="sb-item">
+        <span class="sb-item-icon">⚡</span> Resources
+      </a>
+    </nav>
+
+    <p class="sb-section-label">Account</p>
+    <nav class="sb-nav">
+      <a class="sb-item">
+        <span class="sb-item-icon">👤</span> Profile
+      </a>
+      <a class="sb-item">
+        <span class="sb-item-icon">⚙</span> Settings
+      </a>
+    </nav>
+
+    <div class="sb-bottom">
+      <div class="sb-streak">
+        <span class="sb-streak-icon">🔥</span>
+        <div>
+          <div class="sb-streak-days">14</div>
+          <div class="sb-streak-text">Day Streak</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <div class="topbar">
+      <div class="topbar-title">Dashboard</div>
+      <div class="topbar-search">🔍 &nbsp;Search courses…</div>
+      <div class="topbar-notif">🔔 <div class="notif-dot"></div></div>
+      <div class="topbar-avatar">SM</div>
+    </div>
+
+    <div class="content">
+
+      <!-- Welcome row -->
+      <div class="welcome-row">
+        <div class="welcome-text">
+          <h1>Welcome back, Sarah 👋</h1>
+          <p>You're on a 14-day streak. Keep the momentum going!</p>
+        </div>
+        <div class="welcome-date">📅 &nbsp;Monday, June 2, 2026</div>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-icon blue">📖</div>
+          <div class="stat-info">
+            <div class="stat-val">47</div>
+            <div class="stat-lbl">Lessons Completed</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon teal">⏱</div>
+          <div class="stat-info">
+            <div class="stat-val">12.4h</div>
+            <div class="stat-lbl">Watch Time</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon amber">🏆</div>
+          <div class="stat-info">
+            <div class="stat-val">3</div>
+            <div class="stat-lbl">Certificates Earned</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon purple">⚡</div>
+          <div class="stat-info">
+            <div class="stat-val">1,240</div>
+            <div class="stat-lbl">Points Earned</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Continue Learning -->
+      <p class="section-title">Continue Learning</p>
+      <div class="continue-card">
+        <div>
+          <div class="continue-tag">▶ In Progress</div>
+          <div class="continue-title">AI-Powered Marketing for Small Business</div>
+          <div class="continue-meta">Module 4 of 7 · Lesson 3: Writing High-Converting Email Sequences</div>
+          <div class="progress-row">
+            <div class="progress-bar">
+              <div class="progress-fill" style="width:65%"></div>
+            </div>
+            <span class="progress-pct">65% complete</span>
+          </div>
+        </div>
+        <button class="continue-btn">Continue &rarr;</button>
+      </div>
+
+      <!-- Two-col -->
+      <div class="two-col">
+
+        <!-- Courses grid -->
+        <div>
+          <p class="section-title">My Courses <a>View all →</a></p>
+          <div class="courses-grid">
+            <div class="course-card">
+              <div class="course-thumb t1">🚀</div>
+              <div class="course-body">
+                <div class="course-label blue">Marketing</div>
+                <div class="course-name">AI-Powered Marketing for Small Business</div>
+                <div class="course-progress">
+                  <div class="course-bar"><div class="course-fill blue" style="width:65%"></div></div>
+                  <span class="course-pct">65%</span>
+                </div>
+                <div class="course-lessons">24 lessons · 4.2h</div>
+              </div>
+            </div>
+            <div class="course-card">
+              <div class="course-thumb t2">💰</div>
+              <div class="course-body">
+                <div class="course-label teal">Sales</div>
+                <div class="course-name">Sales Funnels That Actually Convert</div>
+                <div class="course-progress">
+                  <div class="course-bar"><div class="course-fill teal" style="width:100%"></div></div>
+                  <span class="course-pct">Done ✓</span>
+                </div>
+                <div class="course-lessons">18 lessons · 3.1h</div>
+              </div>
+            </div>
+            <div class="course-card">
+              <div class="course-thumb t3">🌐</div>
+              <div class="course-body">
+                <div class="course-label purple">Branding</div>
+                <div class="course-name">Build a Brand That People Remember</div>
+                <div class="course-progress">
+                  <div class="course-bar"><div class="course-fill purple" style="width:30%"></div></div>
+                  <span class="course-pct">30%</span>
+                </div>
+                <div class="course-lessons">21 lessons · 3.8h</div>
+              </div>
+            </div>
+            <div class="course-card">
+              <div class="course-thumb t4">📊</div>
+              <div class="course-body">
+                <div class="course-label amber">Analytics</div>
+                <div class="course-name">Data-Driven Decisions for Business Owners</div>
+                <div class="course-progress">
+                  <div class="course-bar"><div class="course-fill amber" style="width:10%"></div></div>
+                  <span class="course-pct">10%</span>
+                </div>
+                <div class="course-lessons">15 lessons · 2.5h</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right panel -->
+        <div class="right-panel">
+
+          <!-- Upcoming calls -->
+          <div class="panel-card">
+            <p class="section-title">Upcoming Calls</p>
+            <div class="call-item">
+              <div class="call-date">
+                <div class="call-date-day">05</div>
+                <div class="call-date-mon">Jun</div>
+              </div>
+              <div class="call-info">
+                <div class="call-name">Weekly Q&amp;A Coaching Call</div>
+                <div class="call-time">Thu · 2:00 PM EST · 60 min</div>
+              </div>
+              <a class="call-join">Join</a>
+            </div>
+            <div class="call-item">
+              <div class="call-date">
+                <div class="call-date-day">12</div>
+                <div class="call-date-mon">Jun</div>
+              </div>
+              <div class="call-info">
+                <div class="call-name">Hot Seat: Website Critiques</div>
+                <div class="call-time">Thu · 2:00 PM EST · 60 min</div>
+              </div>
+              <a class="call-join">Join</a>
+            </div>
+          </div>
+
+          <!-- Recent recordings -->
+          <div class="panel-card">
+            <p class="section-title">Recent Recordings</p>
+            <div class="rec-item">
+              <div class="rec-thumb">▶</div>
+              <div class="rec-info">
+                <div class="rec-name">May 29 — Email Sequences Deep Dive</div>
+                <div class="rec-meta">58 min · 124 views</div>
+              </div>
+              <div class="rec-play">▶</div>
+            </div>
+            <div class="rec-item">
+              <div class="rec-thumb">▶</div>
+              <div class="rec-info">
+                <div class="rec-name">May 22 — Landing Page Hot Seats</div>
+                <div class="rec-meta">62 min · 98 views</div>
+              </div>
+              <div class="rec-play">▶</div>
+            </div>
+            <div class="rec-item">
+              <div class="rec-thumb">▶</div>
+              <div class="rec-info">
+                <div class="rec-name">May 15 — Q&amp;A Open Office Hours</div>
+                <div class="rec-meta">54 min · 87 views</div>
+              </div>
+              <div class="rec-play">▶</div>
+            </div>
+          </div>
+
+          <!-- Leaderboard -->
+          <div class="panel-card">
+            <p class="section-title">Top Members</p>
+            <div class="lb-item">
+              <div class="lb-rank gold">🥇</div>
+              <div class="lb-avatar" style="background:linear-gradient(135deg,#F59E0B,#D97706)">MK</div>
+              <div class="lb-name">Marcus K.</div>
+              <div class="lb-pts">2,840 pts</div>
+            </div>
+            <div class="lb-item">
+              <div class="lb-rank silver">🥈</div>
+              <div class="lb-avatar" style="background:linear-gradient(135deg,#6366F1,#8B5CF6)">SM</div>
+              <div class="lb-name">Sarah M. (You)</div>
+              <div class="lb-pts">1,240 pts</div>
+            </div>
+            <div class="lb-item">
+              <div class="lb-rank bronze">🥉</div>
+              <div class="lb-avatar" style="background:linear-gradient(135deg,#10B981,#059669)">JT</div>
+              <div class="lb-name">Jamie T.</div>
+              <div class="lb-pts">1,105 pts</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Back link -->
+  <a href="page2.html#work" class="back-link">
+    <span class="back-link-dot"></span>
+    Built by BlueSand Digital
+  </a>
+
+</body>
+</html>
