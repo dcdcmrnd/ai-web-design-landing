@@ -1313,14 +1313,16 @@
     .svc-iframe-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
     .svc-click-block { position: absolute; inset: 0; z-index: 5; cursor: default; }
 
-    /* Subtle overlay — just for depth, not for hiding text */
+    /* Gradient overlay — darkens bottom so text is readable */
     .svc-overlay {
       position: absolute; inset: 0;
       background: linear-gradient(
         to bottom,
-        rgba(6,15,24,0.05) 0%,
-        rgba(6,15,24,0) 40%,
-        rgba(6,15,24,0.15) 100%
+        rgba(6,15,24,0) 0%,
+        rgba(6,15,24,0) 38%,
+        rgba(6,15,24,0.62) 65%,
+        rgba(6,15,24,0.90) 82%,
+        rgba(6,15,24,0.97) 100%
       );
       pointer-events: none; z-index: 8;
     }
@@ -1339,70 +1341,28 @@
       border: 1px solid rgba(255,255,255,0.12);
     }
 
-    /* Info card (bottom-left of visual — minimal, no heavy text) */
-    .svc-info-card {
+    /* Overlay text — title, short description, CTAs sit on the gradient */
+    .svc-overlay-text {
       position: absolute;
-      bottom: 36px; left: 10%;
+      bottom: 0; left: 0; right: 0;
       z-index: 20;
-      background: rgba(6,15,24,0.68);
-      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.13);
-      border-radius: var(--radius-md);
-      padding: 18px 22px;
-      max-width: 360px;
+      padding: 0 10% 60px;
     }
-    .svc-info-card.light {
-      background: rgba(242,250,254,0.88);
-      border-color: var(--border);
-      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-    }
-    .svc-ic-name {
-      font-size: 0.88rem; font-weight: 700;
-      color: rgba(255,255,255,0.92);
-      margin-bottom: 3px; letter-spacing: -0.01em;
-    }
-    .svc-info-card.light .svc-ic-name { color: var(--text-h); }
-    .svc-ic-sub {
-      font-size: 0.66rem; color: rgba(255,255,255,0.42); margin-bottom: 12px;
-    }
-    .svc-info-card.light .svc-ic-sub { color: var(--text-m); }
-    .svc-ic-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-    .svc-ic-tag {
-      font-size: 0.6rem; font-weight: 600;
-      color: rgba(255,255,255,0.68);
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.13);
-      border-radius: var(--radius-full); padding: 3px 10px;
-    }
-    .svc-info-card.light .svc-ic-tag {
-      color: var(--navy);
-      background: rgba(13,92,122,0.08);
-      border-color: rgba(13,92,122,0.15);
-    }
-
-    /* Text snap section — full description, separate from visual */
-    .svc-text-snap {
-      background: #060F18;
-      padding: 80px 10%;
-      scroll-snap-align: start;
-      border-top: 1px solid rgba(255,255,255,0.07);
-      display: flex; align-items: center; min-height: 72vh;
-    }
-    .svc-text-inner { max-width: 700px; }
+    .svc-text-inner { max-width: 680px; }
     .svc-snum {
-      display: inline-block; font-size: 0.62rem; font-weight: 700;
+      display: inline-block; font-size: 0.6rem; font-weight: 700;
       letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--terra); margin-bottom: 18px;
+      color: var(--terra); margin-bottom: 14px;
     }
     .svc-text-inner h3 {
-      font-size: clamp(2.2rem, 4.5vw, 4rem);
+      font-size: clamp(2rem, 4vw, 3.6rem);
       font-weight: 700; color: var(--white);
-      line-height: 1.08; letter-spacing: -0.03em; margin-bottom: 16px;
+      line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 12px;
     }
     .svc-text-inner h3 em { font-style: italic; font-weight: 300; color: var(--sand); }
     .svc-text-inner p {
-      font-size: 1rem; color: rgba(255,255,255,0.58);
-      line-height: 1.8; margin-bottom: 32px; max-width: 600px;
+      font-size: 0.92rem; color: rgba(255,255,255,0.62);
+      line-height: 1.75; margin-bottom: 24px; max-width: 560px;
     }
     .svc-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
     .btn-preview {
@@ -1494,10 +1454,9 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
-      .svc-visual-snap { height: 85svh; }
-      .svc-text-snap   { padding: 64px 6%; min-height: auto; }
-      .svc-info-card   { left: 6%; max-width: none; right: 6%; }
-      .svc-label       { left: 6%; }
+      .svc-visual-snap   { height: 90svh; }
+      .svc-overlay-text  { padding: 0 6% 52px; }
+      .svc-label         { left: 6%; }
       .svc-ads-metrics { grid-template-columns: repeat(2, 1fr); }
       .svc-mem-sb      { width: 160px; }
       .svc-va-content  { flex-direction: column; }
@@ -1518,13 +1477,12 @@
     }
     @media (max-width: 768px) {
       .svc-showcase-intro { padding: 56px 5% 36px; }
-      .svc-visual-snap { height: 75svh; min-height: 400px; }
-      .svc-info-card { bottom: 20px; left: 5%; right: 5%; padding: 14px 16px; max-width: none; }
-      .svc-ic-name   { font-size: 0.82rem; }
-      .svc-label     { left: 5%; font-size: 0.55rem; }
-      .svc-text-snap { padding: 48px 5% 52px; min-height: auto; }
-      .svc-text-inner h3 { font-size: clamp(1.8rem, 7vw, 2.8rem); }
-      .svc-actions   { flex-direction: column; align-items: stretch; }
+      .svc-visual-snap   { height: 100svh; min-height: 500px; }
+      .svc-overlay-text  { padding: 0 5% 48px; }
+      .svc-text-inner h3 { font-size: clamp(1.7rem, 7vw, 2.6rem); }
+      .svc-text-inner p  { font-size: 0.85rem; margin-bottom: 20px; }
+      .svc-label         { left: 5%; font-size: 0.55rem; }
+      .svc-actions       { flex-direction: column; align-items: stretch; }
       .btn-preview, .btn-cta-outline { justify-content: center; text-align: center; }
       .svc-ads-metrics { grid-template-columns: repeat(2, 1fr); gap: 10px; }
       .svc-metric-card { padding: 13px 14px; }
@@ -1869,25 +1827,15 @@
       </div>
       <div class="svc-overlay"></div>
       <div class="svc-label">Service 01 · Website Builds &amp; Redesigns</div>
-      <div class="svc-info-card">
-        <div class="svc-ic-name">Jordan Mercer — Business Coach</div>
-        <div class="svc-ic-sub">Personal brand site with booking &amp; services</div>
-        <div class="svc-ic-tags">
-          <span class="svc-ic-tag">Portfolio</span>
-          <span class="svc-ic-tag">Coaching Services</span>
-          <span class="svc-ic-tag">Online Booking</span>
-          <span class="svc-ic-tag">Growth Package</span>
-        </div>
-      </div>
-    </div>
-    <div class="svc-text-snap">
-      <div class="svc-text-inner">
-        <span class="svc-snum">Service 01</span>
-        <h3>Beautiful websites,<br><em>delivered fast.</em></h3>
-        <p>First draft in 48 hours. Live in 7 days. Clean design, fast-loading pages, and a site your customers can actually navigate — built to convert visitors into leads from day one.</p>
-        <div class="svc-actions">
-          <button class="btn-preview" data-demo="demo-jordan.html" data-label="Jordan Mercer — Website Build">Preview Live Site →</button>
-          <a href="#contact" class="btn-cta-outline">Start a Website Build →</a>
+      <div class="svc-overlay-text">
+        <div class="svc-text-inner">
+          <span class="svc-snum">Service 01</span>
+          <h3>Beautiful websites,<br><em>delivered fast.</em></h3>
+          <p>First draft in 48 hours. Live in 7 days. Clean design your customers can actually navigate — built to convert visitors into leads.</p>
+          <div class="svc-actions">
+            <button class="btn-preview" data-demo="demo-jordan.html" data-label="Jordan Mercer — Website Build">Preview Live Site →</button>
+            <a href="#contact" class="btn-cta-outline">Start a Website Build →</a>
+          </div>
         </div>
       </div>
     </div>
@@ -1950,25 +1898,15 @@
       </div>
       <div class="svc-overlay"></div>
       <div class="svc-label">Service 02 · SEO &amp; Google Ads</div>
-      <div class="svc-info-card">
-        <div class="svc-ic-name">Campaign Performance Report</div>
-        <div class="svc-ic-sub">Active campaign · Last 30 days</div>
-        <div class="svc-ic-tags">
-          <span class="svc-ic-tag">Search Ads</span>
-          <span class="svc-ic-tag">Local SEO</span>
-          <span class="svc-ic-tag">Conversion Tracking</span>
-          <span class="svc-ic-tag">A/B Testing</span>
-        </div>
-      </div>
-    </div>
-    <div class="svc-text-snap">
-      <div class="svc-text-inner">
-        <span class="svc-snum">Service 02</span>
-        <h3>Get found. Get<br><em>customers.</em></h3>
-        <p>We run your SEO and Google Ads so every search is an opportunity. No wasted spend. No confusing dashboards. Just more qualified leads reaching your business every month.</p>
-        <div class="svc-actions">
-          <a href="#contact" class="btn-preview">Grow My Traffic →</a>
-          <a href="#pricing" class="btn-cta-outline">View Pricing</a>
+      <div class="svc-overlay-text">
+        <div class="svc-text-inner">
+          <span class="svc-snum">Service 02</span>
+          <h3>Get found. Get<br><em>customers.</em></h3>
+          <p>We run your SEO and Google Ads so every search is an opportunity. No wasted spend, no confusing dashboards — just more qualified leads every month.</p>
+          <div class="svc-actions">
+            <a href="#contact" class="btn-preview">Grow My Traffic →</a>
+            <a href="#pricing" class="btn-cta-outline">View Pricing</a>
+          </div>
         </div>
       </div>
     </div>
@@ -2025,27 +1963,17 @@
           </div>
         </div>
       </div>
-      <div class="svc-overlay" style="background:linear-gradient(to bottom,rgba(3,17,31,0.05) 0%,rgba(3,17,31,0) 40%,rgba(3,17,31,0.18) 100%)"></div>
+      <div class="svc-overlay" style="background:linear-gradient(to bottom,rgba(3,17,31,0) 0%,rgba(3,17,31,0) 38%,rgba(3,17,31,0.62) 65%,rgba(3,17,31,0.90) 82%,rgba(3,17,31,0.97) 100%)"></div>
       <div class="svc-label">Service 03 · Membership Portals</div>
-      <div class="svc-info-card">
-        <div class="svc-ic-name">Elevate Academy — Member Portal</div>
-        <div class="svc-ic-sub">Full-featured course &amp; community platform</div>
-        <div class="svc-ic-tags">
-          <span class="svc-ic-tag">Course Library</span>
-          <span class="svc-ic-tag">Dashboard</span>
-          <span class="svc-ic-tag">Weekly Calls</span>
-          <span class="svc-ic-tag">Recordings</span>
-        </div>
-      </div>
-    </div>
-    <div class="svc-text-snap">
-      <div class="svc-text-inner">
-        <span class="svc-snum">Service 03</span>
-        <h3>Members-only portals<br><em>that retain.</em></h3>
-        <p>Gated content, course libraries, and subscription dashboards — built to keep your audience engaged month after month. Progress tracking, weekly calls, and streaks built in.</p>
-        <div class="svc-actions">
-          <button class="btn-preview" data-demo="demo-elevate.html" data-label="Elevate Academy — Member Portal">Preview the Portal →</button>
-          <a href="#contact" class="btn-cta-outline">Build My Portal →</a>
+      <div class="svc-overlay-text">
+        <div class="svc-text-inner">
+          <span class="svc-snum">Service 03</span>
+          <h3>Members-only portals<br><em>that retain.</em></h3>
+          <p>Course libraries, subscription dashboards, and progress tracking — built to keep your audience engaged month after month.</p>
+          <div class="svc-actions">
+            <button class="btn-preview" data-demo="demo-elevate.html" data-label="Elevate Academy — Member Portal">Preview the Portal →</button>
+            <a href="#contact" class="btn-cta-outline">Build My Portal →</a>
+          </div>
         </div>
       </div>
     </div>
@@ -2072,27 +2000,17 @@
           </div>
         </div>
       </div>
-      <div class="svc-overlay" style="background:linear-gradient(to bottom,rgba(232,245,250,0.05) 0%,rgba(232,245,250,0) 40%,rgba(8,32,48,0.1) 100%)"></div>
+      <div class="svc-overlay"></div>
       <div class="svc-label">Service 04 · Managed VA Services</div>
-      <div class="svc-info-card light">
-        <div class="svc-ic-name">Managed VA Placement</div>
-        <div class="svc-ic-sub">Assessment · Onboarding · Ongoing Management</div>
-        <div class="svc-ic-tags">
-          <span class="svc-ic-tag">Zero HR Cost</span>
-          <span class="svc-ic-tag">Vetted VAs</span>
-          <span class="svc-ic-tag">Fully Managed</span>
-          <span class="svc-ic-tag">Free Matching</span>
-        </div>
-      </div>
-    </div>
-    <div class="svc-text-snap">
-      <div class="svc-text-inner">
-        <span class="svc-snum">Service 04</span>
-        <h3>Your team, fully<br><em>handled.</em></h3>
-        <p>We match you with a vetted VA, handle all the training and management, and pay them directly through us. One flat monthly rate. Zero HR headaches. Free to get started.</p>
-        <div class="svc-actions">
-          <a href="#contact" class="btn-preview">Get My VA →</a>
-          <a href="#pricing" class="btn-cta-outline">View Pricing</a>
+      <div class="svc-overlay-text">
+        <div class="svc-text-inner">
+          <span class="svc-snum">Service 04</span>
+          <h3>Your team, fully<br><em>handled.</em></h3>
+          <p>We match, train, and manage your VA directly — and pay them through us. One flat monthly rate. Zero HR headaches. Free to get started.</p>
+          <div class="svc-actions">
+            <a href="#contact" class="btn-preview">Get My VA →</a>
+            <a href="#pricing" class="btn-cta-outline">View Pricing</a>
+          </div>
         </div>
       </div>
     </div>
