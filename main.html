@@ -1463,10 +1463,8 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
-      .svc-block         { height: auto; }
-      .svc-sticky        { position: relative; height: 80svh; }
-      /* text always visible when scroll-reveal is inactive */
-      .svc-block .svc-overlay-text { opacity: 1; transform: none; }
+      .svc-block         { height: 175vh; }
+      .svc-sticky        { height: 100svh; }
       .svc-overlay-text  { padding: 0 6% 44px; }
       .svc-label         { left: 6%; }
       .svc-ads-metrics { grid-template-columns: repeat(2, 1fr); }
@@ -1489,8 +1487,9 @@
     }
     @media (max-width: 768px) {
       .svc-showcase-intro { padding: 56px 5% 36px; }
-      .svc-sticky        { height: 100svh; min-height: 480px; }
-      .svc-overlay-text  { padding: 0 5% 44px; }
+      .svc-block         { height: 160vh; }
+      .svc-sticky        { height: 100svh; min-height: 420px; }
+      .svc-overlay-text  { padding: 0 5% 40px; }
       .svc-text-inner h3 { font-size: clamp(1.7rem, 7vw, 2.6rem); }
       .svc-text-inner p  { font-size: 0.85rem; margin-bottom: 20px; }
       .svc-label         { left: 5%; font-size: 0.55rem; }
@@ -2486,10 +2485,8 @@
       blocks.forEach(function(b) {
         var top = b.getBoundingClientRect().top;
         var h   = b.offsetHeight;
-        /* If block is shorter than viewport (mobile/tablet), always show text */
-        if (h <= vh * 1.1) { b.classList.add('text-on'); return; }
         /* progress: 0 = section just entered, 1 = section leaving */
-        var progress = (-top) / (h - vh);
+        var progress = (-top) / Math.max(1, h - vh);
         b.classList.toggle('text-on', progress > 0.32);
       });
     }
