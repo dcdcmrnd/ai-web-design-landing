@@ -1317,18 +1317,27 @@
     .svc-iframe-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
     .svc-click-block { position: absolute; inset: 0; z-index: 5; cursor: default; }
 
-    /* Gradient — strong enough to cover iframe/visual content at the bottom */
+    /* Permanent bottom gradient so text area always has contrast */
     .svc-overlay {
       position: absolute; inset: 0;
       background: linear-gradient(
         to bottom,
-        rgba(6,15,24,0.05) 0%,
-        rgba(6,15,24,0)    20%,
-        rgba(6,15,24,0.55) 58%,
-        rgba(6,15,24,0.88) 76%,
+        transparent    0%,
+        transparent   40%,
+        rgba(6,15,24,0.35) 62%,
+        rgba(6,15,24,0.82) 80%,
         rgba(6,15,24,0.97) 100%
       );
       pointer-events: none; z-index: 8;
+    }
+
+    /* Scrubbing mask — JS drives its opacity from 0 → 0.65 as you scroll */
+    .svc-mask {
+      position: absolute; inset: 0;
+      background: #060F18;
+      opacity: 0;
+      pointer-events: none; z-index: 7;
+      will-change: opacity;
     }
 
     /* Service label pill (top-left, always visible) */
@@ -1345,18 +1354,16 @@
       border: 1px solid rgba(255,255,255,0.12);
     }
 
-    /* Overlay text — hidden initially, slides up when scrolled into */
+    /* Overlay text — JS scrubs opacity and translateY directly (no CSS transition) */
     .svc-overlay-text {
       position: absolute;
       bottom: 0; left: 0; right: 0;
       z-index: 20;
       padding: 0 10% 60px;
       opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.78s cubic-bezier(0.22,1,0.36,1),
-                  transform 0.78s cubic-bezier(0.22,1,0.36,1);
+      transform: translateY(80px);
+      will-change: opacity, transform;
     }
-    .svc-block.text-on .svc-overlay-text { opacity: 1; transform: none; }
     .svc-text-inner { max-width: 680px; }
     .svc-snum {
       display: inline-block; font-size: 0.6rem; font-weight: 700;
@@ -1837,6 +1844,7 @@
           <iframe src="demo-jordan.html" loading="eager" tabindex="-1" aria-hidden="true" title="Website demo"></iframe>
           <div class="svc-click-block" aria-hidden="true"></div>
         </div>
+        <div class="svc-mask"></div>
         <div class="svc-overlay"></div>
         <div class="svc-label">Service 01 · Website Builds &amp; Redesigns</div>
         <div class="svc-overlay-text">
@@ -1909,6 +1917,7 @@
           </div>
         </div>
       </div>
+      <div class="svc-mask"></div>
       <div class="svc-overlay"></div>
       <div class="svc-label">Service 02 · SEO &amp; Google Ads</div>
       <div class="svc-overlay-text">
@@ -1976,7 +1985,8 @@
           </div>
         </div>
       </div>
-      <div class="svc-overlay" style="background:linear-gradient(to bottom,rgba(3,17,31,0.05) 0%,rgba(3,17,31,0) 20%,rgba(3,17,31,0.55) 58%,rgba(3,17,31,0.88) 76%,rgba(3,17,31,0.97) 100%)"></div>
+      <div class="svc-mask"></div>
+      <div class="svc-overlay" style="background:linear-gradient(to bottom,transparent 0%,transparent 40%,rgba(3,17,31,0.35) 62%,rgba(3,17,31,0.82) 80%,rgba(3,17,31,0.97) 100%)"></div>
       <div class="svc-label">Service 03 · Membership Portals</div>
       <div class="svc-overlay-text">
         <div class="svc-text-inner">
@@ -2013,6 +2023,7 @@
           </div>
         </div>
       </div>
+      <div class="svc-mask"></div>
       <div class="svc-overlay"></div>
       <div class="svc-label">Service 04 · Managed VA Services</div>
       <div class="svc-overlay-text">
@@ -2476,21 +2487,48 @@
     }));
   })();
 
-  /* ── SCROLL SHOWCASE — reveal text as user scrolls through each block ── */
+  /* ── SCROLL SHOWCASE — Letrigo-style scrub: tied frame-by-frame to scroll ── */
   (function() {
     var blocks = document.querySelectorAll('.svc-block');
     if (!blocks.length) return;
+
+    function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+    function lerp(a, b, t) { return a + (b - a) * clamp(t, 0, 1); }
+
     function update() {
       var vh = window.innerHeight;
       blocks.forEach(function(b) {
-        var top = b.getBoundingClientRect().top;
-        var h   = b.offsetHeight;
-        /* progress: 0 = section just entered, 1 = section leaving */
-        var progress = (-top) / Math.max(1, h - vh);
-        b.classList.toggle('text-on', progress > 0.32);
+        var top  = b.getBoundingClientRect().top;
+        var h    = b.offsetHeight;
+        var room = h - vh;
+
+        var text = b.querySelector('.svc-overlay-text');
+        var mask = b.querySelector('.svc-mask');
+        if (!text) return;
+
+        /* On very short blocks (edge case), show text immediately */
+        if (room < vh * 0.3) {
+          text.style.opacity = 1;
+          text.style.transform = 'translateY(0)';
+          if (mask) mask.style.opacity = 0;
+          return;
+        }
+
+        /* progress 0 = block just entered viewport, 1 = block about to leave */
+        var progress = clamp((-top) / room, 0, 1);
+
+        /* Mask darkens from 0 → 0.6 over the first 60% of scroll */
+        if (mask) mask.style.opacity = lerp(0, 0.6, progress / 0.6);
+
+        /* Text: starts sliding at 28%, fully in at 72% */
+        var t = clamp((progress - 0.28) / 0.44, 0, 1);
+        text.style.opacity = t;
+        text.style.transform = 'translateY(' + (80 * (1 - t)) + 'px)';
       });
     }
+
     window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update, { passive: true });
     update();
   })();
 
