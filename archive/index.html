@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self';" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <title>BlueSand Digital — Website Design for U.S. Small Businesses</title>
+  <meta name="description" content="We build and enhance websites for U.S. small business owners — landing pages, membership portals, e-commerce, and more. Fast delivery, transparent pricing." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Page intro overlay -->
+  <div class="page-intro" id="page-intro" aria-hidden="true"></div>
+
+  <!-- Scroll progress dot -->
+  <div class="scroll-dot" id="scroll-dot" aria-hidden="true"></div>
+
+  <!-- HEADER -->
+  <header class="site-header" id="top">
+    <a href="#top" class="brand">BlueSand <strong>Digital</strong></a>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero-section" aria-labelledby="hero-h1">
+    <div class="hero-inner">
+      <p class="hero-eyebrow">Web Design &amp; Enhancement for U.S. Small Business</p>
+      <h1 id="hero-h1">
+        <span class="line-wrap"><span>Your business</span></span>
+        <span class="line-wrap"><span>deserves a <em>website</em></span></span>
+        <span class="line-wrap"><span>that works.</span></span>
+      </h1>
+      <p class="hero-sub hero-anim-item" style="--d:0.9s">We build and enhance websites, membership portals, and digital storefronts — using AI tools to deliver fast, at a fraction of the cost.</p>
+      <a href="#contact" class="btn-hero hero-anim-item" style="--d:1.05s">Start a Project →</a>
+      <div class="scroll-hint hero-anim-item" style="--d:1.2s" aria-hidden="true">
+        <span>SCROLL</span>
+        <span class="scroll-arrow">↓</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="about-section" aria-labelledby="about-h2">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-left">
+          <p class="eyebrow-line" data-reveal data-delay="1">About</p>
+          <h2 id="about-h2">
+            <span class="line-wrap" data-reveal data-delay="2"><span>Smart design,</span></span>
+            <span class="line-wrap" data-reveal data-delay="3"><span><em>faster</em> than ever.</span></span>
+          </h2>
+        </div>
+        <div class="about-right">
+          <p data-reveal data-delay="2">We're an independent web design studio leveraging the latest AI tools to help small businesses across the U.S. build a professional online presence — without the agency price tag or the six-week wait.</p>
+          <p data-reveal data-delay="3">Whether your site is outdated and underperforming, or you need something built from scratch, we deliver clean, fast, and conversion-focused results. And we stick around to manage it.</p>
+          <p data-reveal data-delay="4">This is personal — not an agency. You get direct access to your designer, real communication, and a website that actually reflects your business.</p>
+          <div class="stats-divider" data-reveal data-delay="5"></div>
+          <div class="stats-row">
+            <div class="stat" data-reveal data-delay="5">
+              <span class="stat-num" data-count="48" data-suffix="h">48h</span>
+              <span class="stat-label">avg. first draft</span>
+            </div>
+            <div class="stat" data-reveal data-delay="6">
+              <span class="stat-num" data-count="100" data-suffix="%">100%</span>
+              <span class="stat-label">U.S.-focused clients</span>
+            </div>
+            <div class="stat" data-reveal data-delay="7">
+              <span class="stat-num">AI</span>
+              <span class="stat-label">powered workflow</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="services-section" aria-labelledby="services-label">
+    <div class="container">
+      <p class="eyebrow-line" id="services-label" data-reveal>What We Do</p>
+      <div class="services-grid">
+        <article class="service-card" data-reveal data-delay="1">
+          <span class="service-num">01</span>
+          <h3 class="service-title">Landing Pages</h3>
+          <p>High-converting single pages for lead generation, promotions, and product launches. Clean, fast, and built to turn visitors into leads.</p>
+          <div class="service-tags">
+            <span class="tag">Lead Generation</span>
+            <span class="tag">Mobile-first</span>
+            <span class="tag">A/B Ready</span>
+          </div>
+        </article>
+        <article class="service-card" data-reveal data-delay="2">
+          <span class="service-num">02</span>
+          <h3 class="service-title">Membership Portals</h3>
+          <p>Gated content, subscription access, and member dashboards — ideal for coaches, studios, and businesses building a community.</p>
+          <div class="service-tags">
+            <span class="tag">Gated Content</span>
+            <span class="tag">Subscriptions</span>
+            <span class="tag">User Dashboards</span>
+          </div>
+        </article>
+        <article class="service-card" data-reveal data-delay="3">
+          <span class="service-num">03</span>
+          <h3 class="service-title">E-commerce &amp; Business Sites</h3>
+          <p>Full online stores and multi-page business sites. Fast to launch and easy to manage, from single-product pages to full catalogs.</p>
+          <div class="service-tags">
+            <span class="tag">Shopify</span>
+            <span class="tag">WooCommerce</span>
+            <span class="tag">Payment Setup</span>
+          </div>
+        </article>
+        <article class="service-card" data-reveal data-delay="4">
+          <span class="service-num">04</span>
+          <h3 class="service-title">Workshop &amp; Opt-in Pages</h3>
+          <p>Event registration, webinar sign-ups, and lead magnet delivery pages designed to grow your list and fill your events.</p>
+          <div class="service-tags">
+            <span class="tag">Email Capture</span>
+            <span class="tag">Event Pages</span>
+            <span class="tag">Funnels</span>
+          </div>
+        </article>
+        <article class="service-card wide" data-reveal data-delay="5">
+          <span class="service-num">05</span>
+          <h3 class="service-title">Site Redesign &amp; Enhancement</h3>
+          <p>Already have a site that's embarrassing you? We modernize the design, speed it up, and improve your UX so it actually converts.</p>
+          <div class="service-tags">
+            <span class="tag">UI Refresh</span>
+            <span class="tag">Speed Boost</span>
+            <span class="tag">UX Audit</span>
+          </div>
+        </article>
+        <article class="service-card wide" data-reveal data-delay="6">
+          <span class="service-num">06</span>
+          <h3 class="service-title">Website Management</h3>
+          <p>Ongoing site care — content updates, performance monitoring, security, and SEO tweaks so your site never goes dark.</p>
+          <div class="service-tags">
+            <span class="tag">Monthly Retainer</span>
+            <span class="tag">SEO</span>
+            <span class="tag">Updates</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK (dark) -->
+  <section id="work" class="work-section" aria-labelledby="work-h2">
+    <div class="container">
+      <div class="work-header">
+        <div>
+          <p class="eyebrow-line light" data-reveal>Selected Work</p>
+          <h2 id="work-h2">
+            <span class="line-wrap" data-reveal data-delay="2"><span>Live <em>demo</em></span></span>
+            <span class="line-wrap" data-reveal data-delay="3"><span>projects</span></span>
+          </h2>
+        </div>
+        <p class="work-note" data-reveal data-delay="4">Click any project to view<br>the full interactive demo</p>
+      </div>
+
+      <div class="work-projects">
+        <article class="project-card" data-reveal>
+          <div class="project-mockup">
+            <div class="mockup membership-mock" aria-hidden="true">
+              <div class="mock-sidebar">
+                <div class="mock-logo-area"></div>
+                <div class="mock-nav-item active"></div>
+                <div class="mock-nav-item"></div>
+                <div class="mock-nav-item"></div>
+                <div class="mock-nav-item"></div>
+              </div>
+              <div class="mock-main">
+                <div class="mock-topbar">
+                  <div class="mock-tab active">Course Library</div>
+                  <div class="mock-tab">Dashboard</div>
+                  <div class="mock-tab">Recordings</div>
+                  <div class="mock-tab">Weekly Calls</div>
+                </div>
+                <div class="mock-body">
+                  <div class="mock-prog-bar"><div class="mock-prog-fill" style="width:65%"></div></div>
+                  <div class="mock-prog-bar"><div class="mock-prog-fill" style="width:42%"></div></div>
+                  <div class="mock-prog-bar"><div class="mock-prog-fill" style="width:78%"></div></div>
+                  <div class="mock-row"></div>
+                  <div class="mock-row short"></div>
+                </div>
+              </div>
+            </div>
+            <a href="demo-elevate.html" class="project-demo-btn" target="_blank">View live demo →</a>
+          </div>
+          <div class="project-info">
+            <p class="project-category" data-reveal data-delay="2">Membership Portal</p>
+            <div class="project-tags" data-reveal data-delay="3">
+              <span class="tag-outline">Course Library</span>
+              <span class="tag-outline">Dashboard</span>
+              <span class="tag-outline">Recordings</span>
+              <span class="tag-outline">Weekly Calls</span>
+            </div>
+            <h3 data-reveal data-delay="4">Elevate Academy<br>Member Portal</h3>
+            <p data-reveal data-delay="5">Full dashboard with module progress tracking, weekly call calendar, recent recordings library, and streak stats.</p>
+          </div>
+        </article>
+
+        <article class="project-card reverse" data-reveal>
+          <div class="project-mockup">
+            <div class="mockup coach-mock" aria-hidden="true">
+              <div class="mock-coach-header">
+                <div class="mock-name-line"></div>
+                <div class="mock-nav-pills">
+                  <div class="mock-pill"></div>
+                  <div class="mock-pill"></div>
+                  <div class="mock-pill"></div>
+                </div>
+              </div>
+              <div class="mock-coach-body">
+                <div class="mock-hero-text">
+                  <div class="mock-line long"></div>
+                  <div class="mock-line medium"></div>
+                  <div class="mock-btns-row">
+                    <div class="mock-cta teal"></div>
+                    <div class="mock-cta outline"></div>
+                  </div>
+                </div>
+                <div class="mock-booking-widget">
+                  <div class="mock-booking-line"></div>
+                  <div class="mock-session-row"></div>
+                  <div class="mock-session-row"></div>
+                  <div class="mock-session-row"></div>
+                  <div class="mock-book-btn"></div>
+                </div>
+              </div>
+            </div>
+            <a href="demo-jordan.html" class="project-demo-btn" target="_blank">View demo →</a>
+          </div>
+          <div class="project-info">
+            <p class="project-category" data-reveal data-delay="2">Personal Brand &amp; Booking</p>
+            <div class="project-tags" data-reveal data-delay="3">
+              <span class="tag-outline">Portfolio</span>
+              <span class="tag-outline">Coaching Services</span>
+              <span class="tag-outline">Online Booking</span>
+            </div>
+            <h3 data-reveal data-delay="4">Jordan Mercer<br>Business Coach</h3>
+            <p data-reveal data-delay="5">Personal brand site with services, client testimonials, and a live booking widget with session types.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process" class="process-section" aria-labelledby="process-h2">
+    <div class="container">
+      <p class="eyebrow-line" data-reveal>How It Works</p>
+      <h2 id="process-h2">
+        <span class="line-wrap" data-reveal data-delay="2"><span>From idea to</span></span>
+        <span class="line-wrap" data-reveal data-delay="3"><span><em>live site</em> in days.</span></span>
+      </h2>
+      <div class="process-list">
+        <div class="process-item" data-reveal data-delay="1">
+          <span class="process-num">01</span>
+          <div class="process-content">
+            <h3>Discovery Call</h3>
+            <p>We review your current site, learn your goals, and map out exactly what needs to change. 30 minutes — no obligation. We'll come back with a clear proposal.</p>
+          </div>
+        </div>
+        <hr class="process-rule" data-reveal />
+
+        <div class="process-item" data-reveal data-delay="1">
+          <span class="process-num">02</span>
+          <div class="process-content">
+            <h3>Design Mockup</h3>
+            <p>We create visual mockups of your enhanced pages so you can approve the direction before we write a single line of code.</p>
+          </div>
+        </div>
+        <hr class="process-rule" data-reveal />
+
+        <div class="process-item" data-reveal data-delay="1">
+          <span class="process-num">03</span>
+          <div class="process-content">
+            <h3>Build &amp; Review</h3>
+            <p>We build the site. You review. Two rounds of revisions are included in every project, so we get it exactly right.</p>
+          </div>
+        </div>
+        <hr class="process-rule" data-reveal />
+
+        <div class="process-item" data-reveal data-delay="1">
+          <span class="process-num">04</span>
+          <div class="process-content">
+            <h3>Launch &amp; Manage</h3>
+            <p>We push your site live, test across all devices, and hand over full ownership — or stay on for ongoing management.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" class="pricing-section" aria-labelledby="pricing-h2">
+    <div class="container">
+      <h2 id="pricing-h2">
+        <span class="line-wrap" data-reveal><span>Simple,</span></span>
+        <span class="line-wrap" data-reveal data-delay="2"><span><em>transparent</em> pricing.</span></span>
+      </h2>
+      <div class="pricing-grid">
+        <article class="pricing-card" data-reveal data-delay="1">
+          <div class="pricing-top">
+            <p class="pricing-tier">Starter</p>
+            <div class="pricing-price"><sup>$</sup><span>999</span></div>
+            <p class="pricing-note">one-time · hosting included</p>
+          </div>
+          <ul class="feature-list">
+            <li>Opt-in &amp; landing pages</li>
+            <li>Mobile-responsive design</li>
+            <li>AI copywriting assistance</li>
+            <li>Contact form setup</li>
+            <li>Unlimited revisions (first month)</li>
+            <li>Hosting included</li>
+            <li>Client sets up own domain</li>
+            <li>No automation build</li>
+          </ul>
+          <p class="pricing-desc">Best for simple opt-in pages and single-purpose sites. You receive the finished product ready to deploy.</p>
+          <a href="#contact" class="btn-pricing">Get Started</a>
+        </article>
+
+        <article class="pricing-card featured" data-reveal data-delay="2">
+          <div class="pricing-badge">Best Value</div>
+          <div class="pricing-top">
+            <p class="pricing-tier">Growth</p>
+            <div class="pricing-price"><sup>$</sup><span>1,999</span></div>
+            <p class="pricing-note">one-time · hosting included</p>
+          </div>
+          <ul class="feature-list">
+            <li>Up to 10 pages</li>
+            <li>Blog or portfolio section</li>
+            <li>SEO optimization</li>
+            <li>Automation setup included</li>
+            <li>All site details configured</li>
+            <li>Unlimited revisions (first 30 days)</li>
+            <li>Delivered in 7–10 days</li>
+            <li>Free 1-month site management</li>
+            <li>Priority support for 60 days</li>
+            <li>Hosting included</li>
+          </ul>
+          <p class="pricing-desc">For complex sites that need automations, full setup, and everything working out of the box.</p>
+          <a href="#contact" class="btn-pricing">Get Started</a>
+        </article>
+
+        <article class="pricing-card" data-reveal data-delay="3">
+          <div class="pricing-top">
+            <p class="pricing-tier">Managed</p>
+            <div class="pricing-price"><sup>$</sup><span>499</span></div>
+            <p class="pricing-note">per month · everything included</p>
+          </div>
+          <ul class="feature-list">
+            <li>Hosting &amp; storage covered</li>
+            <li>Monthly content updates</li>
+            <li>Automation maintenance</li>
+            <li>Performance monitoring</li>
+            <li>Security &amp; backups</li>
+            <li>SEO reporting</li>
+            <li>Priority support</li>
+            <li>Cancel anytime</li>
+          </ul>
+          <p class="pricing-desc">Hands-off website ownership. We handle everything — hosting, updates, automations, and support.</p>
+          <a href="#contact" class="btn-pricing">Add to Any Project</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT (dark) -->
+  <section id="contact" class="contact-section" aria-labelledby="contact-h2">
+    <div class="container">
+      <div class="contact-inner">
+        <p class="contact-eyebrow" data-reveal>Let's Work Together</p>
+        <h2 id="contact-h2">
+          <span class="line-wrap" data-reveal data-delay="2"><span>Ready to build</span></span>
+          <span class="line-wrap" data-reveal data-delay="3"><span>something <em>real?</em></span></span>
+        </h2>
+        <p class="contact-sub" data-reveal data-delay="4">Tell me about your business and what you need. I'll reply within 24 hours.</p>
+        <a href="mailto:hello@bluesanddigital.com" class="contact-email" data-reveal data-delay="5">hello@bluesanddigital.com →</a>
+      </div>
+    </div>
+    <div class="contact-footer">
+      <span>© 2026 — BlueSand Digital</span>
+      <span>Serving small businesses across the U.S.</span>
+    </div>
+  </section>
+
+  <script src="main.js" defer></script>
+  <script src="animations.js" defer></script>
+</body>
+</html>
