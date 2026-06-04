@@ -1298,14 +1298,18 @@
     .svc-showcase-intro .section-label { color: rgba(255,255,255,0.45); }
     .svc-showcase-intro .section-label::before { background: var(--sand); }
 
-    /* Visual full-screen snap section */
-    .svc-visual-snap {
+    /* Each service block — tall so image shows first, text reveals as you scroll */
+    .svc-block {
+      height: 200vh;
+      position: relative;
+      scroll-snap-align: start;
+    }
+    .svc-sticky {
+      position: sticky;
+      top: 0;
       height: 100svh;
       min-height: 560px;
-      position: relative;
       overflow: hidden;
-      scroll-snap-align: start;
-      scroll-snap-stop: always;
     }
 
     /* iframe visual */
@@ -1313,21 +1317,21 @@
     .svc-iframe-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
     .svc-click-block { position: absolute; inset: 0; z-index: 5; cursor: default; }
 
-    /* Gradient overlay — darkens bottom so text is readable */
+    /* Gradient — strong enough to cover iframe/visual content at the bottom */
     .svc-overlay {
       position: absolute; inset: 0;
       background: linear-gradient(
         to bottom,
-        rgba(6,15,24,0) 0%,
-        rgba(6,15,24,0) 38%,
-        rgba(6,15,24,0.62) 65%,
-        rgba(6,15,24,0.90) 82%,
+        rgba(6,15,24,0.05) 0%,
+        rgba(6,15,24,0)    20%,
+        rgba(6,15,24,0.55) 58%,
+        rgba(6,15,24,0.88) 76%,
         rgba(6,15,24,0.97) 100%
       );
       pointer-events: none; z-index: 8;
     }
 
-    /* Service label pill (top-left) */
+    /* Service label pill (top-left, always visible) */
     .svc-label {
       position: absolute;
       top: calc(var(--hh) + 24px); left: 10%;
@@ -1341,13 +1345,18 @@
       border: 1px solid rgba(255,255,255,0.12);
     }
 
-    /* Overlay text — title, short description, CTAs sit on the gradient */
+    /* Overlay text — hidden initially, slides up when scrolled into */
     .svc-overlay-text {
       position: absolute;
       bottom: 0; left: 0; right: 0;
       z-index: 20;
       padding: 0 10% 60px;
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.78s cubic-bezier(0.22,1,0.36,1),
+                  transform 0.78s cubic-bezier(0.22,1,0.36,1);
     }
+    .svc-block.text-on .svc-overlay-text { opacity: 1; transform: none; }
     .svc-text-inner { max-width: 680px; }
     .svc-snum {
       display: inline-block; font-size: 0.6rem; font-weight: 700;
@@ -1454,8 +1463,9 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
-      .svc-visual-snap   { height: 90svh; }
-      .svc-overlay-text  { padding: 0 6% 52px; }
+      .svc-block         { height: auto; }
+      .svc-sticky        { position: relative; height: 80svh; }
+      .svc-overlay-text  { padding: 0 6% 44px; }
       .svc-label         { left: 6%; }
       .svc-ads-metrics { grid-template-columns: repeat(2, 1fr); }
       .svc-mem-sb      { width: 160px; }
@@ -1477,8 +1487,8 @@
     }
     @media (max-width: 768px) {
       .svc-showcase-intro { padding: 56px 5% 36px; }
-      .svc-visual-snap   { height: 100svh; min-height: 500px; }
-      .svc-overlay-text  { padding: 0 5% 48px; }
+      .svc-sticky        { height: 100svh; min-height: 480px; }
+      .svc-overlay-text  { padding: 0 5% 44px; }
       .svc-text-inner h3 { font-size: clamp(1.7rem, 7vw, 2.6rem); }
       .svc-text-inner p  { font-size: 0.85rem; margin-bottom: 20px; }
       .svc-label         { left: 5%; font-size: 0.55rem; }
@@ -1609,7 +1619,7 @@
     </a>
     <nav class="site-nav" aria-label="Primary navigation">
       <a href="#services">Services</a>
-      <a href="#work">Work</a>
+      <a href="#what-we-build">Our Work</a>
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
@@ -1820,28 +1830,30 @@
     </div>
 
     <!-- ── Service 1: Website Builds — iframe visual ── -->
-    <div class="svc-visual-snap" id="svc-web">
-      <div class="svc-iframe-wrap">
-        <iframe src="demo-jordan.html" loading="lazy" tabindex="-1" aria-hidden="true" title="Website demo"></iframe>
-        <div class="svc-click-block" aria-hidden="true"></div>
-      </div>
-      <div class="svc-overlay"></div>
-      <div class="svc-label">Service 01 · Website Builds &amp; Redesigns</div>
-      <div class="svc-overlay-text">
-        <div class="svc-text-inner">
-          <span class="svc-snum">Service 01</span>
-          <h3>Beautiful websites,<br><em>delivered fast.</em></h3>
-          <p>First draft in 48 hours. Live in 7 days. Clean design your customers can actually navigate — built to convert visitors into leads.</p>
-          <div class="svc-actions">
-            <button class="btn-preview" data-demo="demo-jordan.html" data-label="Jordan Mercer — Website Build">Preview Live Site →</button>
-            <a href="#contact" class="btn-cta-outline">Start a Website Build →</a>
+    <div class="svc-block" id="svc-web">
+      <div class="svc-sticky">
+        <div class="svc-iframe-wrap">
+          <iframe src="demo-jordan.html" loading="lazy" tabindex="-1" aria-hidden="true" title="Website demo"></iframe>
+          <div class="svc-click-block" aria-hidden="true"></div>
+        </div>
+        <div class="svc-overlay"></div>
+        <div class="svc-label">Service 01 · Website Builds &amp; Redesigns</div>
+        <div class="svc-overlay-text">
+          <div class="svc-text-inner">
+            <span class="svc-snum">Service 01</span>
+            <h3>Beautiful websites,<br><em>delivered fast.</em></h3>
+            <p>First draft in 48 hours. Live in 7 days. Clean design your customers can actually navigate — built to convert visitors into leads.</p>
+            <div class="svc-actions">
+              <button class="btn-preview" data-demo="demo-jordan.html" data-label="Jordan Mercer — Website Build">Preview Live Site →</button>
+              <a href="#contact" class="btn-cta-outline">Start a Website Build →</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
     <!-- ── Service 2: SEO & Google Ads — CSS analytics visual ── -->
-    <div class="svc-visual-snap" id="svc-seo">
+    <div class="svc-block" id="svc-seo"><div class="svc-sticky">
       <div class="svc-visual-css">
         <div class="svc-ads-bg"></div>
         <div class="svc-ads-grid"></div>
@@ -1909,10 +1921,10 @@
           </div>
         </div>
       </div>
-    </div>
+    </div></div>
 
     <!-- ── Service 3: Membership Portal — CSS dashboard visual ── -->
-    <div class="svc-visual-snap" id="svc-mem">
+    <div class="svc-block" id="svc-mem"><div class="svc-sticky">
       <div class="svc-visual-css">
         <div class="svc-mem-bg"></div>
         <div class="svc-mem-ui">
@@ -1963,7 +1975,7 @@
           </div>
         </div>
       </div>
-      <div class="svc-overlay" style="background:linear-gradient(to bottom,rgba(3,17,31,0) 0%,rgba(3,17,31,0) 38%,rgba(3,17,31,0.62) 65%,rgba(3,17,31,0.90) 82%,rgba(3,17,31,0.97) 100%)"></div>
+      <div class="svc-overlay" style="background:linear-gradient(to bottom,rgba(3,17,31,0.05) 0%,rgba(3,17,31,0) 20%,rgba(3,17,31,0.55) 58%,rgba(3,17,31,0.88) 76%,rgba(3,17,31,0.97) 100%)"></div>
       <div class="svc-label">Service 03 · Membership Portals</div>
       <div class="svc-overlay-text">
         <div class="svc-text-inner">
@@ -1976,10 +1988,10 @@
           </div>
         </div>
       </div>
-    </div>
+    </div></div>
 
     <!-- ── Service 4: VA Services — CSS task board visual ── -->
-    <div class="svc-visual-snap" id="svc-va">
+    <div class="svc-block" id="svc-va"><div class="svc-sticky">
       <div class="svc-visual-css" style="background:var(--bg)">
         <div class="svc-va-bg"></div>
         <div class="svc-va-content">
@@ -2013,7 +2025,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div></div>
 
   </section>
 
@@ -2090,111 +2102,6 @@
           <p>We assess your needs, match you with a vetted VA from our network, and handle everything. Monthly compensation runs through us — we train, manage, and hold your VA accountable so you don't have to.</p>
           <div class="sc-tags"><span class="sc-tag">Fully Managed</span><span class="sc-tag">Vetted VAs</span><span class="sc-tag">No HR Overhead</span></div>
         </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════
-       LIVE DEMOS — Dark section
-       ═══════════════════════════════ -->
-  <section id="work" class="demos-section">
-    <div class="container">
-      <div class="demos-head" data-reveal>
-        <div>
-          <p class="section-label">Live Demos</p>
-          <h2>See our work <em>in action.</em></h2>
-        </div>
-        <p class="demos-note">Click any project to explore<br>the full interactive demo</p>
-      </div>
-
-      <div class="demos-grid">
-
-        <!-- Membership Portal -->
-        <article class="demo-card">
-          <div class="demo-preview">
-            <div class="demo-mockup membership-mock" aria-hidden="true">
-              <div class="dm-sidebar">
-                <div class="dm-logo"></div>
-                <div class="dm-nav active"></div>
-                <div class="dm-nav"></div>
-                <div class="dm-nav"></div>
-                <div class="dm-nav"></div>
-              </div>
-              <div class="dm-main">
-                <div class="dm-topbar">
-                  <span class="dm-tab active">Course Library</span>
-                  <span class="dm-tab">Dashboard</span>
-                  <span class="dm-tab">Recordings</span>
-                  <span class="dm-tab">Weekly Calls</span>
-                </div>
-                <div class="dm-body">
-                  <div class="dm-bar"><div class="dm-fill" style="width:65%"></div></div>
-                  <div class="dm-bar"><div class="dm-fill" style="width:42%"></div></div>
-                  <div class="dm-bar"><div class="dm-fill" style="width:78%"></div></div>
-                  <div class="dm-row"></div>
-                  <div class="dm-row short"></div>
-                </div>
-              </div>
-            </div>
-            <a href="demo-elevate.html" class="demo-btn">View Live Demo →</a>
-          </div>
-          <div class="demo-info">
-            <p class="demo-category">Membership Portal</p>
-            <div class="demo-tags">
-              <span class="demo-tag">Course Library</span>
-              <span class="demo-tag">Dashboard</span>
-              <span class="demo-tag">Recordings</span>
-              <span class="demo-tag">Weekly Calls</span>
-            </div>
-            <h3>Elevate Academy<br>Member Portal</h3>
-            <p>Full dashboard with module progress tracking, weekly call calendar, recent recordings library, and streak stats.</p>
-          </div>
-        </article>
-
-        <!-- Business Coach -->
-        <article class="demo-card reverse">
-          <div class="demo-preview">
-            <div class="demo-mockup coach-mock" aria-hidden="true">
-              <div class="cm-header">
-                <div class="cm-logo-line"></div>
-                <div class="cm-pills">
-                  <div class="cm-pill"></div>
-                  <div class="cm-pill"></div>
-                  <div class="cm-pill"></div>
-                </div>
-              </div>
-              <div class="cm-body">
-                <div class="cm-text">
-                  <div class="cm-line long"></div>
-                  <div class="cm-line med"></div>
-                  <div class="cm-btns">
-                    <div class="cm-cta fill"></div>
-                    <div class="cm-cta out"></div>
-                  </div>
-                </div>
-                <div class="cm-widget">
-                  <div class="cm-wline"></div>
-                  <div class="cm-wrow"></div>
-                  <div class="cm-wrow"></div>
-                  <div class="cm-wrow"></div>
-                  <div class="cm-wbtn"></div>
-                </div>
-              </div>
-            </div>
-            <a href="demo-jordan.html" class="demo-btn">View Live Demo →</a>
-          </div>
-          <div class="demo-info">
-            <p class="demo-category">Personal Brand &amp; Booking</p>
-            <div class="demo-tags">
-              <span class="demo-tag">Portfolio</span>
-              <span class="demo-tag">Coaching Services</span>
-              <span class="demo-tag">Online Booking</span>
-            </div>
-            <h3>Jordan Mercer<br>Business Coach</h3>
-            <p>Personal brand site with services, client testimonials, and a live booking widget with session types.</p>
-          </div>
-        </article>
-
       </div>
     </div>
   </section>
@@ -2568,22 +2475,22 @@
     }));
   })();
 
-  /* ── SCROLL SHOWCASE — auto-snap sections into view ── */
+  /* ── SCROLL SHOWCASE — reveal text as user scrolls through each block ── */
   (function() {
-    var snapping = false;
-    var targets = document.querySelectorAll('.svc-visual-snap, .svc-text-snap');
-    if (!targets.length) return;
-    var io = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        var r = e.intersectionRatio;
-        if (e.isIntersecting && r > 0.12 && r < 0.88 && !snapping) {
-          snapping = true;
-          e.target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          setTimeout(function() { snapping = false; }, 900);
-        }
+    var blocks = document.querySelectorAll('.svc-block');
+    if (!blocks.length) return;
+    function update() {
+      var vh = window.innerHeight;
+      blocks.forEach(function(b) {
+        var top = b.getBoundingClientRect().top;
+        var h   = b.offsetHeight;
+        /* progress: 0 = section just entered, 1 = section leaving */
+        var progress = (-top) / Math.max(1, h - vh);
+        b.classList.toggle('text-on', progress > 0.32);
       });
-    }, { threshold: [0.12, 0.5, 0.88] });
-    targets.forEach(function(el) { io.observe(el); });
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    update();
   })();
 
   /* ── PRICING BUTTONS → CONTACT ── */

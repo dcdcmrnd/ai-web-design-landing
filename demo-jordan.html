@@ -65,14 +65,15 @@
     .hero{
       min-height:100vh;
       background:linear-gradient(135deg,var(--navy) 0%,#183058 55%,#1A3A68 100%);
-      display:grid;grid-template-columns:1fr 1fr;
+      display:flex;
       align-items:center;
+      justify-content:center;
       padding:0 56px;
-      gap:64px;
       padding-top:68px;
       position:relative;
       overflow:hidden;
     }
+    .hero-text{display:none}
     .hero::before{
       content:"";position:absolute;inset:0;
       background:radial-gradient(ellipse at 70% 50%,rgba(14,116,144,0.25) 0%,transparent 55%);
