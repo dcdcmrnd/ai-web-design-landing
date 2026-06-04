@@ -2,7 +2,11 @@
   "permissions": {
     "allow": [
       "WebFetch(domain:richwood-industries.vercel.app)",
-      "WebFetch(domain:claude.ai)"
+      "WebFetch(domain:claude.ai)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(git rm *)"
     ]
   }
 }
