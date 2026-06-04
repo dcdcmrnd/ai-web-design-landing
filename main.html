@@ -1465,6 +1465,8 @@
     @media (max-width: 1024px) {
       .svc-block         { height: auto; }
       .svc-sticky        { position: relative; height: 80svh; }
+      /* text always visible when scroll-reveal is inactive */
+      .svc-block .svc-overlay-text { opacity: 1; transform: none; }
       .svc-overlay-text  { padding: 0 6% 44px; }
       .svc-label         { left: 6%; }
       .svc-ads-metrics { grid-template-columns: repeat(2, 1fr); }
@@ -1833,7 +1835,7 @@
     <div class="svc-block" id="svc-web">
       <div class="svc-sticky">
         <div class="svc-iframe-wrap">
-          <iframe src="demo-jordan.html" loading="lazy" tabindex="-1" aria-hidden="true" title="Website demo"></iframe>
+          <iframe src="demo-jordan.html" loading="eager" tabindex="-1" aria-hidden="true" title="Website demo"></iframe>
           <div class="svc-click-block" aria-hidden="true"></div>
         </div>
         <div class="svc-overlay"></div>
@@ -2484,8 +2486,10 @@
       blocks.forEach(function(b) {
         var top = b.getBoundingClientRect().top;
         var h   = b.offsetHeight;
+        /* If block is shorter than viewport (mobile/tablet), always show text */
+        if (h <= vh * 1.1) { b.classList.add('text-on'); return; }
         /* progress: 0 = section just entered, 1 = section leaving */
-        var progress = (-top) / Math.max(1, h - vh);
+        var progress = (-top) / (h - vh);
         b.classList.toggle('text-on', progress > 0.32);
       });
     }
