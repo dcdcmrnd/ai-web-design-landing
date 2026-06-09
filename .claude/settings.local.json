@@ -8,7 +8,9 @@
       "Bash(git push *)",
       "Bash(git rm *)",
       "Bash(Get-ChildItem -Name)",
-      "Bash(Sort-Object)"
+      "Bash(Sort-Object)",
+      "WebFetch(domain:letrigo.com)",
+      "Bash(curl -s \"https://letrigo.com/products/koda\")"
     ]
   }
 }
