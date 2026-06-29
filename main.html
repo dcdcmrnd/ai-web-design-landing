@@ -337,7 +337,7 @@
     .hero-visual {
       position: relative;
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       justify-content: center;
     }
 
@@ -1663,11 +1663,13 @@
     .hero-photo-wrap {
       position: relative;
       width: 100%;
-      max-width: 520px;
+      max-width: 420px;
     }
     .hero-photo {
       width: 100%;
       height: auto;
+      max-height: 82vh;
+      object-fit: contain;
       display: block;
       filter: drop-shadow(0 24px 48px rgba(8,32,48,0.13));
     }
