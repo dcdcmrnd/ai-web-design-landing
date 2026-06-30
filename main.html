@@ -2816,7 +2816,7 @@
       } catch (err) {
         console.error('Form error:', err);
         btn.disabled = false;
-        btn.textContent = 'Something went wrong — email us directly';
+        btn.textContent = err.message || 'Something went wrong — email us directly';
         btn.style.background = '#ef4444';
         btn.style.color = '#fff';
         setTimeout(() => {
