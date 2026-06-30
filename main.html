@@ -10,6 +10,8 @@
   <meta property="og:title" content="Your business deserves a website that works. | Aequora Digital" />
   <meta property="og:description" content="Web design, SEO, Google Ads, and VA services for U.S. small businesses. First draft in 48 hours. No VAs to hire. No freelancers to manage. Just results." />
   <meta property="og:type" content="website" />
+  <link rel="icon" type="image/png" href="/Aequora-digital-logo.png" />
+  <link rel="apple-touch-icon" href="/Aequora-digital-logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,600&display=swap" rel="stylesheet" />
@@ -88,16 +90,12 @@
       letter-spacing: -0.01em;
     }
     .brand strong { font-weight: 800; color: var(--text-h); }
-    .brand-ae {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 2rem;
-      font-weight: 900;
-      color: var(--navy);
-      line-height: 1;
-      letter-spacing: -0.03em;
+    .brand-logo {
+      width: 36px;
+      height: 36px;
+      object-fit: contain;
+      border-radius: 8px;
       flex-shrink: 0;
-      /* Subtle drop so baseline aligns with the word mark */
-      margin-top: 1px;
     }
 
     .site-nav { display: flex; align-items: center; gap: 36px; }
@@ -1982,7 +1980,7 @@
        ═══════════════════════════════ -->
   <header class="site-header" id="top">
     <a href="#home" class="brand">
-      <span class="brand-ae" aria-hidden="true">Æ</span>
+      <img src="/Aequora-digital-logo.png" alt="Aequora Digital" class="brand-logo" />
       Aequora<strong>Digital</strong>
     </a>
     <nav class="site-nav" aria-label="Primary navigation">
