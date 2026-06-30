@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="Content-Security-Policy"
-    content="default-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self'; frame-src 'self'; frame-ancestors 'self';" />
+    content="default-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://api.web3forms.com; frame-src 'self'; frame-ancestors 'self';" />
   <title>Aequora Digital — Website Design, SEO &amp; Google Ads for U.S. Small Businesses</title>
   <meta name="description" content="Aequora Digital builds and manages websites, runs SEO and Google Ads campaigns, and connects you with vetted VAs — for U.S. small businesses. AI-powered. No agency overhead. Start with a free 30-min call." />
   <meta property="og:title" content="Your business deserves a website that works. | Aequora Digital" />
@@ -2802,7 +2802,8 @@
           body: data
         });
 
-        if (res.ok) {
+        const json = await res.json();
+        if (res.ok && json.success) {
           form.innerHTML = `
             <div class="cf-success">
               <div class="cf-success-icon">✓</div>
@@ -2810,9 +2811,10 @@
               <p>Thanks for reaching out. We'll review your inquiry and get back to you within 24 hours.</p>
             </div>`;
         } else {
-          throw new Error();
+          throw new Error(json.message || 'Unknown error');
         }
-      } catch (_) {
+      } catch (err) {
+        console.error('Form error:', err);
         btn.disabled = false;
         btn.textContent = 'Something went wrong — email us directly';
         btn.style.background = '#ef4444';
