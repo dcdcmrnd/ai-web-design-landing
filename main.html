@@ -2731,6 +2731,7 @@
         <!-- RIGHT: Contact form -->
         <div class="contact-right">
           <form class="contact-form" id="contact-form">
+            <input type="hidden" name="access_key" value="e4ce3802-c6ab-4209-9456-0c608e67d5eb" />
 
             <div class="cf-row">
               <div class="cf-field">
@@ -2795,7 +2796,7 @@
       const data = new FormData(form);
 
       try {
-        const res = await fetch('https://formsubmit.co/ajax/info@aequoradigital.com', {
+        const res = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
           headers: { 'Accept': 'application/json' },
           body: data
