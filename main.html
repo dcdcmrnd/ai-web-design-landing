@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="Content-Security-Policy"
-    content="default-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://api.web3forms.com https://web3forms.com; form-action 'self' https://api.web3forms.com; frame-src 'self'; frame-ancestors 'self';" />
+    content="default-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; img-src 'self' data: https:; connect-src 'self' https://api.web3forms.com https://web3forms.com; form-action 'self' https://api.web3forms.com; frame-src 'self'; frame-ancestors 'self';" />
   <title>Aequora Digital — Website Design, SEO &amp; Google Ads for U.S. Small Businesses</title>
   <meta name="description" content="Aequora Digital builds and manages websites, runs SEO and Google Ads campaigns, and connects you with vetted VAs — for U.S. small businesses. AI-powered. No agency overhead. Start with a free 30-min call." />
   <meta property="og:title" content="Your business deserves a website that works. | Aequora Digital" />
@@ -17,6 +17,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,600&display=swap" rel="stylesheet" />
   <script defer src="/_vercel/insights/script.js"></script>
   <script defer src="/_vercel/speed-insights/script.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { corePlugins: { preflight: false } };
+  </script>
   <style>
     /* ============================================================
        AEQUORA DIGITAL — Main Page
@@ -2016,8 +2020,23 @@
         </h1>
 
         <p class="hero-sub hero-anim" style="--d:0.7s">
-          We build, manage, and grow websites for U.S. small businesses. You get more customers from Google — we handle everything else. No freelancer headaches. No DIY guesswork. Just results.
+          We build, manage, and grow websites for U.S. small businesses. You get more customers from Google, we handle everything else. No freelancer headaches. No DIY guesswork. Just results.
         </p>
+
+        <ul class="hero-anim flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-3 sm:gap-5 list-none p-0 m-0 mb-9" style="--d:0.79s">
+          <li class="flex items-center gap-2 text-[0.84rem] font-medium" style="color:var(--text-b)">
+            <span class="flex items-center justify-center w-7 h-7 rounded-full shrink-0 text-[0.85rem]" style="background:rgba(13,92,122,0.08)">🌐</span>
+            Website Builds
+          </li>
+          <li class="flex items-center gap-2 text-[0.84rem] font-medium" style="color:var(--text-b)">
+            <span class="flex items-center justify-center w-7 h-7 rounded-full shrink-0 text-[0.85rem]" style="background:rgba(13,92,122,0.08)">📈</span>
+            Website Management &amp; SEO
+          </li>
+          <li class="flex items-center gap-2 text-[0.84rem] font-medium" style="color:var(--text-b)">
+            <span class="flex items-center justify-center w-7 h-7 rounded-full shrink-0 text-[0.85rem]" style="background:rgba(13,92,122,0.08)">🎯</span>
+            Google Ads Management
+          </li>
+        </ul>
 
         <div class="hero-actions hero-anim" style="--d:0.88s">
           <a href="#contact" class="btn-primary">Get a Free Site Review →</a>
@@ -2045,7 +2064,7 @@
 
         <!-- Floating status badges -->
         <div class="float-badge float-badge-top">
-          <span class="fb-dot green"></span> Typical launch: 5–7 days
+          <span class="fb-dot green"></span> Typical launch: within 14 days
         </div>
         <div class="float-badge float-badge-left">
           <span class="fb-dot blue"></span> No contracts — cancel anytime
@@ -2140,7 +2159,7 @@
           <div class="svc-web-bg"></div>
           <div class="svc-web-device-wrap">
             <div class="svc-wb-badge svc-wb-top">
-              <span class="fb-dot green"></span> Site launched — 7 days
+              <span class="fb-dot green"></span> Site launched — within 14 days
             </div>
             <div class="svc-wb-badge svc-wb-left">
               <span class="fb-dot blue"></span> Built to convert visitors
@@ -2216,7 +2235,7 @@
           <div class="svc-text-inner">
             <span class="svc-snum">Service 01</span>
             <h3>Beautiful websites,<br><em>delivered fast.</em></h3>
-            <p>First draft in 48 hours. Live in 7 days. Clean design your customers can actually navigate — built to convert visitors into leads.</p>
+            <p>A complete website, not just a front end. We build the design, the database, and the hosting setup, and we connect your domain so it's live and working end to end. First draft in 48 hours. Live within 14 days.</p>
             <div class="svc-actions">
               <button class="btn-preview" data-demo="demo-jordan.html" data-label="Demo: Jordan Mercer's Business Site">Preview a Sample Website →</button>
               <a href="#contact" class="btn-cta-outline">Start a Website Build →</a>
@@ -2291,7 +2310,7 @@
         <div class="svc-text-inner">
           <span class="svc-snum">Service 02</span>
           <h3>Get found. Get<br><em>customers.</em></h3>
-          <p>We run your SEO and Google Ads so every search is an opportunity. No wasted spend, no confusing dashboards — just more qualified leads every month.</p>
+          <p>We run your SEO and Google Ads so every search is an opportunity. No wasted spend, no confusing dashboards, just more qualified leads every month.</p>
           <div class="svc-actions">
             <a href="#contact" class="btn-preview">Grow My Traffic →</a>
             <a href="#pricing" class="btn-cta-outline">View Pricing</a>
@@ -2359,7 +2378,7 @@
         <div class="svc-text-inner">
           <span class="svc-snum">Service 03</span>
           <h3>Members-only portals<br><em>that retain.</em></h3>
-          <p>Course libraries, subscription dashboards, and progress tracking — built to keep your audience engaged month after month.</p>
+          <p>Course libraries, subscription dashboards, and progress tracking, built to keep your audience engaged month after month.</p>
           <div class="svc-actions">
             <button class="btn-preview" data-demo="demo-elevate.html" data-label="Elevate Academy — Member Portal">Preview the Portal →</button>
             <a href="#contact" class="btn-cta-outline">Build My Portal →</a>
@@ -2398,7 +2417,7 @@
         <div class="svc-text-inner">
           <span class="svc-snum">Service 04</span>
           <h3>Your team, fully<br><em>handled.</em></h3>
-          <p>We match, train, and manage your VA directly — and pay them through us. One flat monthly rate. Zero HR headaches. Free to get started.</p>
+          <p>We match, train, and manage your VA directly, and pay them through us. One flat monthly rate. Zero HR headaches. Free to get started.</p>
           <div class="svc-actions">
             <a href="#contact" class="btn-preview">Get My VA →</a>
             <a href="#pricing" class="btn-cta-outline">View Pricing</a>
@@ -2426,9 +2445,9 @@
           </div>
         </div>
         <div>
-          <p data-reveal data-delay="1">Aequora Digital came out of the AI industry. Before building this, we were developing AI-powered tools and managing virtual assistant operations for tech companies — vetting VAs, designing workflows, and running digital operations at a pace most traditional agencies simply can't match.</p>
+          <p data-reveal data-delay="1">Aequora Digital came out of the AI industry. Before building this, we were developing AI-powered tools and managing virtual assistant operations for tech companies, vetting VAs, designing workflows, and running digital operations at a pace most traditional agencies simply can't match.</p>
           <p data-reveal data-delay="2">We saw a gap: small business owners were being underserved by slow agencies and unreliable freelancers, while AI was quietly making it possible to build better websites, faster and more affordably than ever before. So we built Aequora Digital to bring that capability directly to the businesses that need it most.</p>
-          <p data-reveal data-delay="3">We focus exclusively on U.S. small businesses — plumbers, dentists, consultants, fitness studios, law firms, cleaning companies. Service businesses that depend on local customers finding them online. Our AI-powered workflow is what lets us deliver a first draft in 48 hours and a live site in under 7 days, without cutting corners on quality.</p>
+          <p data-reveal data-delay="3">We focus exclusively on U.S. small businesses, plumbers, dentists, consultants, fitness studios, law firms, cleaning companies. Service businesses that depend on local customers finding them online. Our AI-powered workflow is what lets us deliver a first draft in 48 hours and a live site within 14 days, without cutting corners on quality.</p>
           <div class="stats-grid" data-reveal data-delay="4">
             <div class="stat-item"><span class="stat-val">48h</span><span class="stat-lbl">avg. first draft</span></div>
             <div class="stat-item"><span class="stat-val">AI</span><span class="stat-lbl">powered workflow</span></div>
@@ -2454,14 +2473,14 @@
         <article class="service-card-primary" data-reveal data-delay="1">
           <div class="sc-badge">01</div>
           <h3>Website Builds &amp; Redesigns</h3>
-          <p>A site your customers can actually use — designed, written, and launched by us. First draft in 48 hours. Live in as little as 7 days. No designer meetings, no agency delays, no confusing revision process.</p>
-          <div class="sc-tags"><span class="sc-tag">New Sites</span><span class="sc-tag">Redesign</span><span class="sc-tag">Landing Pages</span></div>
+          <p>Full stack, start to finish. We handle the front end your customers see, the database and backend that run it, and the domain and hosting that put it live. You don't need a separate developer for the database or a separate person to manage your domain. We do all of it, as one project. First draft in 48 hours. Live within 14 days. No designer meetings, no agency delays, no confusing revision process.</p>
+          <div class="sc-tags"><span class="sc-tag">Front End</span><span class="sc-tag">Backend &amp; Database</span><span class="sc-tag">Domain Setup</span></div>
         </article>
         <article class="service-card-primary" data-reveal data-delay="2">
           <div class="sc-badge">02</div>
           <h3>Website Management &amp; SEO</h3>
-          <p>Your site stays fast, secure, and shows up higher in Google — every month. We handle updates, security, backups, and SEO improvements. You get a monthly report. You never have to worry about your site again.</p>
-          <div class="sc-tags"><span class="sc-tag">Monthly</span><span class="sc-tag">SEO</span><span class="sc-tag">No Contracts</span></div>
+          <p>Your site stays fast, secure, and shows up higher in Google, every month. We handle updates, security, backups, and SEO improvements. You get a monthly report. You never have to worry about your site again.</p>
+          <div class="sc-tags"><span class="sc-tag">Monthly SEO</span><span class="sc-tag">No Contracts</span></div>
         </article>
       </div>
 
@@ -2471,25 +2490,25 @@
         <article class="service-card" data-reveal data-delay="1">
           <div class="sc-badge">03</div>
           <h3>Google Ads</h3>
-          <p>Get in front of people searching for exactly what you offer. Every dollar goes to people likely to call or book — not just browse.</p>
+          <p>Get in front of people searching for exactly what you offer. Every dollar goes to people likely to call or book, not just browse.</p>
           <div class="sc-tags"><span class="sc-tag">Paid Search</span><span class="sc-tag">Local Ads</span></div>
         </article>
         <article class="service-card" data-reveal data-delay="2">
           <div class="sc-badge">04</div>
           <h3>Membership Portals</h3>
-          <p>Members-only areas for your courses, videos, and content — built for coaches and communities who charge for access.</p>
+          <p>Members-only areas for your courses, videos, and content, built for coaches and communities who charge for access.</p>
           <div class="sc-tags"><span class="sc-tag">Members Only</span><span class="sc-tag">Courses</span></div>
         </article>
         <article class="service-card" data-reveal data-delay="3">
           <div class="sc-badge">05</div>
           <h3>E-commerce Sites</h3>
-          <p>Full online stores on Shopify or WooCommerce — easy to manage and built to sell from day one.</p>
+          <p>Full online stores on Shopify or WooCommerce, easy to manage and built to sell from day one.</p>
           <div class="sc-tags"><span class="sc-tag">Shopify</span><span class="sc-tag">WooCommerce</span></div>
         </article>
         <article class="service-card" data-reveal data-delay="4">
           <div class="sc-badge">06</div>
           <h3>Managed VA Services</h3>
-          <p>We match, train, and manage your VA directly — and pay them through us. One flat rate. Free to get matched.</p>
+          <p>We match, train, and manage your VA directly, and pay them through us. One flat rate. Free to get matched.</p>
           <div class="sc-tags"><span class="sc-tag">Vetted VAs</span><span class="sc-tag">No HR Hassle</span></div>
         </article>
       </div>
@@ -2509,7 +2528,7 @@
         <div class="process-card" data-reveal data-delay="1">
           <div class="pc-num">01</div>
           <h3>Tell Us About Your Business</h3>
-          <p>Fill out the short inquiry form. We review your current site, understand your goals, and come back with honest, specific recommendations — no obligation.</p>
+          <p>Fill out the short inquiry form. We review your current site, understand your goals, and come back with honest, specific recommendations, no obligation.</p>
           <span class="pc-time">Day 1</span>
         </div>
         <div class="process-card" data-reveal data-delay="2">
@@ -2527,7 +2546,7 @@
         <div class="process-card" data-reveal data-delay="4">
           <div class="pc-num">04</div>
           <h3>Launch &amp; Retain</h3>
-          <p>Your site goes live, tested on all devices. Stay on for monthly management, ads, and SEO — or hand off full ownership. Your call.</p>
+          <p>Your site goes live, tested on all devices. Stay on for monthly management, ads, and SEO, or hand off full ownership. Your call.</p>
           <span class="pc-time">Ongoing</span>
         </div>
       </div>
@@ -2542,7 +2561,7 @@
       <div class="pricing-head" data-reveal>
         <p class="section-label">Pricing</p>
         <h2>Simple, <em>transparent</em> pricing.</h2>
-        <p style="margin-top:14px;font-size:0.9rem;color:var(--text-m);line-height:1.75;max-width:540px;">No surprise fees. No agency markups. Everything included in the price you see — so you can plan confidently and start without hesitation.</p>
+        <p style="margin-top:14px;font-size:0.9rem;color:var(--text-m);line-height:1.75;max-width:540px;">No surprise fees. No agency markups. Everything included in the price you see, so you can plan confidently and start without hesitation.</p>
       </div>
       <div class="pricing-grid">
 
@@ -2555,9 +2574,10 @@
             <li>Mobile-responsive design</li>
             <li>AI copywriting assistance</li>
             <li>Contact form + basic SEO setup</li>
+            <li>Domain connection included</li>
             <li>Unlimited revisions (first month)</li>
             <li>Hosting included</li>
-            <li>Delivered in 5–7 days</li>
+            <li>Delivered in 10–14 days</li>
           </ul>
           <p class="pc-desc">Best for single-purpose sites and landing pages ready to capture leads.</p>
           <button class="pc-btn">Get Started</button>
@@ -2572,15 +2592,17 @@
             <li>Up to 10 pages, full business site</li>
             <li>Blog, portfolio, or membership section</li>
             <li>Full SEO optimization</li>
+            <li>Full backend setup: database, forms, and integrations connected, not just front-end design</li>
             <li>Automation &amp; form setup</li>
             <li>All site details configured</li>
+            <li>Domain setup and connection included</li>
             <li>Unlimited revisions (first 30 days)</li>
-            <li>Delivered in 7–10 days</li>
+            <li>Delivered within 14 days</li>
             <li>Free 1-month site management</li>
             <li>Priority support for 60 days</li>
             <li>Hosting included</li>
           </ul>
-          <p class="pc-desc">For businesses that need a complete, professional online presence — built right, from the start.</p>
+          <p class="pc-desc">For businesses that need a complete, professional online presence, built right, from the start.</p>
           <button class="pc-btn">Get Started</button>
         </article>
 
@@ -2598,7 +2620,7 @@
             <li>Priority support</li>
             <li>Cancel anytime</li>
           </ul>
-          <p class="pc-desc">Hands-off website ownership. You focus on your business — we handle everything online.</p>
+          <p class="pc-desc">Hands-off website ownership. You focus on your business, we handle everything online.</p>
           <button class="pc-btn">Add to Any Project</button>
         </article>
 
@@ -2648,7 +2670,7 @@
                 <span class="addon-name">Managed VA — Monthly</span>
                 <span class="addon-price">Custom<span class="addon-per">/mo</span></span>
               </div>
-              <p class="addon-desc">Your VA's monthly compensation runs through Aequora. We pay, train, and manage them directly — you get a fully accountable VA without any HR overhead.</p>
+              <p class="addon-desc">Your VA's monthly compensation runs through Aequora. We pay, train, and manage them directly, you get a fully accountable VA without any HR overhead.</p>
             </div>
           </div>
         </div>
@@ -2670,17 +2692,22 @@
 
         <div class="faq-item">
           <button class="faq-q">Why should I trust a team I haven't heard of?<span class="faq-icon">+</span></button>
-          <div class="faq-a"><p>Fair question. We came from the AI industry — building tools and managing VA operations for tech companies before launching Aequora Digital. That background is what lets us build sites faster and smarter than a traditional agency. We're not trying to be the biggest agency. We're focused on doing great work for a small number of U.S. businesses and letting the results speak. If you're not sure, send us an inquiry — we'll review your current site and give you honest feedback before you spend a cent.</p></div>
+          <div class="faq-a"><p>Fair question. We came from the AI industry, building tools and managing VA operations for tech companies before launching Aequora Digital. That background is what lets us build sites faster and smarter than a traditional agency. We're not trying to be the biggest agency. We're focused on doing great work for a small number of U.S. businesses and letting the results speak. If you're not sure, send us an inquiry, we'll review your current site and give you honest feedback before you spend a cent.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">What do you mean by "full stack"?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>Most agencies hand you a front end and leave the rest to you, the database, the domain, the hosting. We don't do that. Every project includes the front end your customers see, the backend and database that power it, and your domain connected and live. One team handles all of it, so you're not stitching together a developer, a domain registrar, and a hosting company on your own.</p></div>
         </div>
 
         <div class="faq-item">
           <button class="faq-q">Do I own the website after it's built?<span class="faq-icon">+</span></button>
-          <div class="faq-a"><p>Yes — 100%. Once the project is delivered and paid for, you own the site, the code, and all the content. We hand over everything. If you stay on the Managed plan, we just keep it running for you.</p></div>
+          <div class="faq-a"><p>Yes, 100%. Once the project is delivered and paid for, you own the site, the code, the database, and all the content. We hand over everything, full stack, not just the front end. If you stay on the Managed plan, we just keep it running for you.</p></div>
         </div>
 
         <div class="faq-item">
           <button class="faq-q">What's the difference between Starter and Growth?<span class="faq-icon">+</span></button>
-          <div class="faq-a"><p>Starter is designed for simple single-page or opt-in sites — a clean, fast landing page built to capture leads. Growth is a full business website: up to 10 pages, complete SEO setup, automations, and everything configured out of the box. If you're not sure which fits, just tell us about your business in the form and we'll recommend the right one.</p></div>
+          <div class="faq-a"><p>Starter is designed for simple single-page or opt-in sites, a clean, fast landing page built to capture leads. Growth is a full business website: up to 10 pages, complete SEO setup, automations, and everything configured out of the box. If you're not sure which fits, just tell us about your business in the form and we'll recommend the right one.</p></div>
         </div>
 
         <div class="faq-item">
@@ -2690,17 +2717,17 @@
 
         <div class="faq-item">
           <button class="faq-q">How does the VA service work?<span class="faq-icon">+</span></button>
-          <div class="faq-a"><p>We start with a free assessment to understand exactly what you need. We then match you with a vetted VA from our network and handle the intro at no cost to you. From there, your VA's monthly compensation runs through Aequora Digital — we pay them, train them, and manage their performance directly. You pay us one monthly rate and get a fully managed, accountable VA without any of the hiring or HR overhead.</p></div>
+          <div class="faq-a"><p>We start with a free assessment to understand exactly what you need. We then match you with a vetted VA from our network and handle the intro at no cost to you. From there, your VA's monthly compensation runs through Aequora Digital, we pay them, train them, and manage their performance directly. You pay us one monthly rate and get a fully managed, accountable VA without any of the hiring or HR overhead.</p></div>
         </div>
 
         <div class="faq-item">
           <button class="faq-q">What if I need changes after the first month?<span class="faq-icon">+</span></button>
-          <div class="faq-a"><p>That's exactly what the Managed plan is for. At $999/month, we handle up to 4 content updates, monthly SEO, we watch your site for speed issues and fix problems before they cost you customers, plus security, backups, and priority support — so your site never goes stale.</p></div>
+          <div class="faq-a"><p>That's exactly what the Managed plan is for. At $999/month, we handle up to 4 content updates, monthly SEO, we watch your site for speed issues and fix problems before they cost you customers, plus security, backups, and priority support, so your site never goes stale.</p></div>
         </div>
 
         <div class="faq-item">
           <button class="faq-q">How quickly can you start?<span class="faq-icon">+</span></button>
-          <div class="faq-a"><p>Send us an inquiry and we can typically kick off within 48 hours of signing. First draft delivered within 2 days of receiving your assets and brief.</p></div>
+          <div class="faq-a"><p>Send us an inquiry and we can typically kick off within 48 hours of signing. First draft delivered within 2 days of receiving your assets and brief. Your site goes live within 14 days.</p></div>
         </div>
 
       </div>
