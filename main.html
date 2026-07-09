@@ -335,25 +335,37 @@
       box-shadow: var(--shadow-md);
       white-space: nowrap;
       z-index: 10;
+      cursor: pointer;
+      pointer-events: auto;
       animation: float-bob 5s ease-in-out infinite;
-      transition: box-shadow 0.25s, transform 0.25s;
+      transition: box-shadow 0.25s, transform 0.2s, background 0.2s, border-color 0.2s;
       will-change: transform;
     }
     .float-badge:hover {
       box-shadow: var(--shadow-lg);
+      border-color: rgba(13,92,122,0.3);
+      background: var(--white);
+      transform: scale(1.06) !important;
       animation-play-state: paused;
     }
-    .float-badge-top   { top: 4%; left: 6%; animation-delay: 0s; }
-    .float-badge-left  { bottom: 30%; left: -10%; animation-delay: -1.7s; }
-    .float-badge-right { top: 32%; right: -6%; animation-delay: -3.3s; }
-    .fb-icon { font-size: 0.82rem; }
+    .float-badge:hover .fb-icon { animation: fb-icon-pop 0.45s ease; }
+    .float-badge:active { transform: scale(0.97) !important; }
+    .float-badge-top   { top: 10%; left: 16%; animation-delay: 0s; }
+    .float-badge-left  { bottom: 32%; left: -2%; animation-delay: -1.7s; }
+    .float-badge-right { top: 36%; right: 2%; animation-delay: -3.3s; }
+    .fb-icon { font-size: 0.82rem; display: inline-block; }
 
     @keyframes float-bob {
       0%, 100% { transform: translateY(0) rotate(0deg); }
       50%      { transform: translateY(-9px) rotate(-1deg); }
     }
+    @keyframes fb-icon-pop {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      50%      { transform: scale(1.25) rotate(-8deg); }
+    }
     @media (prefers-reduced-motion: reduce) {
       .float-badge { animation: none; }
+      .float-badge:hover .fb-icon { animation: none; }
     }
     .float-badge-svc { font-size: 0.76rem; font-weight: 700; padding: 8px 15px; gap: 7px; }
     .float-badge-svc .fb-icon { font-size: 0.88rem; }
@@ -2295,6 +2307,13 @@
       toggle.setAttribute('aria-expanded', 'false');
     }));
   })();
+
+  /* ── HERO FLOATING BADGES → SERVICES ── */
+  document.querySelectorAll('.float-badge').forEach(badge => {
+    badge.addEventListener('click', () => {
+      document.getElementById('services')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  });
 
   /* ── FAQ ACCORDION ── */
   document.querySelectorAll('.faq-q').forEach(btn => {
