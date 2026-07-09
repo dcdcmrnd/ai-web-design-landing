@@ -49,7 +49,7 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: auto; }
     body {
       font-family: var(--sans);
       background: var(--bg);
@@ -377,6 +377,11 @@
       overflow: hidden;
       box-shadow: var(--shadow-lg), 0 0 0 1px var(--border);
       background: var(--white);
+      transition: transform 0.5s cubic-bezier(0.22,1,0.36,1), box-shadow 0.5s cubic-bezier(0.22,1,0.36,1);
+    }
+    .demo-card:hover .hero-device {
+      transform: translateY(-4px) scale(1.025);
+      box-shadow: 0 28px 64px rgba(0,0,0,0.4), 0 0 0 1px var(--border);
     }
     .device-chrome {
       display: flex;
@@ -690,7 +695,7 @@
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
-      margin-bottom: 56px;
+      margin-bottom: 64px;
       gap: 24px;
     }
     .demos-head h2 {
@@ -711,11 +716,21 @@
       letter-spacing: 0.04em;
       padding-bottom: 4px;
     }
-    .demos-grid { display: flex; flex-direction: column; }
+    .demos-grid { display: flex; flex-direction: column; gap: 28px; }
     .demo-card {
       display: grid;
       grid-template-columns: 1.4fr 1fr;
-      border-top: 1px solid var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--white);
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s cubic-bezier(0.22,1,0.36,1), border-color 0.45s;
+    }
+    .demo-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(13,92,122,0.22);
     }
     .demo-card.reverse { grid-template-columns: 1fr 1.4fr; }
     .demo-card.reverse .demo-preview { order: 2; }
@@ -729,10 +744,28 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
+      cursor: pointer;
+    }
+    .demo-preview::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(120% 100% at 50% 100%, rgba(24,196,216,0.16) 0%, rgba(24,196,216,0) 60%);
+      opacity: 0;
+      transition: opacity 0.45s ease;
+      pointer-events: none;
+    }
+    .demo-card:hover .demo-preview::before { opacity: 1; }
+    .demo-preview:focus-visible {
+      outline: 2px solid var(--terra);
+      outline-offset: -4px;
     }
     .demo-btn {
       position: absolute;
       bottom: 20px; right: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       font-size: 0.7rem;
       font-weight: 600;
       letter-spacing: 0.06em;
@@ -741,9 +774,13 @@
       padding: 8px 18px;
       border-radius: var(--radius-full);
       background: transparent;
-      transition: background 0.2s, color 0.2s, border-color 0.2s;
+      transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.3s cubic-bezier(0.22,1,0.36,1);
     }
-    .demo-btn:hover { background: var(--sand); color: var(--navy-dk); border-color: var(--sand); }
+    .demo-btn:hover,
+    .demo-card:hover .demo-btn { background: var(--sand); color: var(--navy-dk); border-color: var(--sand); }
+    .demo-card:hover .demo-btn { transform: translateY(-2px); }
+    .demo-btn-arrow { display: inline-block; transition: transform 0.3s cubic-bezier(0.22,1,0.36,1); }
+    .demo-btn:hover .demo-btn-arrow { transform: translateX(3px); }
     .demo-info {
       padding: 52px 44px;
       display: flex;
@@ -753,11 +790,27 @@
       background: var(--white);
     }
     .demo-category {
+      display: flex;
+      align-items: center;
+      gap: 8px;
       font-size: 0.65rem;
       font-weight: 700;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--terra);
+    }
+    .demo-category::before {
+      content: "";
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--terra);
+      box-shadow: 0 0 0 0 rgba(24,196,216,0.5);
+      animation: demo-pulse 2.2s ease-out infinite;
+    }
+    @keyframes demo-pulse {
+      0%   { box-shadow: 0 0 0 0 rgba(24,196,216,0.45); }
+      70%  { box-shadow: 0 0 0 7px rgba(24,196,216,0); }
+      100% { box-shadow: 0 0 0 0 rgba(24,196,216,0); }
     }
     .demo-tags { display: flex; flex-wrap: wrap; gap: 8px; }
     .demo-tag {
@@ -767,14 +820,18 @@
       border: 1px solid rgba(13,92,122,0.18);
       border-radius: var(--radius-sm);
       padding: 4px 12px;
+      transition: background 0.25s, border-color 0.25s;
     }
+    .demo-card:hover .demo-tag { border-color: rgba(13,92,122,0.3); background: rgba(13,92,122,0.04); }
     .demo-info h3 {
       font-size: 1.9rem;
       font-weight: 700;
       color: var(--text-h);
       line-height: 1.2;
       letter-spacing: -0.025em;
+      transition: color 0.3s;
     }
+    .demo-card:hover .demo-info h3 { color: var(--navy); }
     .demo-info p {
       font-size: 0.82rem;
       color: var(--text-m);
@@ -1914,7 +1971,7 @@
       </div>
       <div class="demos-grid">
         <article class="demo-card" data-reveal data-delay="1">
-          <div class="demo-preview">
+          <div class="demo-preview" role="button" tabindex="0" aria-label="Open live preview of Sample Business Site">
             <div class="hero-device" style="max-width:340px">
               <div class="device-chrome">
                 <span class="d-dot d-red"></span><span class="d-dot d-yellow"></span><span class="d-dot d-green"></span>
@@ -1925,7 +1982,7 @@
                 <div class="dw-hero"><div class="dw-h-lines"><div class="dw-hl wide"></div><div class="dw-hl medium"></div></div><div class="dw-h-btns"><div class="dw-hb fill"></div><div class="dw-hb outline"></div></div></div>
               </div>
             </div>
-            <a href="demo-jordan.html" class="demo-btn">View Live Demo →</a>
+            <a href="demo-jordan.html" class="demo-btn">View Live Demo <span class="demo-btn-arrow">→</span></a>
           </div>
           <div class="demo-info">
             <span class="demo-category">Website Build</span>
@@ -1935,7 +1992,7 @@
           </div>
         </article>
         <article class="demo-card reverse" data-reveal data-delay="2">
-          <div class="demo-preview">
+          <div class="demo-preview" role="button" tabindex="0" aria-label="Open live preview of Sample Member Portal">
             <div class="hero-device" style="max-width:340px">
               <div class="device-chrome">
                 <span class="d-dot d-red"></span><span class="d-dot d-yellow"></span><span class="d-dot d-green"></span>
@@ -1946,7 +2003,7 @@
                 <div class="dw-cards"><div class="dw-card"><div class="dw-c-icon"></div><div class="dw-c-line"></div></div><div class="dw-card accent"><div class="dw-c-icon accent"></div><div class="dw-c-line"></div></div></div>
               </div>
             </div>
-            <a href="demo-elevate.html" class="demo-btn">View Live Demo →</a>
+            <a href="demo-elevate.html" class="demo-btn">View Live Demo <span class="demo-btn-arrow">→</span></a>
           </div>
           <div class="demo-info">
             <span class="demo-category">Custom Build</span>
@@ -2112,7 +2169,41 @@
     </div>
   </section>
 
+  <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
   <script>
+  /* ── SMOOTH / INERTIA SCROLL ── */
+  var lenis;
+  (function () {
+    if (typeof Lenis === 'undefined') return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    lenis = new Lenis({
+      duration: 1.1,
+      easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
+      smoothWheel: true,
+      smoothTouch: false
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    /* Route in-page anchor links through Lenis so jumps share the same easing */
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        var id = a.getAttribute('href');
+        if (id.length < 2) return;
+        var target = document.querySelector(id);
+        if (!target) return;
+        e.preventDefault();
+        var hh = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--hh'), 10) || 68;
+        lenis.scrollTo(target, { offset: -(hh + 16) });
+      });
+    });
+  })();
+
   /* ── CONTACT FORM SUBMISSION ── */
   (function () {
     const form = document.getElementById('contact-form');
@@ -2311,7 +2402,10 @@
   /* ── HERO FLOATING BADGES → SERVICES ── */
   document.querySelectorAll('.float-badge').forEach(badge => {
     badge.addEventListener('click', () => {
-      document.getElementById('services')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      const target = document.getElementById('services');
+      if (!target) return;
+      if (lenis) lenis.scrollTo(target, { offset: -80 });
+      else target.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
   });
 
@@ -2375,14 +2469,31 @@
 
     iframe.addEventListener('load', () => loader.classList.add('hidden'));
 
-    /* Wire up all demo buttons */
+    /* Wire up all demo buttons + their full preview panels */
+    function openFromButton(btn) {
+      const href  = btn.getAttribute('href');
+      const h3    = btn.closest('.demo-card')?.querySelector('.demo-info h3');
+      const label = h3 ? h3.textContent.replace(/\s+/g, ' ').trim() : href;
+      open(href, label);
+    }
+
     document.querySelectorAll('.demo-btn').forEach(btn => {
       btn.addEventListener('click', e => {
         e.preventDefault();
-        const href  = btn.getAttribute('href');
-        const h3    = btn.closest('.demo-card')?.querySelector('.demo-info h3');
-        const label = h3 ? h3.textContent.replace(/\s+/g, ' ').trim() : href;
-        open(href, label);
+        e.stopPropagation();
+        openFromButton(btn);
+      });
+    });
+
+    document.querySelectorAll('.demo-preview').forEach(preview => {
+      const btn = preview.querySelector('.demo-btn');
+      if (!btn) return;
+      preview.addEventListener('click', () => openFromButton(btn));
+      preview.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openFromButton(btn);
+        }
       });
     });
 
