@@ -716,6 +716,15 @@
       letter-spacing: 0.04em;
       padding-bottom: 4px;
     }
+    .demos-note-link {
+      display: inline-block;
+      margin-top: 8px;
+      color: var(--navy);
+      font-weight: 700;
+      border-bottom: 1px solid rgba(13,92,122,0.3);
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .demos-note-link:hover { color: var(--navy-lt); border-color: var(--navy-lt); }
     .demos-grid { display: flex; flex-direction: column; gap: 28px; }
     .demo-card {
       display: grid;
@@ -1808,6 +1817,7 @@
     <nav class="site-nav" aria-label="Primary navigation">
       <a href="#services">Services</a>
       <a href="#portfolio">Portfolio</a>
+      <a href="work.html">Our Work</a>
       <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -1967,7 +1977,7 @@
           <p class="section-label">What We Build</p>
           <h2>See a couple of <em>sample builds.</em></h2>
         </div>
-        <p class="demos-note">Sample projects, not real clients.<br>Built to show the quality of the work.</p>
+        <p class="demos-note">Sample projects, not real clients.<br>Built to show the quality of the work.<br><a href="work.html" class="demos-note-link">See our real client work →</a></p>
       </div>
       <div class="demos-grid">
         <article class="demo-card" data-reveal data-delay="1">
