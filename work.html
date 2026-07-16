@@ -11,8 +11,8 @@
   <meta property="og:title" content="Our Work | Aequora Digital" />
   <meta property="og:description" content="Real client websites built by Aequora Digital. Browse live projects across industries." />
   <meta property="og:type" content="website" />
-  <link rel="icon" type="image/png" href="/Aequora-digital-logo.png" />
-  <link rel="apple-touch-icon" href="/Aequora-digital-logo.png" />
+  <link rel="icon" type="image/png" href="Aequora-digital-logo.png" />
+  <link rel="apple-touch-icon" href="Aequora-digital-logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,600&display=swap" rel="stylesheet" />
@@ -60,6 +60,12 @@
     button { cursor: pointer; border: none; background: none; font: inherit; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 44px; }
 
+    a:focus-visible, button:focus-visible, [role="button"]:focus-visible, [tabindex]:focus-visible {
+      outline: 2px solid var(--terra);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
     /* ── HEADER (matches main.html) ── */
     .site-header {
       position: fixed; top: 0; left: 0; right: 0; z-index: 200;
@@ -87,9 +93,10 @@
     .btn-nav {
       display: inline-flex; align-items: center; padding: 9px 22px;
       border-radius: var(--radius-full); background: var(--navy); color: var(--white);
-      font-size: 0.82rem; font-weight: 700; transition: background 0.2s, transform 0.15s;
+      font-size: 0.82rem; font-weight: 700; transition: background 0.2s cubic-bezier(0.22,1,0.36,1), transform 0.2s cubic-bezier(0.22,1,0.36,1);
     }
     .btn-nav:hover { background: var(--navy-lt); transform: translateY(-1px); }
+    .btn-nav:active { transform: translateY(0) scale(0.97); }
     .nav-toggle { display: none; flex-direction: column; justify-content: space-between; width: 22px; height: 14px; }
     .nav-toggle span { display: block; width: 100%; height: 1.5px; background: var(--text-h); border-radius: 1px; }
 
@@ -106,10 +113,11 @@
       display: inline-flex; align-items: center; padding: 13px 28px;
       border-radius: var(--radius-full); background: var(--navy); color: var(--white);
       font-size: 0.9rem; font-weight: 700;
-      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      transition: background 0.2s cubic-bezier(0.22,1,0.36,1), transform 0.2s cubic-bezier(0.22,1,0.36,1), box-shadow 0.2s cubic-bezier(0.22,1,0.36,1);
       box-shadow: 0 4px 20px rgba(13,92,122,0.25);
     }
     .btn-primary:hover { background: var(--navy-lt); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(13,92,122,0.3); }
+    .btn-primary:active { transform: translateY(0) scale(0.97); }
 
     /* ── SCROLL REVEAL (matches main.html) ── */
     [data-reveal] {
@@ -120,6 +128,9 @@
     [data-delay="1"].visible { transition-delay: 0.07s; }
     [data-delay="2"].visible { transition-delay: 0.14s; }
     [data-delay="3"].visible { transition-delay: 0.21s; }
+    @media (prefers-reduced-motion: reduce) {
+      [data-reveal] { transition: none; }
+    }
 
     /* ── PAGE HERO ── */
     .work-hero { padding: calc(var(--hh) + 72px) 0 48px; }
@@ -182,7 +193,18 @@
       color: var(--navy-dk); background: var(--sand); padding: 4px 10px; border-radius: var(--radius-full);
     }
 
-    .work-card-info { padding: 26px 26px 28px; display: flex; flex-direction: column; gap: 10px; }
+    .work-card-info { position: relative; overflow: hidden; padding: 26px 26px 28px; display: flex; flex-direction: column; gap: 10px; }
+    .work-card-info::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 50%), rgba(24,196,216,0.09), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+    }
+    .work-card:hover .work-card-info::before { opacity: 1; }
     .work-card-industry {
       display: flex; align-items: center; gap: 8px;
       font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--terra);
@@ -259,16 +281,16 @@
        HEADER
        ═══════════════════════════════ -->
   <header class="site-header" id="top">
-    <a href="/#home" class="brand">
-      <img src="/Aequora-digital-logo.png" alt="Aequora Digital" class="brand-logo" />
+    <a href="main.html#home" class="brand">
+      <img src="Aequora-digital-logo.png" alt="Aequora Digital" class="brand-logo" width="1024" height="1024" />
       Aequora<strong>Digital</strong>
     </a>
     <nav class="site-nav" aria-label="Primary navigation">
-      <a href="/#services">Services</a>
-      <a href="/#portfolio">Portfolio</a>
-      <a href="/work" class="active">Our Work</a>
-      <a href="/#faq">FAQ</a>
-      <a href="/#contact">Contact</a>
+      <a href="main.html#services">Services</a>
+      <a href="main.html#portfolio">Portfolio</a>
+      <a href="work.html" class="active">Our Work</a>
+      <a href="main.html#faq">FAQ</a>
+      <a href="main.html#contact">Contact</a>
     </nav>
     <a href="https://calendar.app.google/PEsD6mypBEHMUffH8" target="_blank" rel="noopener noreferrer" class="btn-nav">Book a Call</a>
     <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
@@ -437,6 +459,18 @@
         a.addEventListener('click', function () {
           nav.style.cssText = '';
           toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    })();
+
+    /* ── CARD CURSOR GLOW ── */
+    (function () {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      document.querySelectorAll('.work-card-info').forEach(function (el) {
+        el.addEventListener('pointermove', function (e) {
+          var r = el.getBoundingClientRect();
+          el.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+          el.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
         });
       });
     })();

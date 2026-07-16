@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="Content-Security-Policy"
     content="default-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://api.web3forms.com https://web3forms.com; form-action 'self' https://api.web3forms.com; frame-src 'self'; frame-ancestors 'self';" />
-  <title>Aequora Digital | Websites that bring in work</title>
-  <meta name="description" content="Website builds, management, and Google Ads for small businesses. Live in 14 days. You don't pay the balance until you approve the first draft." />
-  <meta property="og:title" content="Aequora Digital | Websites that bring in work" />
-  <meta property="og:description" content="Website builds, management, and Google Ads for small businesses. Live in 14 days. You don't pay the balance until you approve the first draft." />
+  <title>Aequora Digital | One Team for Your Website, Ads & Leads</title>
+  <meta name="description" content="Stop managing freelancers. Aequora is one team that builds your website, runs your Google Ads, and keeps your leads organized for US small businesses. Projects start at $1,999, ready in as little as 2 weeks." />
+  <meta property="og:title" content="Aequora Digital | One Team for Your Website, Ads & Leads" />
+  <meta property="og:description" content="Stop managing freelancers. Aequora is one team that builds your website, runs your Google Ads, and keeps your leads organized for US small businesses. Projects start at $1,999, ready in as little as 2 weeks." />
   <meta property="og:type" content="website" />
-  <link rel="icon" type="image/png" href="/Aequora-digital-logo.png" />
-  <link rel="apple-touch-icon" href="/Aequora-digital-logo.png" />
+  <link rel="icon" type="image/png" href="Aequora-digital-logo.png" />
+  <link rel="apple-touch-icon" href="Aequora-digital-logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,600&display=swap" rel="stylesheet" />
@@ -61,6 +61,12 @@
     a   { color: inherit; text-decoration: none; }
     button { cursor: pointer; border: none; background: none; font: inherit; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 44px; }
+
+    a:focus-visible, button:focus-visible, [role="button"]:focus-visible, [tabindex]:focus-visible {
+      outline: 2px solid var(--terra);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
 
     /* ── HEADER ── */
     .site-header {
@@ -116,9 +122,10 @@
       color: var(--white);
       font-size: 0.82rem;
       font-weight: 700;
-      transition: background 0.2s, transform 0.15s;
+      transition: background 0.2s cubic-bezier(0.22,1,0.36,1), transform 0.2s cubic-bezier(0.22,1,0.36,1);
     }
     .btn-nav:hover { background: var(--navy-lt); transform: translateY(-1px); }
+    .btn-nav:active { transform: translateY(0) scale(0.97); }
 
     .nav-toggle {
       display: none;
@@ -259,10 +266,11 @@
       color: var(--white);
       font-size: 0.9rem;
       font-weight: 700;
-      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      transition: background 0.2s cubic-bezier(0.22,1,0.36,1), transform 0.2s cubic-bezier(0.22,1,0.36,1), box-shadow 0.2s cubic-bezier(0.22,1,0.36,1);
       box-shadow: 0 4px 20px rgba(13,92,122,0.25);
     }
     .btn-primary:hover { background: var(--navy-lt); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(13,92,122,0.3); }
+    .btn-primary:active { transform: translateY(0) scale(0.97); }
     .btn-ghost {
       display: inline-flex;
       align-items: center;
@@ -272,9 +280,10 @@
       color: var(--text-b);
       font-size: 0.9rem;
       font-weight: 600;
-      transition: border-color 0.2s, color 0.2s;
+      transition: border-color 0.2s cubic-bezier(0.22,1,0.36,1), color 0.2s cubic-bezier(0.22,1,0.36,1), transform 0.2s cubic-bezier(0.22,1,0.36,1);
     }
     .btn-ghost:hover { border-color: var(--navy); color: var(--navy); }
+    .btn-ghost:active { transform: scale(0.97); }
 
     .hero-trust {
       font-size: 0.8rem;
@@ -370,108 +379,6 @@
     .float-badge-svc { font-size: 0.76rem; font-weight: 700; padding: 8px 15px; gap: 7px; }
     .float-badge-svc .fb-icon { font-size: 0.88rem; }
 
-    .hero-device {
-      width: 100%;
-      max-width: 520px;
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      box-shadow: var(--shadow-lg), 0 0 0 1px var(--border);
-      background: var(--white);
-      transition: transform 0.5s cubic-bezier(0.22,1,0.36,1), box-shadow 0.5s cubic-bezier(0.22,1,0.36,1);
-    }
-    .demo-card:hover .hero-device {
-      transform: translateY(-4px) scale(1.025);
-      box-shadow: 0 28px 64px rgba(0,0,0,0.4), 0 0 0 1px var(--border);
-    }
-    .device-chrome {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 10px 14px;
-      background: #F0F0F2;
-      border-bottom: 1px solid rgba(0,0,0,0.07);
-    }
-    .d-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-    .d-red    { background: #FF5F57; }
-    .d-yellow { background: #FEBC2E; }
-    .d-green  { background: #28C840; }
-    .d-url {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      background: rgba(255,255,255,0.85);
-      border: 1px solid rgba(0,0,0,0.09);
-      border-radius: 6px;
-      padding: 4px 10px;
-      margin: 0 8px;
-    }
-    .d-lock { font-size: 0.58rem; opacity: 0.45; }
-    .d-addr { font-size: 0.67rem; color: #555; letter-spacing: 0.01em; }
-
-    .device-body { background: var(--white); }
-    .dw-nav {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-      border-bottom: 1px solid rgba(13,92,122,0.07);
-    }
-    .dw-logo-bar { width: 68px; height: 7px; background: rgba(13,92,122,0.2); border-radius: 4px; }
-    .dw-nav-links { display: flex; gap: 9px; flex: 1; justify-content: center; }
-    .dw-nl { width: 30px; height: 5px; background: rgba(13,92,122,0.1); border-radius: 3px; }
-    .dw-nav-cta { width: 52px; height: 20px; background: var(--navy); border-radius: var(--radius-full); opacity: 0.88; }
-
-    .dw-hero {
-      padding: 18px 14px 14px;
-      background: linear-gradient(150deg, rgba(13,92,122,0.04) 0%, rgba(255,255,255,0) 55%);
-      border-bottom: 1px solid rgba(13,92,122,0.05);
-    }
-    .dw-h-lines { display: flex; flex-direction: column; gap: 7px; margin-bottom: 10px; }
-    .dw-hl { height: 8px; background: rgba(13,92,122,0.18); border-radius: 4px; }
-    .dw-hl.wide { width: 78%; }
-    .dw-hl.medium { width: 56%; }
-    .dw-h-sub { display: flex; flex-direction: column; gap: 5px; margin-bottom: 12px; }
-    .dw-hs { height: 5px; background: rgba(13,92,122,0.1); border-radius: 3px; }
-    .dw-hs.short { width: 58%; }
-    .dw-h-btns { display: flex; gap: 8px; }
-    .dw-hb { height: 18px; border-radius: 20px; }
-    .dw-hb.fill { width: 70px; background: var(--navy); }
-    .dw-hb.outline { width: 58px; border: 1.5px solid rgba(13,92,122,0.22); }
-
-    .dw-cards {
-      display: flex;
-      gap: 7px;
-      padding: 10px 14px;
-      border-bottom: 1px solid rgba(13,92,122,0.05);
-    }
-    .dw-card {
-      flex: 1;
-      background: rgba(13,92,122,0.03);
-      border: 1px solid rgba(13,92,122,0.07);
-      border-radius: 7px;
-      padding: 9px;
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }
-    .dw-card.accent { background: rgba(13,92,122,0.07); border-color: rgba(13,92,122,0.13); }
-    .dw-c-icon { width: 18px; height: 18px; border-radius: 4px; background: rgba(13,92,122,0.12); }
-    .dw-c-icon.accent { background: var(--navy); }
-    .dw-c-line { height: 4px; background: rgba(13,92,122,0.12); border-radius: 3px; }
-    .dw-c-line.short { width: 58%; }
-
-    .dw-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 9px 14px;
-      background: rgba(13,92,122,0.03);
-    }
-    .dw-f-logo { width: 48px; height: 5px; background: rgba(13,92,122,0.14); border-radius: 3px; }
-    .dw-f-links { display: flex; gap: 7px; }
-    .dw-fl { width: 26px; height: 5px; background: rgba(13,92,122,0.09); border-radius: 3px; }
-
     /* ── MARQUEE ── */
     .marquee-bar {
       overflow: hidden;
@@ -556,38 +463,6 @@
       margin-bottom: 18px;
     }
     .who-we-are-copy p:last-of-type { margin-bottom: 0; }
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-    .team-card-sm {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 12px;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 28px 20px;
-    }
-    .team-card-sm .team-avatar {
-      width: 68px;
-      height: 68px;
-      font-size: 1.1rem;
-    }
-    .team-card-sm .team-name { font-size: 1rem; margin-bottom: 0; }
-    .team-card-sm .team-role { margin-bottom: 0; }
-    .stat-item { display: flex; flex-direction: column; gap: 4px; }
-    .stat-val {
-      font-size: 2.4rem;
-      font-weight: 800;
-      color: var(--navy);
-      line-height: 1;
-      letter-spacing: -0.04em;
-    }
-    .stat-lbl { font-size: 0.7rem; font-weight: 500; color: var(--text-m); letter-spacing: 0.04em; }
 
     /* ── SERVICES ── */
     .services-section {
@@ -610,32 +485,7 @@
       margin-top: 6px;
     }
     .services-head h2 em { font-style: italic; font-weight: 300; color: var(--navy); }
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-    .service-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 36px 28px 30px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 14px;
-      box-shadow: var(--shadow-sm);
-      transition: transform 0.3s cubic-bezier(0.22,1,0.36,1),
-                  box-shadow 0.3s cubic-bezier(0.22,1,0.36,1),
-                  border-color 0.3s;
-    }
-    .service-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-md);
-      border-color: rgba(13,92,122,0.28);
-    }
-    /* Circular number badge */
+    /* Circular number badge (reused by .service-card-primary) */
     .sc-badge {
       width: 48px; height: 48px;
       border-radius: 50%;
@@ -650,39 +500,6 @@
       letter-spacing: 0.06em;
       flex-shrink: 0;
       transition: background 0.25s, border-color 0.25s;
-    }
-    .service-card:nth-child(even) .sc-badge {
-      background: rgba(24,196,216,0.08);
-      border-color: rgba(24,196,216,0.22);
-      color: var(--terra);
-    }
-    .service-card:hover .sc-badge {
-      background: rgba(13,92,122,0.14);
-    }
-    .service-card:nth-child(even):hover .sc-badge {
-      background: rgba(24,196,216,0.14);
-    }
-    .service-card h3 {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--text-h);
-      line-height: 1.3;
-      letter-spacing: -0.01em;
-    }
-    .service-card p {
-      font-size: 0.83rem;
-      color: var(--text-m);
-      line-height: 1.78;
-      flex: 1;
-    }
-    .sc-tags { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
-    .sc-tag {
-      font-size: 0.62rem;
-      font-weight: 500;
-      color: var(--navy);
-      background: rgba(13,92,122,0.07);
-      border-radius: var(--radius-full);
-      padding: 3px 11px;
     }
 
     /* ── LIVE DEMOS (LIGHT) ── */
@@ -728,11 +545,11 @@
     .demos-grid { display: flex; flex-direction: column; gap: 28px; }
     .demo-card {
       display: grid;
-      grid-template-columns: 1.4fr 1fr;
+      grid-template-columns: 2.33fr 1fr;
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
-      overflow: hidden;
-      background: var(--white);
+      overflow: visible;
+      background: linear-gradient(155deg, #071321 0%, #0B1B2D 55%, #10253F 100%);
       box-shadow: var(--shadow-sm);
       transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s cubic-bezier(0.22,1,0.36,1), border-color 0.45s;
     }
@@ -741,18 +558,18 @@
       box-shadow: var(--shadow-lg);
       border-color: rgba(13,92,122,0.22);
     }
-    .demo-card.reverse { grid-template-columns: 1fr 1.4fr; }
+    .demo-card.reverse { grid-template-columns: 1fr 2.33fr; }
     .demo-card.reverse .demo-preview { order: 2; }
     .demo-card.reverse .demo-info   { order: 1; }
     .demo-preview {
       position: relative;
-      background: var(--navy-dk);
+      background: transparent;
       padding: 44px 40px;
       min-height: 300px;
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
+      overflow: visible;
       cursor: pointer;
     }
     .demo-preview::before {
@@ -788,16 +605,30 @@
     .demo-btn:hover,
     .demo-card:hover .demo-btn { background: var(--sand); color: var(--navy-dk); border-color: var(--sand); }
     .demo-card:hover .demo-btn { transform: translateY(-2px); }
+    .demo-btn:active { transform: translateY(0) scale(0.96); }
     .demo-btn-arrow { display: inline-block; transition: transform 0.3s cubic-bezier(0.22,1,0.36,1); }
     .demo-btn:hover .demo-btn-arrow { transform: translateX(3px); }
     .demo-info {
+      position: relative;
+      overflow: hidden;
       padding: 52px 44px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       gap: 14px;
-      background: var(--white);
+      background: transparent;
     }
+    .demo-info::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 50%), rgba(24,196,216,0.09), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+    }
+    .demo-card:hover .demo-info::before { opacity: 1; }
     .demo-category {
       display: flex;
       align-items: center;
@@ -821,84 +652,388 @@
       70%  { box-shadow: 0 0 0 7px rgba(24,196,216,0); }
       100% { box-shadow: 0 0 0 0 rgba(24,196,216,0); }
     }
-    .demo-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .demo-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 2px; }
     .demo-tag {
       font-size: 0.63rem;
       font-weight: 500;
-      color: var(--navy);
-      border: 1px solid rgba(13,92,122,0.18);
+      color: rgba(255,255,255,0.8);
+      border: 1px solid rgba(255,255,255,0.18);
       border-radius: var(--radius-sm);
       padding: 4px 12px;
       transition: background 0.25s, border-color 0.25s;
     }
-    .demo-card:hover .demo-tag { border-color: rgba(13,92,122,0.3); background: rgba(13,92,122,0.04); }
+    .demo-card:hover .demo-tag { border-color: rgba(255,255,255,0.32); background: rgba(255,255,255,0.06); }
     .demo-info h3 {
       font-size: 1.9rem;
       font-weight: 700;
-      color: var(--text-h);
+      color: var(--white);
       line-height: 1.2;
       letter-spacing: -0.025em;
       transition: color 0.3s;
     }
-    .demo-card:hover .demo-info h3 { color: var(--navy); }
+    .demo-card:hover .demo-info h3 { color: var(--terra); }
     .demo-info p {
       font-size: 0.82rem;
-      color: var(--text-m);
+      color: rgba(255,255,255,0.6);
       line-height: 1.8;
       max-width: 320px;
     }
 
-    /* Demo wireframe mockups */
-    .demo-mockup {
-      width: 100%;
-      max-width: 460px;
-      border-radius: var(--radius-md);
+    /* ── PORTFOLIO: PREMIUM PRODUCT SHOWCASES (both demo cards) ── */
+    .demo-card .demo-info {
+      padding: 52px 36px;
+      z-index: 1;
+    }
+    .demo-cta-inline {
+      position: static;
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+      padding: 13px 24px;
+      border-radius: var(--radius-full);
+      background: var(--navy-lt);
+      border: none;
+      color: var(--white);
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+    .demo-cta-inline:hover,
+    .demo-card:hover .demo-cta-inline {
+      background: var(--terra);
+      border-color: transparent;
+      color: var(--navy-dk);
+      transform: translateY(-1px);
+    }
+    .portal-showcase, .biz-showcase {
+      padding: 48px;
+      overflow: visible;
+      z-index: 2;
+      background: transparent;
+    }
+    .portal-showcase::after, .biz-showcase::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      opacity: 1;
+      background: radial-gradient(60% 55% at 60% 45%, rgba(24,196,216,0.16) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .portal-tablet-stage {
+      position: relative;
+      z-index: 1;
+      width: 118%;
+      max-width: 560px;
+    }
+    .portal-tablet {
+      position: relative;
+      aspect-ratio: 3 / 2;
+      background: linear-gradient(155deg, #1B2126 0%, #0B0D0F 100%);
+      border-radius: 26px;
+      padding: 14px;
+      box-shadow:
+        0 60px 90px -20px rgba(0,0,0,0.6),
+        0 20px 34px -12px rgba(0,0,0,0.5),
+        0 0 0 1px rgba(255,255,255,0.06);
+      transform: perspective(1400px) rotateY(-13deg) rotateX(4deg) rotate(-1.5deg);
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+    .portal-tablet-cam {
+      position: absolute;
+      top: 5px; left: 50%;
+      transform: translateX(-50%);
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.14);
+    }
+    .portal-tablet-screen {
+      position: relative;
+      width: 100%; height: 100%;
+      background: linear-gradient(155deg, #0E2C40 0%, #0A2032 100%);
+      border-radius: 14px;
       overflow: hidden;
-      box-shadow: 0 20px 56px rgba(0,0,0,0.45);
-      transition: transform 0.5s cubic-bezier(0.22,1,0.36,1);
-    }
-    .demo-card:hover .demo-mockup { transform: scale(1.025); }
-
-    /* Membership portal mockup */
-    .membership-mock {
       display: flex;
-      height: 230px;
-      background: #041828;
-      border: 1px solid rgba(255,255,255,0.04);
     }
-    .dm-sidebar { width: 56px; background: #020e18; padding: 12px 8px; display: flex; flex-direction: column; gap: 8px; }
-    .dm-logo    { width: 30px; height: 30px; background: rgba(13,92,122,0.7); border-radius: 6px; margin-bottom: 10px; flex-shrink: 0; }
-    .dm-nav     { height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; flex-shrink: 0; }
-    .dm-nav.active { background: var(--sand); width: 72%; }
-    .dm-main    { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
-    .dm-topbar  { display: flex; gap: 10px; padding: 10px 12px; background: rgba(255,255,255,0.02); border-bottom: 1px solid rgba(255,255,255,0.04); flex-shrink: 0; }
-    .dm-tab     { font-size: 0.45rem; color: rgba(255,255,255,0.28); letter-spacing: 0.04em; padding-bottom: 3px; white-space: nowrap; }
-    .dm-tab.active { color: var(--sand); border-bottom: 1px solid var(--sand); }
-    .dm-body    { padding: 14px; display: flex; flex-direction: column; gap: 10px; }
-    .dm-bar     { height: 5px; background: rgba(255,255,255,0.07); border-radius: 3px; overflow: hidden; }
-    .dm-fill    { height: 100%; background: linear-gradient(90deg, var(--navy-lt), rgba(38,68,107,0.4)); border-radius: 3px; }
-    .dm-row     { height: 5px; background: rgba(255,255,255,0.07); border-radius: 2px; }
-    .dm-row.short { width: 60%; }
+    .portal-tablet-screen::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(115deg, rgba(255,255,255,0.06) 0%, transparent 30%, transparent 70%, rgba(255,255,255,0.03) 100%);
+      pointer-events: none;
+    }
+    .demo-card:hover .portal-tablet {
+      transform: perspective(1400px) rotateY(-13deg) rotateX(4deg) rotate(-0.5deg);
+      box-shadow:
+        0 70px 110px -20px rgba(0,0,0,0.68),
+        0 24px 40px -12px rgba(0,0,0,0.55),
+        0 0 0 1px rgba(255,255,255,0.08);
+    }
+    .portal-sidebar {
+      width: 74px;
+      flex-shrink: 0;
+      padding: 14px 9px;
+      border-right: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+    .portal-dash-head { display: flex; align-items: center; gap: 5px; margin-bottom: 8px; }
+    .portal-dash-mark {
+      width: 16px; height: 16px;
+      border-radius: 5px;
+      background: linear-gradient(135deg, var(--terra), var(--navy-lt));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.42rem; font-weight: 800; color: var(--navy-dk);
+      flex-shrink: 0;
+    }
+    .portal-dash-name { font-size: 0.5rem; font-weight: 700; color: rgba(255,255,255,0.55); letter-spacing: 0.01em; }
+    .portal-nav-item { height: 5px; border-radius: 3px; background: rgba(255,255,255,0.08); }
+    .portal-nav-item.active { background: var(--terra); opacity: 0.85; }
+    .portal-main {
+      flex: 1;
+      min-width: 0;
+      padding: 14px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+    .portal-topbar { display: flex; align-items: center; gap: 6px; }
+    .portal-search { flex: 1; height: 14px; border-radius: 7px; background: rgba(255,255,255,0.05); }
+    .portal-bell { width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.08); flex-shrink: 0; }
+    .portal-avatar {
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--terra), var(--navy-lt));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.35rem; font-weight: 800; color: var(--navy-dk);
+      flex-shrink: 0;
+    }
+    .portal-welcome { font-size: 0.68rem; font-weight: 700; color: var(--white); }
+    .portal-dash-stats { display: flex; gap: 6px; }
+    .portal-stat {
+      flex: 1;
+      min-width: 0;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 8px;
+      padding: 7px 7px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .portal-stat-val { font-size: 0.72rem; font-weight: 800; color: var(--white); letter-spacing: -0.02em; white-space: nowrap; }
+    .portal-stat-lbl { font-size: 0.44rem; font-weight: 500; color: rgba(255,255,255,0.4); letter-spacing: 0.02em; white-space: nowrap; }
+    .portal-dash-course {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 10px;
+      padding: 11px 12px;
+    }
+    .portal-course-top { display: flex; justify-content: space-between; font-size: 0.58rem; font-weight: 600; color: rgba(255,255,255,0.7); margin-bottom: 8px; }
+    .portal-course-pct { color: var(--terra); font-weight: 800; }
+    .portal-course-bar { height: 4px; border-radius: 3px; background: rgba(255,255,255,0.08); overflow: hidden; }
+    .portal-course-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: 3px;
+      background: linear-gradient(90deg, var(--terra), var(--navy-lt));
+      transition: width 1.1s cubic-bezier(0.22,1,0.36,1) 0.2s;
+    }
+    [data-reveal].visible .portal-course-fill { width: 65%; }
+    .portal-courses-row { display: flex; gap: 8px; }
+    .portal-course-thumb {
+      flex: 1;
+      aspect-ratio: 16 / 10;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+    }
+    .thumb-a { background: linear-gradient(135deg, #2451A4, #16305F); }
+    .thumb-b { background: linear-gradient(135deg, #2E6B4F, #163825); }
+    .portal-side {
+      width: 84px;
+      flex-shrink: 0;
+      padding: 14px 8px;
+      border-left: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    .portal-call-card {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 7px;
+      padding: 7px;
+      font-size: 0.42rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.7);
+    }
+    .portal-call-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--terra); flex-shrink: 0; }
+    .portal-ring-wrap { position: relative; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; }
+    .portal-ring { width: 100%; height: 100%; transform: rotate(-90deg); }
+    .portal-ring-bg, .portal-ring-fg { fill: none; stroke-width: 4; }
+    .portal-ring-bg { stroke: rgba(255,255,255,0.1); }
+    .portal-ring-fg {
+      stroke: var(--terra);
+      stroke-linecap: round;
+      stroke-dasharray: 100.5;
+      stroke-dashoffset: 100.5;
+      transition: stroke-dashoffset 1.1s cubic-bezier(0.22,1,0.36,1) 0.3s;
+    }
+    [data-reveal].visible .portal-ring-fg { stroke-dashoffset: 25; }
+    .portal-ring-label { position: absolute; font-size: 0.48rem; font-weight: 800; color: var(--white); }
 
-    /* Business coach mockup */
-    .coach-mock { height: 230px; background: #041828; border: 1px solid rgba(255,255,255,0.04); display: flex; flex-direction: column; }
-    .cm-header  { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.05); flex-shrink: 0; }
-    .cm-logo-line { width: 72px; height: 4px; background: rgba(255,255,255,0.22); border-radius: 2px; }
-    .cm-pills   { display: flex; gap: 7px; }
-    .cm-pill    { width: 36px; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; }
-    .cm-body    { flex: 1; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; }
-    .cm-text    { padding: 16px; display: flex; flex-direction: column; gap: 9px; justify-content: center; }
-    .cm-line    { height: 4px; background: rgba(255,255,255,0.18); border-radius: 2px; }
-    .cm-line.long { width: 88%; }
-    .cm-line.med  { width: 58%; }
-    .cm-btns    { display: flex; gap: 7px; margin-top: 4px; }
-    .cm-cta     { height: 13px; border-radius: 2px; }
-    .cm-cta.fill { width: 56px; background: var(--navy-lt); }
-    .cm-cta.out  { width: 44px; border: 1px solid rgba(255,255,255,0.2); }
-    .cm-widget  { padding: 12px; background: rgba(0,0,0,0.18); display: flex; flex-direction: column; gap: 8px; }
-    .cm-wline   { height: 4px; width: 75%; background: rgba(255,255,255,0.14); border-radius: 2px; }
-    .cm-wrow    { height: 11px; background: rgba(255,255,255,0.06); border-radius: 2px; }
-    .cm-wbtn    { height: 15px; background: var(--navy-lt); border-radius: 2px; margin-top: 2px; }
+    /* ── BUSINESS SITE MONITOR MOCKUP ── */
+    .biz-monitor-stage {
+      position: relative;
+      width: 100%;
+      max-width: 520px;
+    }
+    .biz-monitor {
+      position: relative;
+      background: linear-gradient(155deg, #1B2126 0%, #0B0D0F 100%);
+      border-radius: 16px;
+      padding: 10px 10px 0;
+      box-shadow:
+        0 50px 80px -20px rgba(0,0,0,0.55),
+        0 18px 30px -12px rgba(0,0,0,0.45),
+        0 0 0 1px rgba(255,255,255,0.06);
+      transform: rotate(-1.2deg);
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+    .demo-card:hover .biz-monitor {
+      transform: rotate(-0.4deg) translateY(-2px);
+      box-shadow:
+        0 60px 100px -20px rgba(0,0,0,0.62),
+        0 22px 36px -12px rgba(0,0,0,0.5),
+        0 0 0 1px rgba(255,255,255,0.08);
+    }
+    .biz-screen {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      background: var(--white);
+      border-radius: 6px 6px 0 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .biz-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 9px 14px;
+      background: var(--white);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      flex-shrink: 0;
+    }
+    .biz-nav-logo { font-family: 'Playfair Display', serif; font-size: 0.6rem; font-weight: 700; color: #0A1E2C; white-space: nowrap; }
+    .biz-nav-links { display: flex; gap: 9px; font-size: 0.36rem; font-weight: 600; color: #333; white-space: nowrap; }
+    .biz-nav-cta { font-size: 0.36rem; font-weight: 700; color: var(--white); background: #0A1E2C; padding: 4px 8px; border-radius: 5px; white-space: nowrap; flex-shrink: 0; }
+    .biz-body {
+      flex: 1;
+      position: relative;
+      background: linear-gradient(160deg, #0D3A66 0%, #0A2748 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+    }
+    .biz-hero-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 10px;
+      padding: 12px 18px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 4px;
+      max-width: 58%;
+    }
+    .biz-avatar {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--terra), var(--navy-lt));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 0.56rem;
+      color: var(--white);
+      margin-bottom: 3px;
+    }
+    .biz-hero-name { font-family: 'Playfair Display', serif; font-size: 0.62rem; font-weight: 700; color: var(--white); }
+    .biz-hero-title { font-size: 0.32rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+    .biz-hero-stats {
+      display: flex;
+      gap: 16px;
+      margin-top: 5px;
+      padding-top: 5px;
+      border-top: 1px solid rgba(255,255,255,0.14);
+      width: 100%;
+      justify-content: center;
+    }
+    .biz-hstat { display: flex; flex-direction: column; align-items: center; gap: 1px; }
+    .biz-hstat-val { font-size: 0.54rem; font-weight: 800; color: var(--white); }
+    .biz-hstat-lbl { font-size: 0.3rem; font-weight: 500; color: rgba(255,255,255,0.4); letter-spacing: 0.03em; }
+    .biz-testimonial {
+      position: absolute;
+      bottom: 7%;
+      right: 9%;
+      background: var(--white);
+      border-radius: 8px;
+      padding: 7px 9px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.35);
+      max-width: 36%;
+    }
+    .biz-stars { color: #F5B400; font-size: 0.4rem; letter-spacing: 1px; }
+    .biz-testimonial p { font-size: 0.32rem; color: #333; line-height: 1.4; margin-top: 3px; }
+    .biz-badge {
+      position: absolute;
+      bottom: 6px; right: 8px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--white);
+      border-radius: 20px;
+      padding: 3px 8px;
+      font-size: 0.3rem;
+      font-weight: 600;
+      color: #333;
+    }
+    .biz-badge-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--terra); flex-shrink: 0; }
+    .biz-stand {
+      width: 66px; height: 22px;
+      margin: 0 auto;
+      background: linear-gradient(180deg, #2A2F35 0%, #15181C 100%);
+      clip-path: polygon(32% 0%, 68% 0%, 84% 100%, 16% 100%);
+    }
+    .biz-stand-base {
+      width: 126px; height: 7px;
+      margin: 4px auto 0;
+      background: linear-gradient(180deg, #23272C 0%, #15181C 100%);
+      border-radius: 4px;
+    }
+    @media (max-width: 1024px) {
+      .demo-card { overflow: hidden; }
+      .demo-card .demo-info { padding: 44px 40px; }
+      .portal-showcase, .biz-showcase { overflow: hidden; }
+      .portal-tablet-stage { width: 100%; max-width: 380px; }
+      .portal-tablet { transform: perspective(1400px) rotateY(-8deg) rotateX(2deg); }
+      .demo-card:hover .portal-tablet { transform: perspective(1400px) rotateY(-8deg) rotateX(2deg); }
+      .biz-monitor-stage { width: 100%; max-width: 400px; }
+    }
 
     /* ── PROCESS (DARK NAVY) ── */
     .process-section {
@@ -954,17 +1089,6 @@
     }
     .process-card h3 { font-size: 1.05rem; font-weight: 700; color: var(--white); margin-bottom: 10px; }
     .process-card p  { font-size: 0.82rem; color: rgba(255,255,255,0.55); line-height: 1.72; margin-bottom: 14px; }
-    .pc-time {
-      display: inline-block;
-      font-size: 0.66rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--sand);
-      background: rgba(222,201,154,0.12);
-      border-radius: var(--radius-sm);
-      padding: 3px 9px;
-    }
     .payment-callout {
       position: relative; z-index: 1;
       margin-top: 40px;
@@ -987,143 +1111,6 @@
       .payment-callout { padding: 22px 20px; }
       .payment-callout p { font-size: 0.98rem; }
     }
-
-    /* ── PRICING ── */
-    .pricing-section {
-      padding: 96px 0;
-      background: var(--bg);
-      border-top: 1px solid var(--border);
-    }
-    .pricing-head { margin-bottom: 52px; }
-    .pricing-head h2 {
-      font-size: clamp(2.4rem, 4.5vw, 4.5rem);
-      font-weight: 800;
-      color: var(--text-h);
-      letter-spacing: -0.035em;
-      line-height: 1.05;
-      margin-top: 8px;
-    }
-    .pricing-head h2 em { font-style: italic; font-weight: 300; color: var(--navy); }
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      align-items: stretch;
-    }
-    .pricing-card {
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 36px 28px;
-      background: var(--white);
-      display: flex;
-      flex-direction: column;
-      box-shadow: var(--shadow-sm);
-      position: relative;
-      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
-    }
-    .pricing-card:not(.featured):hover { border-color: rgba(13,92,122,0.35); transform: translateY(-4px); box-shadow: var(--shadow-md); }
-    .pricing-card.featured {
-      background: var(--navy);
-      border-color: var(--navy);
-      transform: scale(1.03);
-      box-shadow: var(--shadow-lg);
-    }
-    .pc-badge {
-      position: absolute;
-      top: -13px; left: 50%;
-      transform: translateX(-50%);
-      background: var(--terra);
-      color: var(--white);
-      font-size: 0.6rem;
-      font-weight: 800;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      padding: 4px 14px;
-      border-radius: var(--radius-full);
-      white-space: nowrap;
-    }
-    .pc-tier { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-m); margin-bottom: 12px; }
-    .pricing-card.featured .pc-tier { color: rgba(255,255,255,0.45); }
-    .pc-price { display: flex; align-items: flex-start; gap: 2px; margin-bottom: 6px; }
-    .pc-price sup  { font-size: 1.4rem; font-weight: 300; color: var(--text-h); margin-top: 10px; }
-    .pc-price span { font-size: 4.6rem; font-weight: 800; color: var(--text-h); line-height: 1; letter-spacing: -0.04em; }
-    .pricing-card.featured .pc-price sup,
-    .pricing-card.featured .pc-price span { color: rgba(255,255,255,0.95); }
-    .pc-note { font-size: 0.7rem; color: var(--navy); margin-bottom: 24px; font-weight: 500; }
-    .pricing-card.featured .pc-note { color: rgba(255,255,255,0.45); }
-    .pc-list { display: flex; flex-direction: column; margin-bottom: 24px; }
-    .pc-list li {
-      font-size: 0.82rem; color: var(--text-b);
-      padding: 8px 0;
-      border-bottom: 1px solid var(--border);
-      display: flex; align-items: flex-start; gap: 8px; line-height: 1.45;
-    }
-    .pc-list li::before { content: "✓"; color: var(--navy); font-weight: 700; font-size: 0.7rem; flex-shrink: 0; margin-top: 2px; }
-    .pricing-card.featured .pc-list li { color: rgba(255,255,255,0.72); border-bottom-color: rgba(255,255,255,0.1); }
-    .pricing-card.featured .pc-list li::before { color: var(--sand); }
-    .pc-desc { font-size: 0.74rem; color: var(--text-m); line-height: 1.75; margin-bottom: 24px; flex: 1; }
-    .pricing-card.featured .pc-desc { color: rgba(255,255,255,0.42); }
-    .pc-btn {
-      display: block; width: 100%;
-      padding: 13px; text-align: center;
-      font-size: 0.78rem; font-weight: 700;
-      letter-spacing: 0.06em; text-transform: uppercase;
-      border-radius: var(--radius-full);
-      border: 1.5px solid rgba(13,92,122,0.2);
-      background: transparent; color: var(--navy);
-      transition: background 0.2s, color 0.2s, border-color 0.2s;
-      cursor: pointer; font-family: var(--sans);
-    }
-    .pc-btn:hover { background: var(--navy); color: var(--white); border-color: var(--navy); }
-    .pricing-card.featured .pc-btn { background: rgba(255,255,255,0.95); color: var(--navy); border-color: transparent; box-shadow: 0 4px 16px rgba(0,0,0,0.12); }
-    .pricing-card.featured .pc-btn:hover { background: var(--sand); }
-
-    /* ── PRICING ADD-ONS ── */
-    .pricing-addons {
-      margin-top: 64px;
-      padding-top: 52px;
-      border-top: 1px solid var(--border);
-    }
-    .addon-group { margin-bottom: 48px; }
-    .addon-group:last-child { margin-bottom: 0; }
-    .addon-group-label {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-    .addon-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-    }
-    .addon-card {
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 24px 22px;
-      background: var(--white);
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-    .addon-card:hover { border-color: rgba(13,92,122,0.3); box-shadow: var(--shadow-sm); }
-    .addon-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 8px;
-    }
-    .addon-name { font-size: 1rem; font-weight: 700; color: var(--text-h); letter-spacing: -0.01em; }
-    .addon-price {
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: var(--navy);
-      letter-spacing: -0.02em;
-      white-space: nowrap;
-    }
-    .addon-price .addon-per { font-size: 0.7rem; font-weight: 500; color: var(--text-m); }
-    .addon-price.free { color: var(--terra); }
-    .addon-note { font-size: 0.68rem; font-weight: 600; color: var(--terra); margin-bottom: 10px; letter-spacing: 0.04em; }
-    .addon-desc { font-size: 0.82rem; color: var(--text-m); line-height: 1.72; }
 
     /* ── FAQ ── */
     .faq-section {
@@ -1254,9 +1241,10 @@
       font-weight: 800;
       letter-spacing: -0.01em;
       box-shadow: 0 8px 32px rgba(222,201,154,0.28);
-      transition: transform 0.15s, box-shadow 0.2s;
+      transition: transform 0.2s cubic-bezier(0.22,1,0.36,1), box-shadow 0.2s cubic-bezier(0.22,1,0.36,1);
     }
     .btn-book-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(222,201,154,0.36); }
+    .btn-book-primary:active { transform: translateY(0) scale(0.97); }
     .final-cta-email {
       display: block;
       margin-top: 18px;
@@ -1433,6 +1421,11 @@
     .hero-text h1 {
       overflow: hidden;
     }
+    @media (prefers-reduced-motion: reduce) {
+      .marquee-track { animation: none; }
+      [data-reveal] { transition: none; }
+      .hero-anim { transition: none; }
+    }
 
     /* ── DEMO MODAL ── */
     .demo-modal-overlay {
@@ -1572,10 +1565,8 @@
       .hero-inner      { grid-template-columns: 1fr; gap: 0; }
       .hero-visual     { display: none; }
       .hero-svc-list   { display: flex; }
-      .team-grid       { grid-template-columns: repeat(2, 1fr); }
       .cf-row          { grid-template-columns: 1fr; }
       .contact-frame   { padding: 64px 28px; }
-      .services-grid   { grid-template-columns: 1fr; gap: 16px; }
       .process-grid    { grid-template-columns: repeat(2, 1fr); }
       .process-card    { border-right: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); }
       .demo-card,
@@ -1604,10 +1595,7 @@
       /* Sections */
       .about-section, .services-section { padding: 64px 0; }
       .demos-section, .process-section { padding: 64px 0; }
-      .service-card { padding: 24px 18px 20px; border-radius: var(--radius-md); }
       .sc-badge { width: 40px; height: 40px; font-size: 0.62rem; }
-
-      .team-grid { grid-template-columns: 1fr; }
 
       /* Process */
       .process-grid  { grid-template-columns: 1fr; }
@@ -1642,86 +1630,6 @@
     }
 
 
-    /* ── TEAM SECTION ── */
-    .team-section {
-      padding: 96px 0;
-      background: var(--white);
-      border-top: 1px solid var(--border);
-    }
-    .team-inner {
-      display: grid;
-      grid-template-columns: 1fr 1.9fr;
-      gap: 80px;
-      align-items: start;
-    }
-    .team-head h2 {
-      font-size: clamp(2rem, 3.5vw, 3rem);
-      font-weight: 800;
-      line-height: 1.08;
-      letter-spacing: -0.03em;
-      color: var(--text-h);
-      margin-top: 8px;
-      margin-bottom: 16px;
-    }
-    .team-head h2 em { font-style: italic; font-weight: 300; color: var(--navy); }
-    .team-head-sub {
-      font-size: 0.9rem;
-      color: var(--text-m);
-      line-height: 1.78;
-      max-width: 340px;
-    }
-    .team-card {
-      display: flex;
-      gap: 28px;
-      align-items: flex-start;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 36px;
-    }
-    .team-avatar {
-      width: 88px;
-      height: 88px;
-      border-radius: 50%;
-      overflow: hidden;
-      flex-shrink: 0;
-      background: rgba(13,92,122,0.08);
-      border: 2px solid rgba(13,92,122,0.14);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--navy);
-      letter-spacing: -0.02em;
-    }
-    .team-avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .team-name {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--text-h);
-      letter-spacing: -0.01em;
-      margin-bottom: 4px;
-    }
-    .team-role {
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--navy);
-      margin-bottom: 14px;
-    }
-    .team-bio {
-      font-size: 0.88rem;
-      color: var(--text-m);
-      line-height: 1.82;
-    }
-
     /* ── SERVICES GRID — three cards ── */
     .services-primary-grid {
       display: grid;
@@ -1729,6 +1637,8 @@
       gap: 20px;
     }
     .service-card-primary {
+      position: relative;
+      overflow: hidden;
       background: var(--white);
       border: 1.5px solid rgba(13,92,122,0.2);
       border-radius: var(--radius-lg);
@@ -1741,6 +1651,17 @@
                   box-shadow 0.3s cubic-bezier(0.22,1,0.36,1),
                   border-color 0.3s;
     }
+    .service-card-primary::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 50%), rgba(24,196,216,0.12), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+    }
+    .service-card-primary:hover::before { opacity: 1; }
     .service-card-primary:hover {
       transform: translateY(-5px);
       box-shadow: var(--shadow-lg);
@@ -1792,13 +1713,7 @@
     }
 
     @media (max-width: 1024px) {
-      .team-inner { grid-template-columns: 1fr; gap: 40px; }
-      .team-head-sub { max-width: 100%; }
       .services-primary-grid { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 768px) {
-      .team-section { padding: 64px 0; }
-      .team-card { flex-direction: column; gap: 20px; }
     }
   </style>
 </head>
@@ -1811,17 +1726,17 @@
        ═══════════════════════════════ -->
   <header class="site-header" id="top">
     <a href="#home" class="brand">
-      <img src="/Aequora-digital-logo.png" alt="Aequora Digital" class="brand-logo" />
+      <img src="Aequora-digital-logo.png" alt="Aequora Digital" class="brand-logo" width="1024" height="1024" />
       Aequora<strong>Digital</strong>
     </a>
     <nav class="site-nav" aria-label="Primary navigation">
       <a href="#services">Services</a>
       <a href="#portfolio">Portfolio</a>
-      <a href="/work">Our Work</a>
+      <a href="work.html">Our Work</a>
       <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
     </nav>
-    <a href="#contact" class="btn-nav">Book a Call</a>
+    <a href="#contact" class="btn-nav">Let's Talk</a>
     <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -1839,15 +1754,15 @@
       <div class="hero-text">
         <div class="hero-badge hero-anim" style="--d:0.18s">
           <span class="badge-dot"></span>
-          Website builds and management for small businesses
+          Website builds, management &amp; Google Ads — one team, one point of contact
         </div>
 
         <h1 id="hero-h1" class="hero-anim" style="--d:0.3s">
-          Your website should be bringing you work.
+          Stop managing freelancers. Start working with one team.
         </h1>
 
         <p class="hero-sub hero-anim" style="--d:0.7s">
-          Most small business sites sit there doing nothing. We build sites that get found, load fast, and turn visitors into calls. Live in 14 days, and you don't pay the balance until you approve the first draft.
+          Most business owners end up managing a web designer, an SEO freelancer, and an ads manager.<br><br>We replace all of that with one team that builds your website, manages it, and helps you get more customers.
         </p>
 
         <div class="hero-svc-list hero-anim" style="--d:0.79s">
@@ -1863,11 +1778,11 @@
         </div>
 
         <div class="hero-actions hero-anim" style="--d:0.88s">
-          <a href="https://calendar.app.google/PEsD6mypBEHMUffH8" target="_blank" rel="noopener noreferrer" class="btn-primary">Book a 15 minute call →</a>
+          <a href="https://calendar.app.google/PEsD6mypBEHMUffH8" target="_blank" rel="noopener noreferrer" class="btn-primary">Start the Conversation →</a>
           <a href="#portfolio" class="btn-ghost">See what we build</a>
         </div>
 
-        <p class="hero-trust hero-anim" style="--d:1.05s">We built websites and AI tools for a company that scales small businesses. Now we do it directly, without the agency markup.</p>
+        <p class="hero-trust hero-anim" style="--d:1.05s">Our team built websites and internal tools for a company that scales small businesses with AI. Now we do the same work directly — one team, no agency markup, no vendors to manage.</p>
       </div>
 
       <!-- RIGHT COLUMN: Hero photo -->
@@ -1886,7 +1801,7 @@
 
         <!-- Hero photo -->
         <div class="hero-photo-wrap">
-          <img src="hero-photo.png" alt="Small business owner working at their laptop" class="hero-photo" loading="eager" />
+          <img src="hero-photo.png" alt="Small business owner working at their laptop" class="hero-photo" loading="eager" width="933" height="1202" />
         </div>
       </div><!-- /hero-visual -->
     </div><!-- /hero-inner -->
@@ -1902,11 +1817,13 @@
       <span>Website Management</span><span class="sep">✦</span>
       <span>SEO</span><span class="sep">✦</span>
       <span>Google Ads</span><span class="sep">✦</span>
+      <span>Lead Tracking</span><span class="sep">✦</span>
       <span>Site Redesign</span><span class="sep">✦</span>
       <span>Website Builds</span><span class="sep">✦</span>
       <span>Website Management</span><span class="sep">✦</span>
       <span>SEO</span><span class="sep">✦</span>
       <span>Google Ads</span><span class="sep">✦</span>
+      <span>Lead Tracking</span><span class="sep">✦</span>
       <span>Site Redesign</span><span class="sep">✦</span>
     </div>
   </div>
@@ -1920,9 +1837,9 @@
         <p class="section-label" data-reveal>The Problem</p>
         <h2 data-reveal data-delay="1">You already know the site isn't working.</h2>
         <div class="problem-body">
-          <p data-reveal data-delay="2">You paid someone once. Maybe a cousin, maybe an agency, maybe a template you set up yourself at 11pm. It looks fine. It just doesn't do anything.</p>
-          <p data-reveal data-delay="3">It doesn't show up when someone searches for what you do. It takes six seconds to load on a phone. There's no clear way to contact you. And the last update was three years ago because the person who built it stopped answering.</p>
-          <p class="problem-emphasis" data-reveal data-delay="4">You don't need a redesign. You need someone who owns the outcome.</p>
+          <p data-reveal data-delay="2">You already know your website isn't bringing in enough customers.</p>
+          <p data-reveal data-delay="3">Maybe it loads slowly.<br>Maybe nobody finds you on Google.<br>Maybe you paid someone once and never heard from them again.</p>
+          <p class="problem-emphasis" data-reveal data-delay="4">You don't need another redesign.<br><br>You need one team that owns the entire process.</p>
         </div>
       </div>
     </div>
@@ -1941,27 +1858,21 @@
       <div class="services-primary-grid">
         <article class="service-card-primary" data-reveal data-delay="1">
           <div class="sc-badge">01</div>
-          <h3>Website Builds</h3>
-          <div class="svc-tier">
-            <p class="svc-tier-label">Starter, $1,999. Live in 7 days.</p>
-            <p class="svc-tier-body">A single page built to do one job: get you contacted. Mobile first, fast, and written in plain language. First draft in 48 hours.</p>
-          </div>
-          <div class="svc-tier">
-            <p class="svc-tier-label">Growth, $4,999. Live in 14 days.</p>
-            <p class="svc-tier-body">Up to ten pages. Search setup so you show up locally. Contact forms that reach you. One month of management included.</p>
-          </div>
+          <h3>A website you're proud to share</h3>
+          <p class="svc-price-line">Projects start at $1,999.</p>
+          <p>Fast loading • Mobile-first • Built to generate leads • Delivered in as little as 2 weeks</p>
         </article>
         <article class="service-card-primary" data-reveal data-delay="2">
           <div class="sc-badge">02</div>
-          <h3>Website Management</h3>
-          <p class="svc-price-line">$999 a month.</p>
-          <p>Hosting, backups, security, and speed monitoring. Four content updates a month, done by us. Monthly report in plain English. You message us, we handle it.</p>
+          <h3>We keep everything running</h3>
+          <p>Monthly management that keeps your website secure, updated, and performing without you lifting a finger.</p>
+          <p>Hosting • Security • Backups • Content updates • Technical support</p>
         </article>
         <article class="service-card-primary" data-reveal data-delay="3">
           <div class="sc-badge">03</div>
-          <h3>Google Ads</h3>
-          <p class="svc-price-line">Starter, $300 a month plus ad spend. Growth, $600 a month plus ad spend.</p>
-          <p>We write the ads, set the targeting, and cut what isn't working. You approve the budget. No long contract.</p>
+          <h3>Reach more of the right customers</h3>
+          <p>Google Ads and local SEO managed by the same team that built your website.</p>
+          <p>Google Ads • Local SEO • Lead tracking • Monthly reporting</p>
         </article>
       </div>
     </div>
@@ -1977,49 +1888,128 @@
           <p class="section-label">What We Build</p>
           <h2>See a couple of <em>sample builds.</em></h2>
         </div>
-        <p class="demos-note">Sample projects, not real clients.<br>Built to show the quality of the work.<br><a href="/work" class="demos-note-link">See our real client work →</a></p>
+        <p class="demos-note">These are demonstration projects built to showcase our work.<br><a href="work.html" class="demos-note-link">See our real client projects →</a></p>
       </div>
       <div class="demos-grid">
         <article class="demo-card" data-reveal data-delay="1">
-          <div class="demo-preview" role="button" tabindex="0" aria-label="Open live preview of Sample Business Site">
-            <div class="hero-device" style="max-width:340px">
-              <div class="device-chrome">
-                <span class="d-dot d-red"></span><span class="d-dot d-yellow"></span><span class="d-dot d-green"></span>
-                <div class="d-url"><span class="d-lock">🔒</span><span class="d-addr">yourbusiness.com</span></div>
+          <div class="demo-preview biz-showcase" role="button" tabindex="0" aria-label="Open live preview of Sample Business Site">
+            <div class="biz-monitor-stage" aria-hidden="true">
+              <div class="biz-monitor">
+                <div class="biz-screen">
+                  <div class="biz-nav">
+                    <span class="biz-nav-logo">Jordan Mercer</span>
+                    <div class="biz-nav-links">
+                      <span>About</span><span>Services</span><span>Results</span>
+                    </div>
+                    <span class="biz-nav-cta">Book Now</span>
+                  </div>
+                  <div class="biz-body">
+                    <div class="biz-hero-card">
+                      <div class="biz-avatar">JM</div>
+                      <p class="biz-hero-name">Jordan Mercer</p>
+                      <p class="biz-hero-title">Business Coach · Speaker</p>
+                      <div class="biz-hero-stats">
+                        <div class="biz-hstat"><span class="biz-hstat-val">120+</span><span class="biz-hstat-lbl">Clients</span></div>
+                        <div class="biz-hstat"><span class="biz-hstat-val">$2M+</span><span class="biz-hstat-lbl">Revenue</span></div>
+                      </div>
+                    </div>
+                    <div class="biz-testimonial">
+                      <span class="biz-stars">★★★★★</span>
+                      <p>"Doubled our revenue in six months."</p>
+                    </div>
+                    <div class="biz-badge"><span class="biz-badge-dot"></span>Built by Aequora Digital</div>
+                  </div>
+                </div>
               </div>
-              <div class="device-body">
-                <div class="dw-nav"><div class="dw-logo-bar"></div><div class="dw-nav-links"><div class="dw-nl"></div><div class="dw-nl"></div><div class="dw-nl"></div></div><div class="dw-nav-cta"></div></div>
-                <div class="dw-hero"><div class="dw-h-lines"><div class="dw-hl wide"></div><div class="dw-hl medium"></div></div><div class="dw-h-btns"><div class="dw-hb fill"></div><div class="dw-hb outline"></div></div></div>
-              </div>
+              <div class="biz-stand"></div>
+              <div class="biz-stand-base"></div>
             </div>
-            <a href="/demo-jordan" class="demo-btn">View Live Demo <span class="demo-btn-arrow">→</span></a>
           </div>
           <div class="demo-info">
             <span class="demo-category">Website Build</span>
             <h3>Sample Business Site</h3>
-            <p>A single-page site built to load fast, rank locally, and turn visitors into calls.</p>
+            <p>A modern business website built to convert visitors into customers.</p>
             <div class="demo-tags"><span class="demo-tag">Single Page</span><span class="demo-tag">Mobile First</span></div>
+            <a href="demo-jordan.html" class="demo-btn demo-cta-inline">View Live Demo <span class="demo-btn-arrow">→</span></a>
           </div>
         </article>
         <article class="demo-card reverse" data-reveal data-delay="2">
-          <div class="demo-preview" role="button" tabindex="0" aria-label="Open live preview of Sample Member Portal">
-            <div class="hero-device" style="max-width:340px">
-              <div class="device-chrome">
-                <span class="d-dot d-red"></span><span class="d-dot d-yellow"></span><span class="d-dot d-green"></span>
-                <div class="d-url"><span class="d-lock">🔒</span><span class="d-addr">yourportal.com</span></div>
-              </div>
-              <div class="device-body">
-                <div class="dw-nav"><div class="dw-logo-bar"></div><div class="dw-nav-links"><div class="dw-nl"></div><div class="dw-nl"></div><div class="dw-nl"></div></div><div class="dw-nav-cta"></div></div>
-                <div class="dw-cards"><div class="dw-card"><div class="dw-c-icon"></div><div class="dw-c-line"></div></div><div class="dw-card accent"><div class="dw-c-icon accent"></div><div class="dw-c-line"></div></div></div>
+          <div class="demo-preview portal-showcase" role="button" tabindex="0" aria-label="Open live preview of Sample Member Portal">
+            <div class="portal-tablet-stage" aria-hidden="true">
+              <div class="portal-tablet">
+                <span class="portal-tablet-cam"></span>
+                <div class="portal-tablet-screen">
+                  <div class="portal-sidebar">
+                    <div class="portal-dash-head">
+                      <span class="portal-dash-mark">EA</span>
+                      <span class="portal-dash-name">Elevate</span>
+                    </div>
+                    <span class="portal-nav-item active"></span>
+                    <span class="portal-nav-item"></span>
+                    <span class="portal-nav-item"></span>
+                    <span class="portal-nav-item"></span>
+                    <span class="portal-nav-item"></span>
+                  </div>
+                  <div class="portal-main">
+                    <div class="portal-topbar">
+                      <span class="portal-search"></span>
+                      <span class="portal-bell"></span>
+                      <span class="portal-avatar">SM</span>
+                    </div>
+                    <p class="portal-welcome">Welcome back, Sarah 👋</p>
+                    <div class="portal-dash-stats">
+                      <div class="portal-stat">
+                        <span class="portal-stat-val">47</span>
+                        <span class="portal-stat-lbl">Lessons</span>
+                      </div>
+                      <div class="portal-stat">
+                        <span class="portal-stat-val">12.4h</span>
+                        <span class="portal-stat-lbl">Watch</span>
+                      </div>
+                      <div class="portal-stat">
+                        <span class="portal-stat-val">3</span>
+                        <span class="portal-stat-lbl">Certs</span>
+                      </div>
+                      <div class="portal-stat">
+                        <span class="portal-stat-val">1,240</span>
+                        <span class="portal-stat-lbl">Points</span>
+                      </div>
+                    </div>
+                    <div class="portal-dash-course">
+                      <div class="portal-course-top">
+                        <span>Continue Learning</span>
+                        <span class="portal-course-pct">65%</span>
+                      </div>
+                      <div class="portal-course-bar"><div class="portal-course-fill"></div></div>
+                    </div>
+                    <div class="portal-courses-row">
+                      <span class="portal-course-thumb thumb-a">🚀</span>
+                      <span class="portal-course-thumb thumb-b">💰</span>
+                    </div>
+                  </div>
+                  <div class="portal-side">
+                    <div class="portal-call-card">
+                      <span class="portal-call-dot"></span>
+                      <span>Upcoming Call</span>
+                    </div>
+                    <div class="portal-ring-wrap">
+                      <svg class="portal-ring" viewBox="0 0 40 40">
+                        <circle class="portal-ring-bg" cx="20" cy="20" r="16"></circle>
+                        <circle class="portal-ring-fg" cx="20" cy="20" r="16"></circle>
+                      </svg>
+                      <span class="portal-ring-label">75%</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-            <a href="/demo-elevate" class="demo-btn">View Live Demo <span class="demo-btn-arrow">→</span></a>
           </div>
           <div class="demo-info">
             <span class="demo-category">Custom Build</span>
             <h3>Sample Member Portal</h3>
-            <p>A gated content dashboard with course progress tracking, built for a coaching-style business.</p>
+            <p>Custom member portals for coaching businesses, online communities, and digital programs.</p>
             <div class="demo-tags"><span class="demo-tag">Members Only</span><span class="demo-tag">Progress Tracking</span></div>
+            <a href="demo-elevate.html" class="demo-btn demo-cta-inline">View Live Demo <span class="demo-btn-arrow">→</span></a>
           </div>
         </article>
       </div>
@@ -2039,26 +2029,26 @@
         <div class="process-card" data-reveal data-delay="1">
           <div class="pc-num">01</div>
           <h3>Call</h3>
-          <p>Fifteen minutes. You tell us what the business does and what you want the site to do. If we're not the right fit, we'll say so.</p>
+          <p>A quick conversation about your business and your goals.</p>
         </div>
         <div class="process-card" data-reveal data-delay="2">
           <div class="pc-num">02</div>
           <h3>Proposal</h3>
-          <p>Fixed price within 24 hours. Not an estimate. The number on the proposal is the number you pay.</p>
+          <p>You'll receive a fixed-price proposal within 24 hours.</p>
         </div>
         <div class="process-card" data-reveal data-delay="3">
           <div class="pc-num">03</div>
           <h3>Build</h3>
-          <p>You see a first draft 48 hours after you send us your logo and content. Two rounds of changes included.</p>
+          <p>We'll design and build your website. Your first draft is usually ready within 2 weeks.</p>
         </div>
         <div class="process-card" data-reveal data-delay="4">
           <div class="pc-num">04</div>
-          <h3>Live</h3>
-          <p>Site goes up. You either keep us on management, or you take the keys and we hand over everything.</p>
+          <h3>Launch</h3>
+          <p>Once approved, we launch your website and continue supporting your business.</p>
         </div>
       </div>
       <div class="payment-callout" data-reveal data-delay="5">
-        <p>Half up front. The balance when you approve the draft. If the draft isn't right after two rounds, you don't pay it.</p>
+        <p>You only pay half upfront.<br><br>The remaining balance isn't due until you approve the finished project.</p>
       </div>
     </div>
   </section>
@@ -2071,9 +2061,9 @@
       <p class="section-label" data-reveal>Who We Are</p>
       <h2 class="who-we-are-h2" data-reveal data-delay="1">We're new. <em>Here's why that's fine.</em></h2>
       <div class="who-we-are-copy">
-        <p data-reveal data-delay="2">Aequora is a small team in the Philippines. Before this, we worked for a company that used AI to build and scale small businesses. We ran the operations, built the sites, and managed the systems.</p>
-        <p data-reveal data-delay="3">We left to do the same work directly, for a fraction of what an agency charges, because the markup was never the part that made the work good.</p>
-        <p data-reveal data-delay="4">We are early. We do not have a wall of logos. What we have is a small enough client list that yours gets real attention, and a promise we're willing to put money behind: you don't pay the balance until you approve the work.</p>
+        <p data-reveal data-delay="2">Aequora Digital is a small team based in the Philippines.</p>
+        <p data-reveal data-delay="3">Before launching Aequora, we worked together building websites, internal systems, and business operations for a growing AI company. Now we bring that same experience directly to small businesses.</p>
+        <p data-reveal data-delay="4">No multiple freelancers.<br>No agency layers.<br>Just one team responsible for the entire project.</p>
       </div>
     </div>
   </section>
@@ -2090,33 +2080,33 @@
       <div class="faq-list">
 
         <div class="faq-item">
-          <button class="faq-q">How do I know you'll actually finish?<span class="faq-icon">+</span></button>
-          <div class="faq-a"><p>Half the payment is held until you approve the first draft. If two rounds of changes don't get it right, you keep the deposit and we part ways.</p></div>
+          <button class="faq-q">How much does a website cost?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>Projects start at $1,999. We'll give you a fixed price after a quick call about what you need.</p></div>
         </div>
 
         <div class="faq-item">
-          <button class="faq-q">Do you work with businesses outside the US?<span class="faq-icon">+</span></button>
-          <div class="faq-a"><p>Yes. Most of our clients are US based, but we build for anyone.</p></div>
+          <button class="faq-q">How long does a project usually take?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>Most projects are ready in as little as 2 weeks.</p></div>
         </div>
 
         <div class="faq-item">
-          <button class="faq-q">What if I already have a site?<span class="faq-icon">+</span></button>
-          <div class="faq-a"><p>We rebuild it. Same pricing. You keep the domain and we handle the move.</p></div>
+          <button class="faq-q">Can you manage my website after launch?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>Yes. We handle hosting, security, backups, and content updates every month, so you don't have to think about it.</p></div>
         </div>
 
         <div class="faq-item">
-          <button class="faq-q">Can you guarantee I'll rank first on Google?<span class="faq-icon">+</span></button>
-          <div class="faq-a"><p>No, and neither can anyone else who tells you they can. We set up your site correctly so search engines can read it, we do the local listings properly, and we send you a monthly report showing what changed.</p></div>
+          <button class="faq-q">Can you improve my existing website instead?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>Yes. We can rebuild it or improve what's already there. You keep your domain either way.</p></div>
         </div>
 
         <div class="faq-item">
-          <button class="faq-q">Do you do anything besides websites and ads?<span class="faq-icon">+</span></button>
-          <div class="faq-a"><p>We also place virtual assistants and take on project work. Ask on the call.</p></div>
+          <button class="faq-q">Can you help us get more leads?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>Yes, through Google Ads and local SEO. We track what's working and send you a monthly report.</p></div>
         </div>
 
         <div class="faq-item">
-          <button class="faq-q">What happens after the site is live?<span class="faq-icon">+</span></button>
-          <div class="faq-a"><p>Either you go on management at $999 a month, or we hand over every file, login, and password and you're on your own. No lock in either way.</p></div>
+          <button class="faq-q">Do you build custom portals and internal systems?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>Yes. Member portals, booking systems, and other custom builds — we'll scope it out on a call.</p></div>
         </div>
 
       </div>
@@ -2133,8 +2123,8 @@
       <div class="final-cta" data-reveal>
         <p class="section-label light" style="justify-content:center">Get In Touch</p>
         <h2>Fifteen minutes. <em>No pitch.</em></h2>
-        <p class="final-cta-body">Tell us what the business does and what's broken. We'll tell you if we can help and what it would cost. If the answer is that you don't need us, that's what we'll say.</p>
-        <a href="https://calendar.app.google/PEsD6mypBEHMUffH8" target="_blank" rel="noopener noreferrer" class="btn-book-primary">Book a call →</a>
+        <p class="final-cta-body">Tell us about your business and what you're trying to accomplish.<br><br>We'll let you know if we're the right fit, what we'd recommend, and exactly what it would cost.</p>
+        <a href="https://calendar.app.google/PEsD6mypBEHMUffH8" target="_blank" rel="noopener noreferrer" class="btn-book-primary">Let's Talk About Your Website →</a>
         <a href="mailto:info@aequoradigital.com" class="final-cta-email">Or email us at info@aequoradigital.com</a>
       </div>
 
@@ -2142,7 +2132,7 @@
 
       <!-- Inquiry form — secondary, muted styling -->
       <div class="inquiry-panel" data-reveal>
-        <h3>Not ready to book a call?</h3>
+        <h3>Not ready for a call yet?</h3>
         <p class="inquiry-sub">Tell us what's broken and we'll write back within a day.</p>
         <form class="contact-form" id="contact-form">
           <input type="hidden" name="access_key" value="e4ce3802-c6ab-4209-9456-0c608e67d5eb" />
@@ -2409,6 +2399,18 @@
     }));
   })();
 
+  /* ── CARD CURSOR GLOW ── */
+  (function () {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    document.querySelectorAll('.service-card-primary, .demo-info').forEach(el => {
+      el.addEventListener('pointermove', e => {
+        const r = el.getBoundingClientRect();
+        el.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+        el.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+      });
+    });
+  })();
+
   /* ── HERO FLOATING BADGES → SERVICES ── */
   document.querySelectorAll('.float-badge').forEach(badge => {
     badge.addEventListener('click', () => {
@@ -2496,7 +2498,7 @@
     });
 
     document.querySelectorAll('.demo-preview').forEach(preview => {
-      const btn = preview.querySelector('.demo-btn');
+      const btn = preview.closest('.demo-card')?.querySelector('.demo-btn');
       if (!btn) return;
       preview.addEventListener('click', () => openFromButton(btn));
       preview.addEventListener('keydown', e => {
