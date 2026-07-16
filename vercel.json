@@ -1,8 +1,7 @@
 {
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/", "destination": "/main.html" },
-    { "source": "/theme/dc", "destination": "/theme/dc.html" }
+    { "source": "/", "destination": "/main" }
   ],
   "redirects": [
     {
