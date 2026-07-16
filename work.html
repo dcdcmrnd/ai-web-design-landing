@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="Content-Security-Policy"
-    content="default-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; img-src 'self' data: https:; base-uri 'self';" />
+    content="default-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; img-src 'self' data: https:; frame-src https:; base-uri 'self';" />
   <title>Our Work | Aequora Digital</title>
   <meta name="description" content="Real client websites built by Aequora Digital. Browse live projects across industries — click through for the story, then visit each site." />
   <meta name="robots" content="index, follow" />
@@ -165,9 +165,10 @@
     .work-card-mono { flex: 1; display: flex; align-items: center; justify-content: center; }
     .work-card-mono span { font-family: 'Playfair Display', serif; font-size: 3.2rem; font-weight: 800; color: rgba(255,255,255,0.16); letter-spacing: 0.02em; }
     .work-modal-visual .work-card-mono span { font-size: 4rem; }
-    .work-card-shot {
-      position: absolute; inset: 0; width: 100%; height: 100%;
-      object-fit: cover; object-position: top center; z-index: 0;
+    .work-iframe-wrap { position: absolute; inset: 0; overflow: hidden; z-index: 0; }
+    .work-iframe {
+      position: absolute; top: 0; left: 0; border: 0; background: var(--white);
+      transform-origin: top left; pointer-events: none;
     }
     .work-card-chrome { position: relative; z-index: 1; }
     .work-card-visual .work-card-status, .work-card-status { z-index: 1; }
@@ -258,16 +259,16 @@
        HEADER
        ═══════════════════════════════ -->
   <header class="site-header" id="top">
-    <a href="main.html#home" class="brand">
+    <a href="/#home" class="brand">
       <img src="/Aequora-digital-logo.png" alt="Aequora Digital" class="brand-logo" />
       Aequora<strong>Digital</strong>
     </a>
     <nav class="site-nav" aria-label="Primary navigation">
-      <a href="main.html#services">Services</a>
-      <a href="main.html#portfolio">Portfolio</a>
-      <a href="work.html" class="active">Our Work</a>
-      <a href="main.html#faq">FAQ</a>
-      <a href="main.html#contact">Contact</a>
+      <a href="/#services">Services</a>
+      <a href="/#portfolio">Portfolio</a>
+      <a href="/work" class="active">Our Work</a>
+      <a href="/#faq">FAQ</a>
+      <a href="/#contact">Contact</a>
     </nav>
     <a href="https://calendar.app.google/PEsD6mypBEHMUffH8" target="_blank" rel="noopener noreferrer" class="btn-nav">Book a Call</a>
     <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
@@ -299,13 +300,14 @@
           data-industry="Construction &amp; Home Building"
           data-description="A custom site for a residential and commercial construction company in Davao City, Philippines — built to showcase completed and in-progress projects, walk visitors through the build process, and turn browsers into inquiries."
           data-url="https://jcm-home-builder-sc.vercel.app/"
-          data-status="Preview build — final domain not live yet"
-          data-image="images/jcm-hero.jpg">
+          data-status="Preview build — final domain not live yet">
           <div class="work-card-visual">
-            <img class="work-card-shot" src="images/jcm-hero.jpg" alt="JCM Home Builders homepage hero" loading="lazy" />
             <div class="work-card-chrome">
               <span class="d-dot d-red"></span><span class="d-dot d-yellow"></span><span class="d-dot d-green"></span>
               <div class="work-card-url"><span class="d-lock">🔒</span><span>jcm-home-builder-sc.vercel.app</span></div>
+            </div>
+            <div class="work-iframe-wrap" data-iframe-wrap>
+              <iframe class="work-iframe" data-src="https://jcm-home-builder-sc.vercel.app/" title="JCM Home Builders live preview" tabindex="-1" sandbox="allow-scripts allow-same-origin"></iframe>
             </div>
             <span class="work-card-status">Preview</span>
           </div>
@@ -334,10 +336,12 @@
     <div class="work-modal">
       <button class="work-modal-close" aria-label="Close">✕</button>
       <div class="work-modal-visual">
-        <img class="work-card-shot" id="wm-image" src="" alt="" loading="lazy" style="display:none" />
         <div class="work-card-chrome">
           <span class="d-dot d-red"></span><span class="d-dot d-yellow"></span><span class="d-dot d-green"></span>
           <div class="work-card-url"><span class="d-lock">🔒</span><span id="wm-url-text"></span></div>
+        </div>
+        <div class="work-iframe-wrap" id="wm-iframe-wrap" style="display:none">
+          <iframe class="work-iframe" id="wm-iframe" title="Live site preview" tabindex="-1" sandbox="allow-scripts allow-same-origin"></iframe>
         </div>
         <div class="work-card-mono" id="wm-mono-wrap"><span id="wm-mono"></span></div>
       </div>
@@ -437,6 +441,56 @@
       });
     })();
 
+    /* ── LIVE IFRAME PREVIEWS (scale a fixed-width render down to fit each frame) ── */
+    (function () {
+      var VIEWPORT_W = 1440;
+
+      function fitIframe(wrap) {
+        var iframe = wrap.querySelector('iframe');
+        if (!iframe) return;
+        var w = wrap.clientWidth, h = wrap.clientHeight;
+        if (!w || !h) return;
+        var scale = w / VIEWPORT_W;
+        iframe.style.width = VIEWPORT_W + 'px';
+        iframe.style.height = (h / scale) + 'px';
+        iframe.style.transform = 'scale(' + scale + ')';
+      }
+
+      var cardWraps = Array.prototype.slice.call(document.querySelectorAll('.work-iframe-wrap[data-iframe-wrap]'));
+
+      /* Lazy-load: only point the iframe at the real site once its card scrolls into view */
+      var loadIo = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          var wrap = entry.target;
+          var iframe = wrap.querySelector('iframe');
+          if (iframe && iframe.dataset.src) {
+            iframe.src = iframe.dataset.src;
+            iframe.addEventListener('load', function () { fitIframe(wrap); }, { once: true });
+          }
+          fitIframe(wrap);
+          loadIo.unobserve(wrap);
+        });
+      }, { rootMargin: '200px 0px' });
+      cardWraps.forEach(function (wrap) { loadIo.observe(wrap); });
+
+      /* Refit on resize (grid reflow changes each card's rendered width) */
+      if (window.ResizeObserver) {
+        var resizeObs = new ResizeObserver(function (entries) {
+          entries.forEach(function (entry) { fitIframe(entry.target); });
+        });
+        cardWraps.forEach(function (wrap) { resizeObs.observe(wrap); });
+        var wmWrap = document.getElementById('wm-iframe-wrap');
+        if (wmWrap) resizeObs.observe(wmWrap);
+      } else {
+        window.addEventListener('resize', function () {
+          cardWraps.forEach(fitIframe);
+          var wmWrap = document.getElementById('wm-iframe-wrap');
+          if (wmWrap) fitIframe(wmWrap);
+        });
+      }
+    })();
+
     /* ── CLIENT DETAIL MODAL ── */
     (function () {
       var overlay = document.getElementById('work-modal');
@@ -449,8 +503,18 @@
       var linkEl = document.getElementById('wm-link');
       var monoEl = document.getElementById('wm-mono');
       var monoWrapEl = document.getElementById('wm-mono-wrap');
-      var imageEl = document.getElementById('wm-image');
+      var iframeWrapEl = document.getElementById('wm-iframe-wrap');
+      var iframeEl = document.getElementById('wm-iframe');
       var urlTextEl = document.getElementById('wm-url-text');
+
+      function fitModalIframe() {
+        var w = iframeWrapEl.clientWidth, h = iframeWrapEl.clientHeight;
+        if (!w || !h) return;
+        var scale = w / 1440;
+        iframeEl.style.width = '1440px';
+        iframeEl.style.height = (h / scale) + 'px';
+        iframeEl.style.transform = 'scale(' + scale + ')';
+      }
 
       function openCard(card) {
         nameEl.textContent = card.dataset.name;
@@ -458,13 +522,14 @@
         descEl.textContent = card.dataset.description;
         linkEl.href = card.dataset.url;
         urlTextEl.textContent = card.dataset.url.replace(/^https?:\/\//, '').replace(/\/$/, '');
-        if (card.dataset.image) {
-          imageEl.src = card.dataset.image;
-          imageEl.alt = card.dataset.name + ' website preview';
-          imageEl.style.display = '';
+        if (card.dataset.url) {
+          iframeWrapEl.style.display = '';
           monoWrapEl.style.display = 'none';
+          iframeEl.src = card.dataset.url;
+          requestAnimationFrame(fitModalIframe);
         } else {
-          imageEl.style.display = 'none';
+          iframeWrapEl.style.display = 'none';
+          iframeEl.src = '';
           monoWrapEl.style.display = '';
           monoEl.textContent = card.dataset.name.split(' ').map(function (w) { return w[0]; }).join('').slice(0, 3).toUpperCase();
         }
@@ -480,6 +545,7 @@
       function close() {
         overlay.classList.remove('open');
         document.body.style.overflow = '';
+        iframeEl.src = '';
       }
 
       document.querySelectorAll('.work-card:not(.work-card-soon)').forEach(function (card) {
