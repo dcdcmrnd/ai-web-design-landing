@@ -1755,7 +1755,18 @@
       position: relative;
       width: 110%;
     }
+    .hero-photo-frame {
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius-lg);
+      border: 1.5px solid rgba(13,92,122,0.14);
+      background: linear-gradient(165deg, rgba(255,255,255,0.7) 0%, rgba(222,201,154,0.16) 55%, rgba(24,196,216,0.10) 100%);
+      box-shadow: var(--shadow-lg);
+      z-index: 0;
+    }
     .hero-photo {
+      position: relative;
+      z-index: 1;
       width: 100%;
       height: auto;
       max-height: 92vh;
@@ -2022,6 +2033,7 @@
 
         <!-- Hero photo -->
         <div class="hero-photo-wrap">
+          <div class="hero-photo-frame" aria-hidden="true"></div>
           <img src="hero-photo.png" alt="Small business owner reviewing their custom website — website development for U.S. small businesses" class="hero-photo" loading="eager" width="933" height="1202" />
         </div>
       </div><!-- /hero-visual -->
