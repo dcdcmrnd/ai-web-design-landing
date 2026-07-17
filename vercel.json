@@ -11,6 +11,11 @@
       ],
       "destination": "https://aequoradigital.com/:path*",
       "permanent": true
+    },
+    {
+      "source": "/work",
+      "destination": "/#our-work",
+      "permanent": true
     }
   ],
   "headers": [
