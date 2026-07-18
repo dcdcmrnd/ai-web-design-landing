@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Security-Policy"
     content="default-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://api.web3forms.com https://web3forms.com; form-action 'self' https://api.web3forms.com; frame-src https:; frame-ancestors 'self';" />
   <title>Website Development &amp; Website Management for U.S. Small Businesses | Aequora Digital</title>
-  <meta name="description" content="Custom website development, website management, SEO, Google Ads, and CRM solutions that help U.S. small businesses grow online. Build, manage, and grow your website with Aequora Digital." />
+  <meta name="description" content="Custom website development, website management, technical SEO, and custom CRM solutions built on Next.js and React for U.S. small businesses." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://aequoradigital.com/" />
   <meta property="og:title" content="Website Development &amp; Website Management for U.S. Small Businesses | Aequora Digital" />
@@ -1298,7 +1298,7 @@
       overflow: hidden;
       transition: max-height 0.42s cubic-bezier(0.22,1,0.36,1);
     }
-    .faq-item.open .faq-a { max-height: 300px; }
+    .faq-item.open .faq-a { max-height: 420px; }
     .faq-a p {
       padding: 0 0 24px;
       font-size: 0.9rem;
@@ -1870,8 +1870,9 @@
     "url": "https://aequoradigital.com/",
     "logo": "https://aequoradigital.com/Aequora-digital-logo.png",
     "email": "info@aequoradigital.com",
-    "description": "Custom website development, website management, SEO, Google Ads, and CRM solutions for U.S. small businesses.",
+    "description": "Custom website development, website management, technical SEO, and custom CRM solutions built on Next.js and React for U.S. small businesses.",
     "areaServed": "US",
+    "priceRange": "$1,999+",
     "sameAs": []
   }
   </script>
@@ -1902,10 +1903,14 @@
       "@type": "OfferCatalog",
       "name": "Services",
       "itemListElement": [
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom Website Development" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Website Management" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "SEO Services" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Google Ads" } }
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom Website Development" }, "priceSpecification": { "@type": "PriceSpecification", "minPrice": "1999", "maxPrice": "4999", "priceCurrency": "USD" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Website Management" }, "priceSpecification": { "@type": "PriceSpecification", "minPrice": "299", "priceCurrency": "USD", "unitText": "MONTH" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Technical SEO" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Google Ads Management" }, "priceSpecification": { "@type": "PriceSpecification", "minPrice": "300", "priceCurrency": "USD", "unitText": "MONTH" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom CRM Development" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Member Portal Development" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Business Automation" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom Web Applications" } }
       ]
     }
   }
@@ -1917,33 +1922,53 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "How much does a website cost?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Projects start at $1,999. We'll give you a fixed price after a quick call about what you need." }
+        "name": "What's the investment for a new website?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Every business is different, so every project is quoted based on your goals and requirements. Business websites typically range from $1,999 to $4,999 depending on scope. Larger custom platforms, client portals, internal systems, and web applications are quoted individually after a discovery call. Website Management starts at $299/month, and Google Ads Management starts at $300/month plus ad spend. You'll receive a fixed proposal with clear deliverables, timeline, and pricing before any work begins." }
       },
       {
         "@type": "Question",
         "name": "How long does a project usually take?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Most projects are ready in as little as 2 weeks." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Most websites are ready in as little as 2 weeks from approval, depending on scope. Custom platforms and larger builds take longer — we'll give you a realistic timeline on the first call." }
       },
       {
         "@type": "Question",
-        "name": "Can you manage my website after launch?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes. We handle hosting, security, backups, and content updates every month, so you don't have to think about it." }
+        "name": "Do you provide ongoing website management?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Website Management starts at $299/month and covers hosting, security, backups, performance monitoring, and content updates, so the site keeps running well after launch." }
       },
       {
         "@type": "Question",
-        "name": "Can you improve my existing website instead?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes. We can rebuild it or improve what's already there. You keep your domain either way." }
+        "name": "Can you improve or redesign my existing website?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. We can run a full website redesign or a lighter website optimization pass — improving speed, technical SEO, and conversions — without necessarily starting from scratch. You keep your domain either way." }
       },
       {
         "@type": "Question",
         "name": "Can you help us get more leads?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes, through Google Ads and local SEO. We track what's working and send you a monthly report." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, through technical SEO and Google Ads (starting at $300/month plus ad spend). We track what's actually working and send a monthly report, so spend stays tied to results." }
       },
       {
         "@type": "Question",
-        "name": "Do you build custom portals and internal systems?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Member portals, booking systems, and other custom builds — we'll scope it out on a call." }
+        "name": "Do you build custom software, portals, or internal systems?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Beyond marketing websites, we build custom web applications, member portals, and custom CRM systems tailored to how your business actually operates — we'll scope it out on a call." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can you integrate with GoHighLevel or other CRMs?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. We can connect your website to GoHighLevel or another CRM and marketing platform you already use, or build a custom system if that serves you better long-term." }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you work with WordPress, or only build custom sites?",
+        "acceptedAnswer": { "@type": "Answer", "text": "We can maintain or improve an existing WordPress site, but new projects are built on modern frameworks like Next.js and React, which outperform WordPress on speed, security, and long-term maintenance costs." }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you build websites with React and Next.js?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes — Next.js and React are our default stack for custom builds. They give you faster load times, stronger technical SEO, and a foundation that scales cleanly as you add features." }
+      },
+      {
+        "@type": "Question",
+        "name": "How does your development process work?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Four steps: Discover, Build, Launch, Grow. We start with a call to understand your goals, send a fixed-price proposal within 24 hours, deliver a first draft in about two weeks, and stay on after launch for SEO and ongoing management." }
       }
     ]
   }
@@ -2014,7 +2039,7 @@
           <a href="#portfolio" class="btn-ghost">View Our Work</a>
         </div>
 
-        <p class="hero-trust hero-anim" style="--d:1.05s">Simple pricing. Fast delivery. Ongoing support.</p>
+        <p class="hero-trust hero-anim" style="--d:1.05s">Transparent pricing. Fast delivery. Ongoing support.</p>
       </div>
 
       <!-- RIGHT COLUMN: Hero photo -->
@@ -2099,20 +2124,20 @@
         <article class="service-card-primary" data-reveal data-delay="1">
           <div class="sc-badge">01</div>
           <h3>Website Development</h3>
-          <p>Custom websites built for performance, scalability, and conversions.</p>
-          <p>Every website is responsive, SEO-ready, and designed to reflect your brand while helping you attract and convert more customers.</p>
+          <p>Modern websites built to generate leads, improve credibility, and support business growth.</p>
+          <p>Every site is custom-coded on a modern stack — typically Next.js and React — for the speed, scalability, and technical SEO foundation off-the-shelf builders can't match. From landing pages to custom web applications, the work is built to convert.</p>
         </article>
         <article class="service-card-primary" data-reveal data-delay="2">
           <div class="sc-badge">02</div>
           <h3>Website Management</h3>
-          <p>Your website should continue improving long after launch.</p>
-          <p>We handle updates, maintenance, security, performance optimization, content changes, and technical support so you can focus on running your business.</p>
+          <p>Continuous optimization, maintenance, security, and technical support after launch.</p>
+          <p>We monitor uptime and performance, apply updates and security patches, make content changes, and keep improving the site — so it keeps working as hard as you do.</p>
         </article>
         <article class="service-card-primary" data-reveal data-delay="3">
           <div class="sc-badge">03</div>
           <h3>SEO &amp; Growth</h3>
-          <p>A great website deserves to be found.</p>
-          <p>We improve your online visibility through technical SEO, performance optimization, structured data, and conversion-focused improvements that help more people discover your business.</p>
+          <p>A great website deserves to be found — and to turn visitors into customers.</p>
+          <p>We improve visibility through technical SEO, performance optimization, and structured data, and layer in Google Ads when it makes sense, so more of the right people find and choose your business.</p>
         </article>
       </div>
     </div>
@@ -2267,7 +2292,7 @@
           <article class="work-card" data-reveal data-delay="1" role="button" tabindex="0"
             data-name="JCM Home Builders"
             data-industry="Construction &amp; Home Building"
-            data-description="Full custom website build: a project gallery to showcase completed and in-progress work, a step-by-step process walkthrough, and an inquiry form to turn visitors into leads."
+            data-description="JCM needed a site that could do some of the selling for them — showcase finished and in-progress projects, walk prospects through their build process, and turn browsers into inquiries. We built a custom Next.js site with a project gallery, a step-by-step process walkthrough, and a lead-capture inquiry form."
             data-url="https://jcm-home-builder-sc.vercel.app/"
             data-status="Preview build — final domain not live yet">
             <div class="work-card-visual">
@@ -2292,7 +2317,7 @@
           <article class="work-card" data-reveal data-delay="2" role="button" tabindex="0"
             data-name="Gentle Smiles"
             data-industry="Dental &amp; Healthcare"
-            data-description="Custom website build plus a clinic management system built into the site — patient records, billing, appointment calendar, and inventory tracking, all in one platform."
+            data-description="Gentle Smiles needed more than a marketing site — they needed a way to run daily clinic operations without juggling separate tools. We built a custom website plus a built-in clinic CRM: patient records, billing, an appointment calendar, and inventory tracking, all in one platform."
             data-url="https://gentle-smiles.vercel.app/"
             data-status="In progress — client is currently producing assets to be added to the site">
             <div class="work-card-visual">
@@ -2308,7 +2333,7 @@
             <div class="work-card-info">
               <span class="work-card-industry">Dental &amp; Healthcare</span>
               <h3>Gentle Smiles</h3>
-              <p>Website build and clinic management system — patient records, billing, calendar, and inventory.</p>
+              <p>Custom website build plus a built-in clinic CRM — patient records, billing, calendar, and inventory.</p>
               <span class="work-card-cta">View project →</span>
             </div>
           </article>
@@ -2366,23 +2391,23 @@
       <div class="process-grid">
         <div class="process-card" data-reveal data-delay="1">
           <div class="pc-num">01</div>
-          <h3>Call</h3>
-          <p>A quick conversation about your business and your goals.</p>
+          <h3>Discover</h3>
+          <p>A quick call about your business and goals, then a fixed-price proposal within 24 hours.</p>
         </div>
         <div class="process-card" data-reveal data-delay="2">
           <div class="pc-num">02</div>
-          <h3>Proposal</h3>
-          <p>You'll receive a fixed-price proposal within 24 hours.</p>
+          <h3>Build</h3>
+          <p>We design and build your website. Your first draft is usually ready within 2 weeks.</p>
         </div>
         <div class="process-card" data-reveal data-delay="3">
           <div class="pc-num">03</div>
-          <h3>Build</h3>
-          <p>We'll design and build your website. Your first draft is usually ready within 2 weeks.</p>
+          <h3>Launch</h3>
+          <p>Once you approve the build, we launch your website live.</p>
         </div>
         <div class="process-card" data-reveal data-delay="4">
           <div class="pc-num">04</div>
-          <h3>Launch</h3>
-          <p>Once approved, we launch your website and continue supporting your business.</p>
+          <h3>Grow</h3>
+          <p>We stay on for ongoing management, SEO, and improvements, so the site keeps earning its keep.</p>
         </div>
       </div>
       <div class="payment-callout" data-reveal data-delay="5">
@@ -2399,8 +2424,8 @@
       <p class="section-label" data-reveal>Why Aequora</p>
       <h2 class="who-we-are-h2" data-reveal data-delay="1">More Than <em>a Website Agency</em></h2>
       <div class="who-we-are-copy">
-        <p data-reveal data-delay="2">Many agencies stop after launching your website. We continue building alongside your business.</p>
-        <p data-reveal data-delay="3">Whether you need a new landing page, additional functionality, a client portal, marketing integrations, or custom software as your company grows, we're here to help you scale with technology that evolves with your business.</p>
+        <p data-reveal data-delay="2">A great website isn't just something that looks good&mdash;it should help your business grow. That's why we build with long-term performance, scalability, and real business outcomes in mind, not just launch day.</p>
+        <p data-reveal data-delay="3">From modern development and technical SEO to ongoing improvements and custom business solutions, we work alongside our clients long after their website goes live. Our goal isn't simply to deliver a project&mdash;it's to become the technical partner you can rely on as your business evolves.</p>
       </div>
     </div>
   </section>
@@ -2417,33 +2442,58 @@
       <div class="faq-list">
 
         <div class="faq-item">
-          <button class="faq-q">How much does a website cost?<span class="faq-icon">+</span></button>
-          <div class="faq-a"><p>Projects start at $1,999. We'll give you a fixed price after a quick call about what you need.</p></div>
+          <button class="faq-q">What's the investment for a new website?<span class="faq-icon">+</span></button>
+          <div class="faq-a">
+            <p>Every business is different, so every project is quoted based on your goals and requirements.</p>
+            <p>Business websites typically range from $1,999 to $4,999 depending on scope. Larger custom platforms, client portals, internal systems, and web applications are quoted individually after a discovery call.</p>
+            <p>Website Management starts at $299/month, and Google Ads Management starts at $300/month plus ad spend.</p>
+            <p>You'll receive a fixed proposal with clear deliverables, timeline, and pricing before any work begins&mdash;no hidden fees or surprises.</p>
+          </div>
         </div>
 
         <div class="faq-item">
           <button class="faq-q">How long does a project usually take?<span class="faq-icon">+</span></button>
-          <div class="faq-a"><p>Most projects are ready in as little as 2 weeks.</p></div>
+          <div class="faq-a"><p>Most websites are ready in as little as 2 weeks from approval, depending on scope. Custom platforms and larger builds take longer — we'll give you a realistic timeline on the first call.</p></div>
         </div>
 
         <div class="faq-item">
-          <button class="faq-q">Can you manage my website after launch?<span class="faq-icon">+</span></button>
-          <div class="faq-a"><p>Yes. We handle hosting, security, backups, and content updates every month, so you don't have to think about it.</p></div>
+          <button class="faq-q">Do you provide ongoing website management?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>Yes. Website Management starts at $299/month and covers hosting, security, backups, performance monitoring, and content updates, so the site keeps running well after launch.</p></div>
         </div>
 
         <div class="faq-item">
-          <button class="faq-q">Can you improve my existing website instead?<span class="faq-icon">+</span></button>
-          <div class="faq-a"><p>Yes. We can rebuild it or improve what's already there. You keep your domain either way.</p></div>
+          <button class="faq-q">Can you improve or redesign my existing website?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>Yes. We can run a full website redesign or a lighter website optimization pass — improving speed, technical SEO, and conversions — without necessarily starting from scratch. You keep your domain either way.</p></div>
         </div>
 
         <div class="faq-item">
           <button class="faq-q">Can you help us get more leads?<span class="faq-icon">+</span></button>
-          <div class="faq-a"><p>Yes, through Google Ads and local SEO. We track what's working and send you a monthly report.</p></div>
+          <div class="faq-a"><p>Yes, through technical SEO and Google Ads (starting at $300/month plus ad spend). We track what's actually working and send a monthly report, so spend stays tied to results.</p></div>
         </div>
 
         <div class="faq-item">
-          <button class="faq-q">Do you build custom portals and internal systems?<span class="faq-icon">+</span></button>
-          <div class="faq-a"><p>Yes. Member portals, booking systems, and other custom builds — we'll scope it out on a call.</p></div>
+          <button class="faq-q">Do you build custom software, portals, or internal systems?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>Yes. Beyond marketing websites, we build custom web applications, member portals, and custom CRM systems tailored to how your business actually operates — we'll scope it out on a call.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">Can you integrate with GoHighLevel or other CRMs?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>Yes. We can connect your website to GoHighLevel or another CRM and marketing platform you already use, or build a custom system if that serves you better long-term.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">Do you work with WordPress, or only build custom sites?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>We can maintain or improve an existing WordPress site, but new projects are built on modern frameworks like Next.js and React, which outperform WordPress on speed, security, and long-term maintenance costs.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">Do you build websites with React and Next.js?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>Yes — Next.js and React are our default stack for custom builds. They give you faster load times, stronger technical SEO, and a foundation that scales cleanly as you add features.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">How does your development process work?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>Four steps: Discover, Build, Launch, Grow. We start with a call to understand your goals, send a fixed-price proposal within 24 hours, deliver a first draft in about two weeks, and stay on after launch for SEO and ongoing management.</p></div>
         </div>
 
       </div>
@@ -2499,7 +2549,7 @@
         </form>
       </div>
 
-      <p class="frame-footer-blurb">Aequora Digital specializes in modern website development, website management, custom CRM platforms, membership portals, business automation, SEO, and digital solutions for growing businesses. We build fast, scalable websites and business systems that help companies establish credibility, improve efficiency, and grow online.</p>
+      <p class="frame-footer-blurb">Aequora Digital is a boutique software and web development studio specializing in modern website development, website management, custom CRM platforms, member portal development, business automation, and technical SEO for growing businesses. We build high-performance, conversion-focused websites and custom web applications — on Next.js, React, and Supabase — that help companies establish credibility, improve efficiency, and grow online.</p>
 
       <div class="frame-footer">
         <span>© 2026 Aequora Digital</span>
