@@ -120,8 +120,14 @@
       font-weight: 500;
       color: var(--text-m);
       transition: color 0.15s;
+      display: inline-block;
+      height: 1.3em;
+      overflow: hidden;
     }
     .site-nav a:hover { color: var(--text-h); }
+    .nav-link-roll { display: block; transition: transform 0.4s cubic-bezier(0.65,0,0.35,1); }
+    .nav-link-roll span { display: block; height: 1.3em; line-height: 1.3em; }
+    .site-nav a:hover .nav-link-roll { transform: translateY(-1.3em); }
 
     .btn-nav {
       display: inline-flex;
@@ -136,6 +142,37 @@
     }
     .btn-nav:hover { background: var(--navy-lt); transform: translateY(-1px); }
     .btn-nav:active { transform: translateY(0) scale(0.97); }
+
+    /* ── GLOWING CTA HALO — applied to primary conversion buttons ── */
+    .btn-primary, .btn-nav, .btn-book-primary {
+      position: relative;
+      isolation: isolate;
+    }
+    .btn-primary::before, .btn-nav::before, .btn-book-primary::before {
+      content: "";
+      position: absolute;
+      inset: -3px;
+      z-index: -1;
+      border-radius: inherit;
+      background: radial-gradient(circle, rgba(24,196,216,0.55), rgba(24,196,216,0) 72%);
+      filter: blur(10px);
+      opacity: 0.5;
+      animation: cta-glow-pulse 2.6s ease-in-out infinite;
+      transition: opacity 0.3s, filter 0.3s;
+      pointer-events: none;
+    }
+    .btn-primary:hover::before, .btn-nav:hover::before, .btn-book-primary:hover::before {
+      animation-name: cta-glow-pulse-hover;
+      filter: blur(14px);
+    }
+    @keyframes cta-glow-pulse {
+      0%, 100% { opacity: 0.35; }
+      50%      { opacity: 0.6; }
+    }
+    @keyframes cta-glow-pulse-hover {
+      0%, 100% { opacity: 0.7; }
+      50%      { opacity: 1; }
+    }
 
     .nav-toggle {
       display: none;
@@ -594,6 +631,12 @@
     .work-iframe {
       position: absolute; top: 0; left: 0; border: 0; background: var(--white);
       transform-origin: top left; pointer-events: none;
+      transform: scale(var(--iframe-scale, 1));
+      transition: transform 0.9s cubic-bezier(0.22,1,0.36,1);
+    }
+    /* On hover, reveal further down the live page instead of a static screenshot swap */
+    .work-card:hover .work-iframe {
+      transform: scale(var(--iframe-scale, 1)) translateY(calc(-1 * var(--iframe-pan, 0px)));
     }
     .work-card-visual .work-card-status, .work-card-status { z-index: 1; }
     .work-card-visual::after, .work-modal-visual::after {
@@ -1555,6 +1598,11 @@
       .marquee-track { animation: none; }
       [data-reveal] { transition: none; }
       .hero-anim { transition: none; }
+      .nav-link-roll { transition: none; }
+      .site-nav a:hover .nav-link-roll { transform: none; }
+      .work-iframe { transition: none; }
+      .work-card:hover .work-iframe { transform: scale(var(--iframe-scale, 1)); }
+      .btn-primary::before, .btn-nav::before, .btn-book-primary::before { animation: none; opacity: 0.4; }
     }
 
     /* ── DEMO MODAL ── */
@@ -1678,6 +1726,17 @@
       animation: spin 0.8s linear infinite;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── SCROLL PROGRESS BAR ── */
+    .scroll-progress {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: 3px; z-index: 300;
+      background: linear-gradient(90deg, var(--terra), var(--navy-lt));
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 0.08s linear;
+      pointer-events: none;
+    }
 
     /* ── SCROLL DOT ── */
     .scroll-dot {
@@ -1976,6 +2035,7 @@
 </head>
 <body>
 
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
   <div class="scroll-dot" id="scroll-dot" aria-hidden="true"></div>
 
   <!-- ═══════════════════════════════
@@ -1987,11 +2047,11 @@
       Aequora<strong>Digital</strong>
     </a>
     <nav class="site-nav" aria-label="Primary navigation">
-      <a href="#services">Services</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#our-work">Our Work</a>
-      <a href="#faq">FAQ</a>
-      <a href="#contact">Contact</a>
+      <a href="#services"><span class="nav-link-roll"><span>Services</span><span aria-hidden="true">Services</span></span></a>
+      <a href="#portfolio"><span class="nav-link-roll"><span>Portfolio</span><span aria-hidden="true">Portfolio</span></span></a>
+      <a href="#our-work"><span class="nav-link-roll"><span>Our Work</span><span aria-hidden="true">Our Work</span></span></a>
+      <a href="#faq"><span class="nav-link-roll"><span>FAQ</span><span aria-hidden="true">FAQ</span></span></a>
+      <a href="#contact"><span class="nav-link-roll"><span>Contact</span><span aria-hidden="true">Contact</span></span></a>
     </nav>
     <a href="#contact" class="btn-nav">Let's Talk</a>
     <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
@@ -2767,6 +2827,19 @@
     els.forEach(el => io.observe(el));
   })();
 
+  /* ── SCROLL PROGRESS BAR ── */
+  (function() {
+    const bar = document.getElementById('scroll-progress');
+    if (!bar) return;
+    function update() {
+      const pct = window.scrollY / Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      bar.style.transform = 'scaleX(' + Math.min(1, Math.max(0, pct)) + ')';
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update, { passive: true });
+    update();
+  })();
+
   /* ── SCROLL DOT ── */
   (function() {
     const dot = document.getElementById('scroll-dot');
@@ -2828,6 +2901,7 @@
   /* ── REAL CLIENT WORK: LIVE IFRAME PREVIEWS ── */
   (function () {
     var VIEWPORT_W = 1440;
+    var PAN_PX = 380; // extra page height (in 1440px-viewport pixels) rendered so hover can reveal further content
 
     function fitIframe(wrap) {
       var iframe = wrap.querySelector('iframe');
@@ -2835,9 +2909,11 @@
       var w = wrap.clientWidth, h = wrap.clientHeight;
       if (!w || !h) return;
       var scale = w / VIEWPORT_W;
+      var baseHeight = h / scale;
       iframe.style.width = VIEWPORT_W + 'px';
-      iframe.style.height = (h / scale) + 'px';
-      iframe.style.transform = 'scale(' + scale + ')';
+      iframe.style.height = (baseHeight + PAN_PX) + 'px';
+      iframe.style.setProperty('--iframe-scale', scale);
+      iframe.style.setProperty('--iframe-pan', PAN_PX + 'px');
     }
 
     var cardWraps = Array.prototype.slice.call(document.querySelectorAll('.work-iframe-wrap[data-iframe-wrap]'));
