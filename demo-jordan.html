@@ -67,15 +67,15 @@
     .hero{
       min-height:100vh;
       background:linear-gradient(135deg,var(--navy) 0%,#183058 55%,#1A3A68 100%);
-      display:flex;
+      display:grid;
+      grid-template-columns:1fr 1fr;
       align-items:center;
-      justify-content:center;
+      gap:56px;
       padding:0 56px;
       padding-top:68px;
       position:relative;
       overflow:hidden;
     }
-    .hero-text{display:none}
     .hero::before{
       content:"";position:absolute;inset:0;
       background:radial-gradient(ellipse at 70% 50%,rgba(14,116,144,0.25) 0%,transparent 55%);
@@ -543,6 +543,53 @@
     .back-link:hover{border-color:var(--teal);color:var(--teal)}
     .bl-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0}
 
+    /* ── FOCUS STATES ── */
+    a:focus-visible, button:focus-visible{
+      outline:2px solid var(--teal);outline-offset:2px;border-radius:4px;
+    }
+
+    /* ── MOBILE NAV TOGGLE ── */
+    .nav-toggle{
+      display:none;flex-direction:column;justify-content:space-between;
+      width:22px;height:15px;background:none;border:none;padding:0;
+      cursor:pointer;flex-shrink:0;
+    }
+    .nav-toggle span{
+      display:block;width:100%;height:2px;background:var(--text-h);
+      border-radius:2px;transition:transform 0.25s,opacity 0.25s;
+    }
+    .nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+    .nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+    .nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+    /* ── SCROLL REVEAL ── */
+    [data-reveal]{
+      opacity:0;transform:translateY(32px);
+      transition:opacity 0.7s cubic-bezier(0.22,1,0.36,1),transform 0.7s cubic-bezier(0.22,1,0.36,1);
+      will-change:opacity,transform;
+    }
+    [data-reveal].visible{opacity:1;transform:none}
+    [data-delay="1"].visible{transition-delay:0.08s}
+    [data-delay="2"].visible{transition-delay:0.16s}
+    [data-delay="3"].visible{transition-delay:0.24s}
+
+    /* ── POINTER CARD GLOW ── */
+    .service-pkg,.testi-card{position:relative;overflow:hidden}
+    .service-pkg::before,.testi-card::before{
+      content:"";position:absolute;inset:0;z-index:0;opacity:0;pointer-events:none;
+      background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgba(14,116,144,0.12),transparent 70%);
+      transition:opacity 0.35s ease;
+    }
+    .service-pkg.featured::before{
+      background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgba(125,211,252,0.18),transparent 70%);
+    }
+    .service-pkg:hover::before,.testi-card:hover::before{opacity:1}
+    .service-pkg > *,.testi-card > *{position:relative;z-index:1}
+
+    @media(prefers-reduced-motion:reduce){
+      [data-reveal]{opacity:1!important;transform:none!important;transition:none!important}
+    }
+
     @media(max-width:1024px){
       .hero,.about,.booking{grid-template-columns:1fr;gap:48px;padding:80px 32px}
       .services,.testimonials,.cta-banner{padding:80px 32px}
@@ -554,7 +601,16 @@
     @media(max-width:640px){
       .hero,.about,.services,.testimonials,.booking,.cta-banner{padding:60px 20px}
       .nav{padding:0 20px}
-      .nav-links{display:none}
+      .nav-toggle{display:flex}
+      .nav-links{
+        display:none;position:fixed;top:68px;left:0;right:0;
+        flex-direction:column;align-items:flex-start;gap:2px;
+        background:rgba(250,250,248,0.98);backdrop-filter:blur(16px);
+        border-bottom:1px solid var(--border);padding:18px 24px;
+        box-shadow:0 12px 32px rgba(16,36,62,0.14);z-index:150;
+      }
+      .nav-links.nav-open{display:flex}
+      .nav-links a{padding:11px 0;width:100%;font-size:0.92rem}
       .footer{padding:24px 20px;flex-direction:column;text-align:center}
       .footer-links{justify-content:center}
     }
@@ -572,6 +628,9 @@
       <a href="#booking">Book a Session</a>
     </div>
     <a href="#booking" class="nav-cta">Book Now</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
 
   <!-- HERO -->
@@ -610,17 +669,17 @@
           <div class="profile-title">Business Coach · Speaker · Strategist</div>
           <div class="profile-stats">
             <div class="ps-item">
-              <div class="ps-num">120+</div>
+              <div class="ps-num" data-count="120" data-suffix="+">0</div>
               <div class="ps-lbl">Clients</div>
             </div>
             <div class="ps-divider"></div>
             <div class="ps-item">
-              <div class="ps-num">$2M+</div>
+              <div class="ps-num" data-count="2" data-prefix="$" data-suffix="M+">$0</div>
               <div class="ps-lbl">Revenue</div>
             </div>
             <div class="ps-divider"></div>
             <div class="ps-item">
-              <div class="ps-num">8yr</div>
+              <div class="ps-num" data-count="8" data-suffix="yr">0</div>
               <div class="ps-lbl">Experience</div>
             </div>
           </div>
@@ -636,7 +695,7 @@
 
   <!-- ABOUT -->
   <section class="about" id="about">
-    <div class="about-img">
+    <div class="about-img" data-reveal>
       <div class="about-img-inner">JM</div>
       <div class="about-img-badge">
         <span class="aib-icon">🏆</span>
@@ -646,7 +705,7 @@
         </div>
       </div>
     </div>
-    <div>
+    <div data-reveal data-delay="1">
       <div class="about-label">About Jordan</div>
       <h2>Helping small businesses <em>scale smart</em> since 2017.</h2>
       <p>After building and selling my first business at 28, I realized most small business owners are working harder, not smarter. I became a coach to change that.</p>
@@ -664,13 +723,13 @@
 
   <!-- SERVICES -->
   <section class="services" id="services">
-    <div class="section-head">
+    <div class="section-head" data-reveal>
       <div class="sect-label">How I Work</div>
       <h2>Three ways to work<br>with <em>Jordan.</em></h2>
       <p>Choose the coaching format that fits where you are right now. Every engagement starts with a free discovery call.</p>
     </div>
     <div class="services-grid">
-      <div class="service-pkg">
+      <div class="service-pkg" data-reveal data-delay="1">
         <div class="pkg-label">Foundation</div>
         <div class="pkg-icon">🔍</div>
         <div class="pkg-name">Discovery Session</div>
@@ -686,7 +745,7 @@
         <button class="pkg-btn" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book a Session</button>
       </div>
 
-      <div class="service-pkg featured">
+      <div class="service-pkg featured" data-reveal data-delay="2">
         <div class="pkg-label">Most Popular</div>
         <div class="pkg-icon">🚀</div>
         <div class="pkg-name">Growth Coaching Package</div>
@@ -704,7 +763,7 @@
         <button class="pkg-btn" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Apply Now</button>
       </div>
 
-      <div class="service-pkg">
+      <div class="service-pkg" data-reveal data-delay="3">
         <div class="pkg-label">Intensive</div>
         <div class="pkg-icon">⚡</div>
         <div class="pkg-name">VIP Full-Day Intensive</div>
@@ -725,12 +784,12 @@
 
   <!-- TESTIMONIALS -->
   <section class="testimonials" id="testimonials">
-    <div class="section-head">
+    <div class="section-head" data-reveal>
       <div class="sect-label">Client Results</div>
       <h2>Real businesses,<br><em>real results.</em></h2>
     </div>
     <div class="testi-grid">
-      <div class="testi-card">
+      <div class="testi-card" data-reveal data-delay="1">
         <div class="testi-stars">⭐⭐⭐⭐⭐</div>
         <div class="testi-quote">"In 90 days, Jordan helped me go from chaos to systems. I finally have a business that doesn't need me 24/7."</div>
         <div class="testi-author">
@@ -742,7 +801,7 @@
           </div>
         </div>
       </div>
-      <div class="testi-card">
+      <div class="testi-card" data-reveal data-delay="2">
         <div class="testi-stars">⭐⭐⭐⭐⭐</div>
         <div class="testi-quote">"Jordan's VIP day was the best investment I've ever made. I left with a plan so clear I knew exactly what to do Monday morning."</div>
         <div class="testi-author">
@@ -754,7 +813,7 @@
           </div>
         </div>
       </div>
-      <div class="testi-card">
+      <div class="testi-card" data-reveal data-delay="3">
         <div class="testi-stars">⭐⭐⭐⭐⭐</div>
         <div class="testi-quote">"I was stuck at $80k for two years. After 3 months with Jordan I crossed $200k. The accountability alone was worth every dollar."</div>
         <div class="testi-author">
@@ -771,7 +830,7 @@
 
   <!-- BOOKING -->
   <section class="booking" id="booking">
-    <div class="booking-left">
+    <div class="booking-left" data-reveal>
       <div class="sect-label">Book a Session</div>
       <h2>Let's build something <em>together.</em></h2>
       <p>Start with a free 30-minute discovery call to see if we're a good fit. No sales pressure — just an honest conversation about where you are and where you want to go.</p>
@@ -782,7 +841,7 @@
         <div class="bc-item"><span class="bc-icon">🌎</span> Working with U.S. clients only</div>
       </div>
     </div>
-    <div class="booking-widget">
+    <div class="booking-widget" data-reveal data-delay="1">
       <div class="bw-title">Choose a Session Type</div>
       <div class="session-types">
         <div class="session-type selected">
@@ -850,7 +909,7 @@
   </section>
 
   <!-- CTA BANNER -->
-  <section class="cta-banner">
+  <section class="cta-banner" data-reveal>
     <h2>Ready to stop spinning your wheels<br>and start <em>growing?</em></h2>
     <p>Book your free 30-minute discovery call today. No pitch, no pressure — just clarity on your next best move.</p>
     <a href="#booking" class="cta-banner-btn">Book Your Free Call →</a>
@@ -872,7 +931,7 @@
     </div>
   </footer>
 
-  <a href="page2.html#work" class="back-link">
+  <a href="main.html#portfolio" class="back-link">
     <span class="bl-dot"></span>
     Built by Aequora Digital
   </a>
@@ -881,6 +940,73 @@
     /* Nav scroll */
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), {passive:true});
+
+    /* Mobile nav toggle */
+    (function () {
+      const toggle = document.getElementById('navToggle');
+      const links  = document.querySelector('.nav-links');
+      if (!toggle || !links) return;
+      toggle.addEventListener('click', () => {
+        const open = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', String(!open));
+        links.classList.toggle('nav-open', !open);
+      });
+      links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+        toggle.setAttribute('aria-expanded', 'false');
+        links.classList.remove('nav-open');
+      }));
+    })();
+
+    /* Scroll reveal */
+    (function () {
+      const els = document.querySelectorAll('[data-reveal]');
+      if (!els.length) return;
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+        });
+      }, { rootMargin: '0px 0px -64px 0px', threshold: 0.08 });
+      els.forEach(el => io.observe(el));
+    })();
+
+    /* Pointer-tracked card glow */
+    (function () {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      document.querySelectorAll('.service-pkg, .testi-card').forEach(el => {
+        el.addEventListener('pointermove', e => {
+          const r = el.getBoundingClientRect();
+          el.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+          el.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+        });
+      });
+    })();
+
+    /* Animated stat counters */
+    (function () {
+      const items = document.querySelectorAll('.ps-num[data-count]');
+      if (!items.length) return;
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const el     = entry.target;
+          const target = parseInt(el.dataset.count, 10);
+          const prefix = el.dataset.prefix || '';
+          const suffix = el.dataset.suffix || '';
+          if (reduced) { el.textContent = prefix + target + suffix; io.unobserve(el); return; }
+          const dur   = 1200;
+          const start = performance.now();
+          (function tick(now) {
+            const t    = Math.min((now - start) / dur, 1);
+            const ease = 1 - Math.pow(1 - t, 3);
+            el.textContent = prefix + Math.round(target * ease) + suffix;
+            if (t < 1) requestAnimationFrame(tick);
+          })(start);
+          io.unobserve(el);
+        });
+      }, { threshold: 0.6 });
+      items.forEach(el => io.observe(el));
+    })();
 
     /* Session type selector */
     document.querySelectorAll('.session-type').forEach(el => {

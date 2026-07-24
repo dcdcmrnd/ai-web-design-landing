@@ -376,11 +376,121 @@
     }
 
     @media(max-width:900px){
-      .sidebar{display:none}
+      .sidebar{transform:translateX(-100%);transition:transform 0.32s cubic-bezier(0.22,1,0.36,1);z-index:70}
+      .sidebar.open{transform:translateX(0);box-shadow:0 0 60px rgba(0,0,0,0.5)}
+      .sidebar-toggle{display:flex}
       .main{margin-left:0}
       .stats-row{grid-template-columns:repeat(2,1fr)}
       .two-col{grid-template-columns:1fr}
       .right-panel{display:none}
+      .topbar-search{display:none}
+    }
+
+    /* ── FOCUS STATES ── */
+    a:focus-visible, button:focus-visible, .sb-item:focus-visible, .course-card:focus-visible{
+      outline:2px solid var(--accent);outline-offset:2px;border-radius:6px;
+    }
+
+    /* ── MOBILE SIDEBAR TOGGLE + BACKDROP ── */
+    .sidebar-toggle{
+      display:none;width:36px;height:36px;border-radius:8px;flex-shrink:0;
+      background:var(--surface);border:1px solid var(--border-s);color:var(--text-h);
+      align-items:center;justify-content:center;font-size:1rem;cursor:pointer;
+    }
+    .sidebar-backdrop{
+      display:none;position:fixed;inset:0;background:rgba(6,16,28,0.6);z-index:60;
+      opacity:0;transition:opacity 0.28s ease;
+    }
+    .sidebar-backdrop.open{display:block;opacity:1}
+
+    /* ── SCROLL REVEAL ── */
+    [data-reveal]{
+      opacity:0;transform:translateY(24px);
+      transition:opacity 0.6s cubic-bezier(0.22,1,0.36,1),transform 0.6s cubic-bezier(0.22,1,0.36,1);
+      will-change:opacity,transform;
+    }
+    [data-reveal].visible{opacity:1;transform:none}
+    [data-delay="1"].visible{transition-delay:0.06s}
+    [data-delay="2"].visible{transition-delay:0.12s}
+    [data-delay="3"].visible{transition-delay:0.18s}
+    [data-delay="4"].visible{transition-delay:0.24s}
+
+    /* ── POINTER CARD GLOW ── */
+    .stat-card,.course-card,.panel-card,.continue-card{position:relative;overflow:hidden}
+    .stat-card::before,.course-card::before,.panel-card::before,.continue-card::before{
+      content:"";position:absolute;inset:0;z-index:0;opacity:0;pointer-events:none;
+      background:radial-gradient(220px circle at var(--mx,50%) var(--my,50%),rgba(56,189,248,0.14),transparent 70%);
+      transition:opacity 0.35s ease;
+    }
+    .stat-card:hover::before,.course-card:hover::before,.panel-card:hover::before,.continue-card:hover::before{opacity:1}
+    .stat-card > *,.course-card > *,.panel-card > *{position:relative;z-index:1}
+    .course-card{cursor:pointer}
+
+    /* ── FUNCTIONAL SEARCH INPUT ── */
+    .topbar-search input{
+      background:none;border:none;outline:none;color:var(--text-h);
+      font-family:inherit;font-size:0.8rem;width:100%;
+    }
+    .topbar-search input::placeholder{color:var(--text-m)}
+    .course-card.filtered-out{display:none}
+    .courses-empty{
+      display:none;font-size:0.8rem;color:var(--text-m);
+      padding:24px;text-align:center;border:1px dashed var(--border-s);border-radius:12px;
+    }
+    .courses-empty.show{display:block}
+
+    /* ── NOTIFICATION PANEL ── */
+    .topbar-notif-wrap{position:relative}
+    .notif-panel{
+      position:absolute;top:calc(100% + 12px);right:0;width:270px;
+      background:var(--surface);border:1px solid var(--border-s);border-radius:12px;
+      padding:14px;box-shadow:0 16px 40px rgba(0,0,0,0.45);
+      opacity:0;visibility:hidden;transform:translateY(-8px);
+      transition:opacity 0.22s ease,transform 0.22s ease,visibility 0.22s ease;
+      z-index:80;
+    }
+    .notif-panel.open{opacity:1;visibility:visible;transform:none}
+    .notif-panel-title{font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-m);margin-bottom:10px}
+    .notif-item{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid var(--border-s);font-size:0.76rem;color:var(--text-b);line-height:1.5}
+    .notif-item:last-child{border-bottom:none;padding-bottom:0}
+    .notif-item-icon{flex-shrink:0}
+
+    /* ── COURSE DETAIL SLIDE-OVER ── */
+    .course-detail-overlay{
+      position:fixed;inset:0;background:rgba(6,16,28,0.62);z-index:90;
+      opacity:0;visibility:hidden;transition:opacity 0.3s ease,visibility 0.3s ease;
+      display:flex;justify-content:flex-end;
+    }
+    .course-detail-overlay.open{opacity:1;visibility:visible}
+    .course-detail-panel{
+      width:100%;max-width:380px;height:100%;background:var(--surface);
+      border-left:1px solid var(--border-s);padding:32px 28px;overflow-y:auto;
+      position:relative;transform:translateX(100%);
+      transition:transform 0.35s cubic-bezier(0.22,1,0.36,1);
+    }
+    .course-detail-overlay.open .course-detail-panel{transform:translateX(0)}
+    .course-detail-close{
+      position:absolute;top:20px;right:20px;width:32px;height:32px;border-radius:50%;
+      background:var(--surface-2);color:var(--text-h);border:1px solid var(--border-s);
+      display:flex;align-items:center;justify-content:center;font-size:0.85rem;
+    }
+    .course-detail-thumb{
+      width:100%;height:130px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+      font-size:2.6rem;margin-bottom:22px;
+    }
+    .course-detail-label{font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:8px}
+    .course-detail-label.blue{color:var(--accent)}
+    .course-detail-label.teal{color:var(--accent-2)}
+    .course-detail-label.purple{color:var(--purple)}
+    .course-detail-label.amber{color:var(--amber)}
+    .course-detail-panel h3{font-size:1.25rem;font-weight:800;color:var(--text-h);line-height:1.35;margin-bottom:18px}
+    .course-detail-progress{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+    .course-detail-progress .course-bar{height:5px}
+    .course-detail-lessons{font-size:0.78rem;color:var(--text-m);margin-bottom:26px}
+    .course-detail-panel .continue-btn{width:100%;justify-content:center}
+
+    @media(prefers-reduced-motion:reduce){
+      [data-reveal]{opacity:1!important;transform:none!important;transition:none!important}
     }
   </style>
 </head>
@@ -402,34 +512,34 @@
 
     <p class="sb-section-label">Main Menu</p>
     <nav class="sb-nav">
-      <a class="sb-item active">
+      <a class="sb-item active" href="#">
         <span class="sb-item-icon">⊞</span> Dashboard
       </a>
-      <a class="sb-item">
+      <a class="sb-item" href="#">
         <span class="sb-item-icon">📚</span> Course Library
         <span class="sb-badge">6</span>
       </a>
-      <a class="sb-item">
+      <a class="sb-item" href="#">
         <span class="sb-item-icon">📹</span> Recordings
       </a>
-      <a class="sb-item">
+      <a class="sb-item" href="#">
         <span class="sb-item-icon">📅</span> Weekly Calls
         <span class="sb-badge">2</span>
       </a>
-      <a class="sb-item">
+      <a class="sb-item" href="#">
         <span class="sb-item-icon">👥</span> Community
       </a>
-      <a class="sb-item">
+      <a class="sb-item" href="#">
         <span class="sb-item-icon">⚡</span> Resources
       </a>
     </nav>
 
     <p class="sb-section-label">Account</p>
     <nav class="sb-nav">
-      <a class="sb-item">
+      <a class="sb-item" href="#">
         <span class="sb-item-icon">👤</span> Profile
       </a>
-      <a class="sb-item">
+      <a class="sb-item" href="#">
         <span class="sb-item-icon">⚙</span> Settings
       </a>
     </nav>
@@ -445,13 +555,27 @@
     </div>
   </aside>
 
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
   <!-- MAIN -->
   <main class="main">
 
     <div class="topbar">
+      <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
       <div class="topbar-title">Dashboard</div>
-      <div class="topbar-search">🔍 &nbsp;Search courses…</div>
-      <div class="topbar-notif">🔔 <div class="notif-dot"></div></div>
+      <label class="topbar-search" for="courseSearch">
+        🔍
+        <input type="text" id="courseSearch" placeholder="Search courses…" autocomplete="off" />
+      </label>
+      <div class="topbar-notif-wrap">
+        <button class="topbar-notif" id="notifBtn" aria-label="Notifications" aria-expanded="false">🔔<div class="notif-dot"></div></button>
+        <div class="notif-panel" id="notifPanel">
+          <div class="notif-panel-title">Notifications</div>
+          <div class="notif-item"><span class="notif-item-icon">🎉</span><span>Certificate unlocked for <strong>Sales Funnels That Actually Convert</strong></span></div>
+          <div class="notif-item"><span class="notif-item-icon">📅</span><span>Weekly Q&amp;A Coaching Call starts in 2 hours</span></div>
+          <div class="notif-item"><span class="notif-item-icon">💬</span><span>Marcus K. replied to you in Community</span></div>
+        </div>
+      </div>
       <div class="topbar-avatar">SM</div>
     </div>
 
@@ -468,28 +592,28 @@
 
       <!-- Stats -->
       <div class="stats-row">
-        <div class="stat-card">
+        <div class="stat-card" data-reveal data-delay="1">
           <div class="stat-icon blue">📖</div>
           <div class="stat-info">
             <div class="stat-val">47</div>
             <div class="stat-lbl">Lessons Completed</div>
           </div>
         </div>
-        <div class="stat-card">
+        <div class="stat-card" data-reveal data-delay="2">
           <div class="stat-icon teal">⏱</div>
           <div class="stat-info">
             <div class="stat-val">12.4h</div>
             <div class="stat-lbl">Watch Time</div>
           </div>
         </div>
-        <div class="stat-card">
+        <div class="stat-card" data-reveal data-delay="3">
           <div class="stat-icon amber">🏆</div>
           <div class="stat-info">
             <div class="stat-val">3</div>
             <div class="stat-lbl">Certificates Earned</div>
           </div>
         </div>
-        <div class="stat-card">
+        <div class="stat-card" data-reveal data-delay="4">
           <div class="stat-icon purple">⚡</div>
           <div class="stat-info">
             <div class="stat-val">1,240</div>
@@ -500,7 +624,7 @@
 
       <!-- Continue Learning -->
       <p class="section-title">Continue Learning</p>
-      <div class="continue-card">
+      <div class="continue-card" data-reveal>
         <div>
           <div class="continue-tag">▶ In Progress</div>
           <div class="continue-title">AI-Powered Marketing for Small Business</div>
@@ -522,7 +646,9 @@
         <div>
           <p class="section-title">My Courses <a>View all →</a></p>
           <div class="courses-grid">
-            <div class="course-card">
+            <div class="course-card" data-reveal data-delay="1" tabindex="0" role="button"
+              data-name="AI-Powered Marketing for Small Business" data-category="Marketing" data-color="blue"
+              data-thumb="t1" data-icon="🚀" data-progress="65" data-lessons="24 lessons · 4.2h">
               <div class="course-thumb t1">🚀</div>
               <div class="course-body">
                 <div class="course-label blue">Marketing</div>
@@ -534,7 +660,9 @@
                 <div class="course-lessons">24 lessons · 4.2h</div>
               </div>
             </div>
-            <div class="course-card">
+            <div class="course-card" data-reveal data-delay="2" tabindex="0" role="button"
+              data-name="Sales Funnels That Actually Convert" data-category="Sales" data-color="teal"
+              data-thumb="t2" data-icon="💰" data-progress="100" data-lessons="18 lessons · 3.1h">
               <div class="course-thumb t2">💰</div>
               <div class="course-body">
                 <div class="course-label teal">Sales</div>
@@ -546,7 +674,9 @@
                 <div class="course-lessons">18 lessons · 3.1h</div>
               </div>
             </div>
-            <div class="course-card">
+            <div class="course-card" data-reveal data-delay="3" tabindex="0" role="button"
+              data-name="Build a Brand That People Remember" data-category="Branding" data-color="purple"
+              data-thumb="t3" data-icon="🌐" data-progress="30" data-lessons="21 lessons · 3.8h">
               <div class="course-thumb t3">🌐</div>
               <div class="course-body">
                 <div class="course-label purple">Branding</div>
@@ -558,7 +688,9 @@
                 <div class="course-lessons">21 lessons · 3.8h</div>
               </div>
             </div>
-            <div class="course-card">
+            <div class="course-card" data-reveal data-delay="4" tabindex="0" role="button"
+              data-name="Data-Driven Decisions for Business Owners" data-category="Analytics" data-color="amber"
+              data-thumb="t4" data-icon="📊" data-progress="10" data-lessons="15 lessons · 2.5h">
               <div class="course-thumb t4">📊</div>
               <div class="course-body">
                 <div class="course-label amber">Analytics</div>
@@ -571,13 +703,14 @@
               </div>
             </div>
           </div>
+          <p class="courses-empty" id="coursesEmpty">No courses match your search.</p>
         </div>
 
         <!-- Right panel -->
         <div class="right-panel">
 
           <!-- Upcoming calls -->
-          <div class="panel-card">
+          <div class="panel-card" data-reveal data-delay="1">
             <p class="section-title">Upcoming Calls</p>
             <div class="call-item">
               <div class="call-date">
@@ -604,7 +737,7 @@
           </div>
 
           <!-- Recent recordings -->
-          <div class="panel-card">
+          <div class="panel-card" data-reveal data-delay="2">
             <p class="section-title">Recent Recordings</p>
             <div class="rec-item">
               <div class="rec-thumb">▶</div>
@@ -633,7 +766,7 @@
           </div>
 
           <!-- Leaderboard -->
-          <div class="panel-card">
+          <div class="panel-card" data-reveal data-delay="3">
             <p class="section-title">Top Members</p>
             <div class="lb-item">
               <div class="lb-rank gold">🥇</div>
@@ -662,10 +795,172 @@
   </main>
 
   <!-- Back link -->
-  <a href="page2.html#work" class="back-link">
+  <a href="main.html#portfolio" class="back-link">
     <span class="back-link-dot"></span>
     Built by Aequora Digital
   </a>
+
+  <!-- Course detail slide-over -->
+  <div class="course-detail-overlay" id="courseDetailOverlay">
+    <div class="course-detail-panel">
+      <button class="course-detail-close" id="courseDetailClose" aria-label="Close">✕</button>
+      <div class="course-detail-thumb" id="cdThumb"></div>
+      <span class="course-detail-label" id="cdLabel"></span>
+      <h3 id="cdName"></h3>
+      <div class="course-detail-progress">
+        <div class="course-bar"><div class="course-fill" id="cdFill"></div></div>
+        <span id="cdPct" class="course-pct"></span>
+      </div>
+      <p class="course-detail-lessons" id="cdLessons"></p>
+      <button class="continue-btn">Continue Course →</button>
+    </div>
+  </div>
+
+  <script>
+    /* Mobile sidebar drawer */
+    (function () {
+      const toggle   = document.getElementById('sidebarToggle');
+      const sidebar  = document.querySelector('.sidebar');
+      const backdrop = document.getElementById('sidebarBackdrop');
+      if (!toggle || !sidebar || !backdrop) return;
+      function openDrawer() {
+        sidebar.classList.add('open');
+        backdrop.classList.add('open');
+        toggle.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeDrawer() {
+        sidebar.classList.remove('open');
+        backdrop.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+      toggle.addEventListener('click', () => {
+        sidebar.classList.contains('open') ? closeDrawer() : openDrawer();
+      });
+      backdrop.addEventListener('click', closeDrawer);
+      sidebar.querySelectorAll('.sb-item').forEach(a => a.addEventListener('click', closeDrawer));
+    })();
+
+    /* Sidebar nav active state (demo has one page, so this is visual-only) */
+    (function () {
+      const items = document.querySelectorAll('.sb-item');
+      items.forEach(item => {
+        item.addEventListener('click', e => {
+          e.preventDefault();
+          items.forEach(i => i.classList.remove('active'));
+          item.classList.add('active');
+        });
+      });
+    })();
+
+    /* Scroll reveal */
+    (function () {
+      const els = document.querySelectorAll('[data-reveal]');
+      if (!els.length) return;
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+        });
+      }, { rootMargin: '0px 0px -56px 0px', threshold: 0.08 });
+      els.forEach(el => io.observe(el));
+    })();
+
+    /* Pointer-tracked card glow */
+    (function () {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      document.querySelectorAll('.stat-card, .course-card, .panel-card, .continue-card').forEach(el => {
+        el.addEventListener('pointermove', e => {
+          const r = el.getBoundingClientRect();
+          el.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+          el.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+        });
+      });
+    })();
+
+    /* Course search filter */
+    (function () {
+      const input = document.getElementById('courseSearch');
+      const empty = document.getElementById('coursesEmpty');
+      const cards = document.querySelectorAll('.course-card');
+      if (!input) return;
+      input.addEventListener('input', () => {
+        const q = input.value.trim().toLowerCase();
+        let visible = 0;
+        cards.forEach(card => {
+          const match = card.dataset.name.toLowerCase().includes(q);
+          card.classList.toggle('filtered-out', !match);
+          if (match) visible++;
+        });
+        empty.classList.toggle('show', visible === 0);
+      });
+    })();
+
+    /* Notifications dropdown */
+    (function () {
+      const btn   = document.getElementById('notifBtn');
+      const panel = document.getElementById('notifPanel');
+      if (!btn || !panel) return;
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        const open = panel.classList.toggle('open');
+        btn.setAttribute('aria-expanded', String(open));
+      });
+      document.addEventListener('click', e => {
+        if (!panel.contains(e.target) && e.target !== btn) {
+          panel.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+        }
+      });
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') { panel.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); }
+      });
+    })();
+
+    /* Course detail slide-over */
+    (function () {
+      const overlay  = document.getElementById('courseDetailOverlay');
+      const closeBtn = document.getElementById('courseDetailClose');
+      const thumbEl  = document.getElementById('cdThumb');
+      const labelEl  = document.getElementById('cdLabel');
+      const nameEl   = document.getElementById('cdName');
+      const fillEl   = document.getElementById('cdFill');
+      const pctEl    = document.getElementById('cdPct');
+      const lessonsEl = document.getElementById('cdLessons');
+      if (!overlay) return;
+
+      function open(card) {
+        const progress = card.dataset.progress;
+        const color    = card.dataset.color;
+        nameEl.textContent = card.dataset.name;
+        labelEl.textContent = card.dataset.category;
+        labelEl.className = 'course-detail-label ' + color;
+        thumbEl.textContent = card.dataset.icon;
+        thumbEl.className = 'course-detail-thumb ' + card.dataset.thumb;
+        fillEl.style.width = progress + '%';
+        fillEl.className = 'course-fill ' + color;
+        pctEl.textContent = progress === '100' ? 'Done ✓' : progress + '% complete';
+        lessonsEl.textContent = card.dataset.lessons;
+        overlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+      function close() {
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+      document.querySelectorAll('.course-card').forEach(card => {
+        card.addEventListener('click', () => open(card));
+        card.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(card); }
+        });
+      });
+      closeBtn.addEventListener('click', close);
+      overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && overlay.classList.contains('open')) close();
+      });
+    })();
+  </script>
 
 </body>
 </html>

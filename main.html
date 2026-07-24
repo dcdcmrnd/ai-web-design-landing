@@ -870,13 +870,13 @@
       color: var(--navy-dk);
       transform: translateY(-1px);
     }
-    .portal-showcase, .biz-showcase {
+    .portal-showcase, .biz-showcase, .software-showcase {
       padding: 48px;
       overflow: visible;
       z-index: 2;
       background: transparent;
     }
-    .portal-showcase::after, .biz-showcase::after {
+    .portal-showcase::after, .biz-showcase::after, .software-showcase::after {
       content: "";
       position: absolute;
       inset: 0;
@@ -1189,14 +1189,111 @@
       background: linear-gradient(180deg, #23272C 0%, #15181C 100%);
       border-radius: 4px;
     }
+
+    /* ── PRACTICE SOFTWARE LAPTOP MOCKUP ── */
+    .laptop-stage { position: relative; width: 100%; max-width: 560px; }
+    .laptop {
+      position: relative;
+      background: linear-gradient(155deg, #1B2126 0%, #0B0D0F 100%);
+      border-radius: 16px 16px 5px 5px;
+      padding: 10px 10px 0;
+      box-shadow:
+        0 55px 85px -20px rgba(0,0,0,0.55),
+        0 18px 32px -12px rgba(0,0,0,0.45),
+        0 0 0 1px rgba(255,255,255,0.06);
+      transform: perspective(1400px) rotateX(3deg) rotate(-1deg);
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+    .demo-card:hover .laptop {
+      transform: perspective(1400px) rotateX(3deg) rotate(-0.2deg) translateY(-3px);
+      box-shadow:
+        0 65px 105px -20px rgba(0,0,0,0.62),
+        0 22px 38px -12px rgba(0,0,0,0.5),
+        0 0 0 1px rgba(255,255,255,0.08);
+    }
+    .laptop-cam {
+      position: absolute; top: 4px; left: 50%; transform: translateX(-50%);
+      width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.14); z-index: 1;
+    }
+    .laptop-screen {
+      position: relative;
+      aspect-ratio: 16 / 10.2;
+      background: linear-gradient(160deg, #F6F8FB 0%, #EEF2F7 100%);
+      border-radius: 6px 6px 0 0;
+      overflow: hidden;
+      display: flex;
+    }
+    .laptop-base {
+      width: 116%; height: 11px; margin: 0 -8%;
+      background: linear-gradient(180deg, #2A2F35 0%, #15181C 100%);
+      border-radius: 0 0 7px 7px;
+      position: relative;
+    }
+    .laptop-base::before {
+      content: ""; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 56px; height: 4px; background: rgba(0,0,0,0.35); border-radius: 0 0 6px 6px;
+    }
+    .soft-sidebar {
+      width: 68px; flex-shrink: 0; padding: 12px 8px;
+      background: linear-gradient(185deg, #101A30 0%, #0B1424 100%);
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .soft-dash-mark {
+      width: 15px; height: 15px; border-radius: 5px;
+      background: linear-gradient(135deg, #4F46E5, #14B8A6);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.38rem; font-weight: 800; color: #fff; margin-bottom: 4px;
+    }
+    .soft-nav-item { height: 5px; border-radius: 3px; background: rgba(255,255,255,0.08); }
+    .soft-nav-item.active { background: #14B8A6; opacity: 0.9; }
+    .soft-main { flex: 1; min-width: 0; padding: 12px 12px; display: flex; flex-direction: column; gap: 8px; }
+    .soft-topbar { display: flex; align-items: center; gap: 6px; }
+    .soft-title { flex: 1; font-size: 0.5rem; font-weight: 800; color: #0F172A; }
+    .soft-bell { width: 11px; height: 11px; border-radius: 4px; background: #fff; border: 1px solid rgba(15,23,42,0.08); flex-shrink: 0; }
+    .soft-avatar {
+      width: 13px; height: 13px; border-radius: 50%;
+      background: linear-gradient(135deg, #818CF8, #4F46E5);
+      flex-shrink: 0;
+    }
+    .soft-stats-row { display: flex; gap: 5px; }
+    .soft-stat {
+      flex: 1; min-width: 0; background: #fff; border: 1px solid rgba(15,23,42,0.06);
+      border-radius: 7px; padding: 6px 6px; display: flex; flex-direction: column; gap: 1px;
+    }
+    .soft-stat-val { font-size: 0.62rem; font-weight: 800; color: #0F172A; letter-spacing: -0.01em; }
+    .soft-stat-lbl { font-size: 0.36rem; font-weight: 600; color: #94A3B8; white-space: nowrap; }
+    .soft-schedule {
+      background: #fff; border: 1px solid rgba(15,23,42,0.06); border-radius: 9px;
+      padding: 8px; display: flex; flex-direction: column; gap: 5px;
+    }
+    .soft-sched-row { display: flex; gap: 5px; }
+    .soft-chip { flex: 1; height: 10px; border-radius: 4px; }
+    .soft-chip.confirmed { background: rgba(20,184,166,0.7); }
+    .soft-chip.pending   { background: rgba(245,158,11,0.7); }
+    .soft-chip.no-show   { background: rgba(244,63,94,0.55); }
+    .soft-chip.open      { background: transparent; border: 1px dashed rgba(15,23,42,0.14); }
+    .soft-patients { display: flex; flex-direction: column; gap: 6px; }
+    .soft-patient-row {
+      display: flex; align-items: center; gap: 6px;
+      background: #fff; border: 1px solid rgba(15,23,42,0.06); border-radius: 7px; padding: 6px 8px;
+    }
+    .soft-patient-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; background: linear-gradient(135deg, #818CF8, #4F46E5); }
+    .soft-patient-line { flex: 1; height: 5px; border-radius: 3px; background: rgba(15,23,42,0.08); }
+    .soft-patient-pill { width: 20px; height: 8px; border-radius: 100px; flex-shrink: 0; }
+    .soft-patient-pill.active { background: rgba(20,184,166,0.35); }
+    .soft-patient-pill.new    { background: rgba(79,70,229,0.3); }
+
     @media (max-width: 1024px) {
       .demo-card { overflow: hidden; }
       .demo-card .demo-info { padding: 44px 40px; }
-      .portal-showcase, .biz-showcase { overflow: hidden; }
+      .portal-showcase, .biz-showcase, .software-showcase { overflow: hidden; }
       .portal-tablet-stage { width: 100%; max-width: 380px; }
       .portal-tablet { transform: perspective(1400px) rotateY(-8deg) rotateX(2deg); }
       .demo-card:hover .portal-tablet { transform: perspective(1400px) rotateY(-8deg) rotateX(2deg); }
       .biz-monitor-stage { width: 100%; max-width: 400px; }
+      .laptop-stage { width: 100%; max-width: 420px; }
+      .laptop { transform: perspective(1400px) rotateX(2deg); }
+      .demo-card:hover .laptop { transform: perspective(1400px) rotateX(2deg) translateY(-2px); }
     }
 
     /* ── PROCESS (DARK NAVY) ── */
@@ -2043,7 +2140,7 @@
        ═══════════════════════════════ -->
   <header class="site-header" id="top">
     <a href="#home" class="brand">
-      <img src="Aequora-digital-logo.png" alt="Aequora Digital logo" class="brand-logo" width="1024" height="1024" />
+      <img src="Aequora-digital-logo.png" alt="Aequora Digital logo" class="brand-logo" width="256" height="256" />
       Aequora<strong>Digital</strong>
     </a>
     <nav class="site-nav" aria-label="Primary navigation">
@@ -2119,7 +2216,7 @@
         <!-- Hero photo -->
         <div class="hero-photo-wrap">
           <div class="hero-photo-frame" aria-hidden="true"></div>
-          <img src="hero-photo.png" alt="Small business owner reviewing their custom website — website development for U.S. small businesses" class="hero-photo" loading="eager" width="933" height="1202" />
+          <img src="hero-photo.png" alt="Small business owner reviewing their custom website — website development for U.S. small businesses" class="hero-photo" loading="eager" width="720" height="928" />
         </div>
       </div><!-- /hero-visual -->
     </div><!-- /hero-inner -->
@@ -2211,7 +2308,7 @@
       <div class="demos-head" data-reveal>
         <div>
           <p class="section-label">What We Build</p>
-          <h2>See a couple of <em>sample builds.</em></h2>
+          <h2>See a few <em>sample builds.</em></h2>
         </div>
         <p class="demos-note">These are demonstration projects built to showcase our work.<br><a href="#our-work" class="demos-note-link">See our real client projects ↓</a></p>
       </div>
@@ -2335,6 +2432,59 @@
             <p>Custom membership portals and web applications for coaching businesses, online communities, and digital programs.</p>
             <div class="demo-tags"><span class="demo-tag">Members Only</span><span class="demo-tag">Progress Tracking</span></div>
             <a href="demo-elevate.html" class="demo-btn demo-cta-inline">View Live Demo <span class="demo-btn-arrow">→</span></a>
+          </div>
+        </article>
+        <article class="demo-card" data-reveal data-delay="3">
+          <div class="demo-preview software-showcase" role="button" tabindex="0" aria-label="Open live preview of Sample Practice Management Software">
+            <div class="laptop-stage" aria-hidden="true">
+              <div class="laptop">
+                <span class="laptop-cam"></span>
+                <div class="laptop-screen">
+                  <div class="soft-sidebar">
+                    <div class="soft-dash-mark">MD</div>
+                    <span class="soft-nav-item active"></span>
+                    <span class="soft-nav-item"></span>
+                    <span class="soft-nav-item"></span>
+                    <span class="soft-nav-item"></span>
+                  </div>
+                  <div class="soft-main">
+                    <div class="soft-topbar">
+                      <span class="soft-title">Dashboard</span>
+                      <span class="soft-bell"></span>
+                      <span class="soft-avatar"></span>
+                    </div>
+                    <div class="soft-stats-row">
+                      <div class="soft-stat"><span class="soft-stat-val">24</span><span class="soft-stat-lbl">Today</span></div>
+                      <div class="soft-stat"><span class="soft-stat-val">86</span><span class="soft-stat-lbl">Patients</span></div>
+                      <div class="soft-stat"><span class="soft-stat-val">238</span><span class="soft-stat-lbl">Reminders</span></div>
+                    </div>
+                    <div class="soft-schedule">
+                      <div class="soft-sched-row">
+                        <span class="soft-chip confirmed"></span><span class="soft-chip confirmed"></span><span class="soft-chip pending"></span>
+                      </div>
+                      <div class="soft-sched-row">
+                        <span class="soft-chip confirmed"></span><span class="soft-chip open"></span><span class="soft-chip confirmed"></span>
+                      </div>
+                      <div class="soft-sched-row">
+                        <span class="soft-chip pending"></span><span class="soft-chip confirmed"></span><span class="soft-chip no-show"></span>
+                      </div>
+                    </div>
+                    <div class="soft-patients">
+                      <div class="soft-patient-row"><span class="soft-patient-dot"></span><span class="soft-patient-line"></span><span class="soft-patient-pill active"></span></div>
+                      <div class="soft-patient-row"><span class="soft-patient-dot"></span><span class="soft-patient-line"></span><span class="soft-patient-pill new"></span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="laptop-base"></div>
+            </div>
+          </div>
+          <div class="demo-info">
+            <span class="demo-category">Custom Software</span>
+            <h3>Sample Practice Management Software</h3>
+            <p>Custom scheduling and operations software for clinics — multi-provider calendars, patient records, and automated reminders.</p>
+            <div class="demo-tags"><span class="demo-tag">Multi-Staff Calendar</span><span class="demo-tag">Patient Records</span></div>
+            <a href="demo-practice.html" class="demo-btn demo-cta-inline">View Live Demo <span class="demo-btn-arrow">→</span></a>
           </div>
         </article>
       </div>
@@ -2643,28 +2793,11 @@
     </div>
   </section>
 
-  <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
   <script>
-  /* ── SMOOTH / INERTIA SCROLL ── */
-  var lenis;
+  /* ── SMOOTH ANCHOR SCROLL (header-offset aware) ── */
   (function () {
-    if (typeof Lenis === 'undefined') return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    lenis = new Lenis({
-      duration: 1.1,
-      easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
-      smoothWheel: true,
-      smoothTouch: false
-    });
-
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    /* Route in-page anchor links through Lenis so jumps share the same easing */
     document.querySelectorAll('a[href^="#"]').forEach(function (a) {
       a.addEventListener('click', function (e) {
         var id = a.getAttribute('href');
@@ -2673,7 +2806,8 @@
         if (!target) return;
         e.preventDefault();
         var hh = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--hh'), 10) || 68;
-        lenis.scrollTo(target, { offset: -(hh + 16) });
+        var top = target.getBoundingClientRect().top + window.scrollY - (hh + 16);
+        window.scrollTo({ top: top, behavior: reduceMotion ? 'auto' : 'smooth' });
       });
     });
   })();
@@ -3025,8 +3159,7 @@
     badge.addEventListener('click', () => {
       const target = document.getElementById('services');
       if (!target) return;
-      if (lenis) lenis.scrollTo(target, { offset: -80 });
-      else target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
   });
 
