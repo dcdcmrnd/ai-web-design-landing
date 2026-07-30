@@ -5,19 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="Content-Security-Policy"
     content="default-src 'self'; style-src 'self' https://fonts.googleapis.com https://www.designrush.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com https://www.designrush.com; script-src 'self' 'unsafe-inline' https://www.designrush.com; img-src 'self' data: https:; connect-src 'self' https://api.web3forms.com https://web3forms.com https://www.designrush.com; form-action 'self' https://api.web3forms.com; frame-src https:; frame-ancestors 'self';" />
-  <title>Website Development &amp; Website Management for U.S. Small Businesses | Aequora Digital</title>
-  <meta name="description" content="Custom website development, website management, technical SEO, and custom CRM solutions built on Next.js and React for U.S. small businesses." />
+  <title>Website Design, Development &amp; Business Software for Small Businesses | Aequora Digital</title>
+  <meta name="description" content="Aequora Digital helps small businesses build professional websites, redesign outdated sites, and create simple business software that saves time and supports growth." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://aequoradigital.com/" />
-  <meta property="og:title" content="Website Development &amp; Website Management for U.S. Small Businesses | Aequora Digital" />
-  <meta property="og:description" content="Custom website development, website management, SEO, Google Ads, and CRM solutions that help U.S. small businesses grow online." />
+  <meta property="og:title" content="Website Design, Development &amp; Business Software for Small Businesses | Aequora Digital" />
+  <meta property="og:description" content="Aequora Digital helps small businesses build professional websites, redesign outdated sites, and create simple business software that saves time and supports growth." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://aequoradigital.com/" />
   <meta property="og:site_name" content="Aequora Digital" />
   <meta property="og:image" content="https://aequoradigital.com/aequora-logo+text.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Website Development &amp; Website Management for U.S. Small Businesses | Aequora Digital" />
-  <meta name="twitter:description" content="Custom website development, website management, SEO, Google Ads, and CRM solutions that help U.S. small businesses grow online." />
+  <meta name="twitter:title" content="Website Design, Development &amp; Business Software for Small Businesses | Aequora Digital" />
+  <meta name="twitter:description" content="Aequora Digital helps small businesses build professional websites, redesign outdated sites, and create simple business software that saves time and supports growth." />
   <meta name="twitter:image" content="https://aequoradigital.com/aequora-logo+text.png" />
   <meta name="theme-color" content="#0D5C7A" />
   <link rel="icon" type="image/png" href="Aequora-digital-logo.png" />
@@ -485,6 +485,52 @@
       margin-bottom: 0 !important;
     }
 
+    /* ── WHO WE HELP ── */
+    .who-help-section {
+      padding: 72px 0;
+      background: var(--white);
+      border-top: 1px solid var(--border);
+    }
+    .who-help-head {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 36px;
+    }
+    .who-help-head h2 {
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 700;
+      color: var(--text-h);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-top: 6px;
+    }
+    .who-help-head h2 em { font-style: italic; font-weight: 300; color: var(--navy); }
+    .who-help-sub {
+      font-size: 0.96rem;
+      color: var(--text-b);
+      line-height: 1.7;
+      margin-top: 16px;
+    }
+    .who-help-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .who-help-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 20px;
+      border-radius: var(--radius-full);
+      background: rgba(13,92,122,0.06);
+      border: 1px solid rgba(13,92,122,0.13);
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
     /* ── WHO WE ARE ── */
     .about-section {
       padding: 96px 0;
@@ -594,7 +640,13 @@
     .demos-grid { display: flex; flex-direction: column; gap: 28px; }
 
     /* ── REAL CLIENT WORK (in-page gallery) ── */
-    .work-gallery-inline { margin-top: 88px; }
+    /* Displayed before the sample-build demos within #portfolio, reordered visually via flex order
+       below so the underlying markup (client cards, iframes) doesn't need to move. */
+    #portfolio > .container { display: flex; flex-direction: column; }
+    #portfolio > .container > .demos-head,
+    #portfolio > .container > .demos-grid { order: 2; }
+    #portfolio > .container > .work-gallery-inline { order: 1; }
+    .work-gallery-inline { margin-top: 0; margin-bottom: 88px; }
     .work-gallery-head { margin-bottom: 40px; }
     .work-gallery-head p { color: var(--text-m); font-size: 0.9rem; line-height: 1.7; max-width: 560px; margin-top: 10px; }
     .work-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 32px; }
@@ -1896,7 +1948,7 @@
       .demo-info h3  { font-size: 1.4rem; }
 
       /* Real client work */
-      .work-gallery-inline { margin-top: 56px; }
+      .work-gallery-inline { margin-top: 0; margin-bottom: 56px; }
       .work-grid     { grid-template-columns: 1fr; gap: 24px; }
       .work-modal-body { padding: 26px 22px 28px; }
 
@@ -2030,7 +2082,7 @@
     "url": "https://aequoradigital.com/",
     "logo": "https://aequoradigital.com/Aequora-digital-logo.png",
     "email": "info@aequoradigital.com",
-    "description": "Custom website development, website management, technical SEO, and custom CRM solutions built on Next.js and React for U.S. small businesses.",
+    "description": "Aequora Digital is a digital partner that helps small businesses build professional websites, redesign outdated websites, improve their online presence, and create simple business software that saves time and supports business growth. We work with consultants, healthcare providers, dental clinics, construction companies, local businesses, and professional service firms, providing website design, website development, website maintenance, and ongoing digital support.",
     "areaServed": "US",
     "priceRange": "$1,999+",
     "sameAs": []
@@ -2082,6 +2134,11 @@
     "mainEntity": [
       {
         "@type": "Question",
+        "name": "Do I need a new website?",
+        "acceptedAnswer": { "@type": "Answer", "text": "If your website no longer reflects your business, loads slowly, or isn't bringing in enquiries, it's probably time for an upgrade. We'll give you an honest opinion on the first call, not a sales pitch." }
+      },
+      {
+        "@type": "Question",
         "name": "What's the investment for a new website?",
         "acceptedAnswer": { "@type": "Answer", "text": "Every business is different, so every project is quoted based on your goals and requirements. Business websites typically range from $1,999 to $4,999 depending on scope. Larger custom platforms, client portals, internal systems, and web applications are quoted individually after a discovery call. Website Management starts at $299/month, and Google Ads Management starts at $300/month plus ad spend. You'll receive a fixed proposal with clear deliverables, timeline, and pricing before any work begins." }
       },
@@ -2098,7 +2155,7 @@
       {
         "@type": "Question",
         "name": "Can you improve or redesign my existing website?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes. We can run a full website redesign or a lighter website optimization pass — improving speed, technical SEO, and conversions — without necessarily starting from scratch. You keep your domain either way." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. We'll improve your website without making the process overwhelming, whether that's a full redesign or a lighter refresh to speed and conversions. You keep your domain either way." }
       },
       {
         "@type": "Question",
@@ -2108,22 +2165,17 @@
       {
         "@type": "Question",
         "name": "Do you build custom software, portals, or internal systems?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Beyond marketing websites, we build custom web applications, member portals, and custom CRM systems tailored to how your business actually operates — we'll scope it out on a call." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. If your team spends too much time on repetitive work, we can build a simple custom system, such as a customer portal, member platform, or internal tool, that fits the way you already work." }
       },
       {
         "@type": "Question",
         "name": "Can you integrate with GoHighLevel or other CRMs?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes. We can connect your website to GoHighLevel or another CRM and marketing platform you already use, or build a custom system if that serves you better long-term." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. We can connect your website to a CRM or marketing platform you already use, like GoHighLevel, or build something custom if that serves you better long-term." }
       },
       {
         "@type": "Question",
         "name": "Do you work with WordPress, or only build custom sites?",
-        "acceptedAnswer": { "@type": "Answer", "text": "We can maintain or improve an existing WordPress site, but new projects are built on modern frameworks like Next.js and React, which outperform WordPress on speed, security, and long-term maintenance costs." }
-      },
-      {
-        "@type": "Question",
-        "name": "Do you build websites with React and Next.js?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes — Next.js and React are our default stack for custom builds. They give you faster load times, stronger technical SEO, and a foundation that scales cleanly as you add features." }
+        "acceptedAnswer": { "@type": "Answer", "text": "We can maintain or improve an existing WordPress site. For new projects, we build on a modern technical foundation chosen for speed, security, and reliability, so your site stays fast and easy to maintain for years." }
       },
       {
         "@type": "Question",
@@ -2149,8 +2201,8 @@
     </a>
     <nav class="site-nav" aria-label="Primary navigation">
       <a href="#services"><span class="nav-link-roll"><span>Services</span><span aria-hidden="true">Services</span></span></a>
-      <a href="#portfolio"><span class="nav-link-roll"><span>Portfolio</span><span aria-hidden="true">Portfolio</span></span></a>
       <a href="#our-work"><span class="nav-link-roll"><span>Our Work</span><span aria-hidden="true">Our Work</span></span></a>
+      <a href="#portfolio"><span class="nav-link-roll"><span>Portfolio</span><span aria-hidden="true">Portfolio</span></span></a>
       <a href="#faq"><span class="nav-link-roll"><span>FAQ</span><span aria-hidden="true">FAQ</span></span></a>
       <a href="#contact"><span class="nav-link-roll"><span>Contact</span><span aria-hidden="true">Contact</span></span></a>
     </nav>
@@ -2172,35 +2224,35 @@
       <div class="hero-text">
         <div class="hero-badge hero-anim" style="--d:0.18s">
           <span class="badge-dot"></span>
-          Website Development • Management • SEO &amp; Growth
+          Website Design • Redesign • Business Software
         </div>
 
         <h1 id="hero-h1" class="hero-anim" style="--d:0.3s">
-          Modern Website Development for Growing Businesses
+          Professional websites that help your business grow.
         </h1>
 
         <p class="hero-sub hero-anim" style="--d:0.7s">
-          We build more than websites. We develop fast, scalable websites, custom business systems, and digital solutions that help you attract customers, streamline operations, and grow with confidence.
+          Your website should do more than look good. It should build trust, bring in new customers, and support your business every day. We help small businesses create professional websites and simple business solutions that make running things easier.
         </p>
 
         <div class="hero-svc-list hero-anim" style="--d:0.79s">
           <div class="hero-svc-item">
-            <span class="hero-svc-icon">💻</span> Website Development
+            <span class="hero-svc-icon">💻</span> Website Design
           </div>
           <div class="hero-svc-item">
-            <span class="hero-svc-icon">📈</span> Website Management
+            <span class="hero-svc-icon">🔄</span> Website Redesign
           </div>
           <div class="hero-svc-item">
-            <span class="hero-svc-icon">🎯</span> SEO &amp; Growth
+            <span class="hero-svc-icon">⚙️</span> Business Software
           </div>
         </div>
 
         <div class="hero-actions hero-anim" style="--d:0.88s">
-          <a href="https://calendar.app.google/PEsD6mypBEHMUffH8" target="_blank" rel="noopener noreferrer" class="btn-primary">Start Your Project</a>
+          <a href="https://calendar.app.google/PEsD6mypBEHMUffH8" target="_blank" rel="noopener noreferrer" class="btn-primary">Request a Free Website Demo</a>
           <a href="#portfolio" class="btn-ghost">View Our Work</a>
         </div>
 
-        <p class="hero-trust hero-anim" style="--d:1.05s">Transparent pricing. Fast delivery. Ongoing support.</p>
+        <p class="hero-trust hero-anim" style="--d:1.05s">No confusing process. No unnecessary complexity. Just practical solutions.</p>
       </div>
 
       <!-- RIGHT COLUMN: Hero photo -->
@@ -2208,13 +2260,13 @@
 
         <!-- Floating service badges -->
         <div class="float-badge float-badge-svc float-badge-top">
-          <span class="fb-icon">💻</span> Website Development
+          <span class="fb-icon">💻</span> Website Design
         </div>
         <div class="float-badge float-badge-svc float-badge-left">
-          <span class="fb-icon">📈</span> Website Management
+          <span class="fb-icon">🔄</span> Website Redesign
         </div>
         <div class="float-badge float-badge-svc float-badge-right">
-          <span class="fb-icon">🎯</span> SEO &amp; Growth
+          <span class="fb-icon">⚙️</span> Business Software
         </div>
 
         <!-- Hero photo -->
@@ -2232,33 +2284,55 @@
        ═══════════════════════════════ -->
   <div class="marquee-bar" aria-hidden="true">
     <div class="marquee-track">
-      <span>Website Development</span><span class="sep">✦</span>
-      <span>Website Management</span><span class="sep">✦</span>
-      <span>SEO &amp; Growth</span><span class="sep">✦</span>
-      <span>Custom Business Systems</span><span class="sep">✦</span>
-      <span>CRM Platforms</span><span class="sep">✦</span>
-      <span>Site Redesign</span><span class="sep">✦</span>
-      <span>Website Development</span><span class="sep">✦</span>
-      <span>Website Management</span><span class="sep">✦</span>
-      <span>SEO &amp; Growth</span><span class="sep">✦</span>
-      <span>Custom Business Systems</span><span class="sep">✦</span>
-      <span>CRM Platforms</span><span class="sep">✦</span>
-      <span>Site Redesign</span><span class="sep">✦</span>
+      <span>Website Design</span><span class="sep">✦</span>
+      <span>Website Redesign</span><span class="sep">✦</span>
+      <span>Business Websites</span><span class="sep">✦</span>
+      <span>Business Software</span><span class="sep">✦</span>
+      <span>Website Maintenance</span><span class="sep">✦</span>
+      <span>Customer Portals</span><span class="sep">✦</span>
+      <span>Website Design</span><span class="sep">✦</span>
+      <span>Website Redesign</span><span class="sep">✦</span>
+      <span>Business Websites</span><span class="sep">✦</span>
+      <span>Business Software</span><span class="sep">✦</span>
+      <span>Website Maintenance</span><span class="sep">✦</span>
+      <span>Customer Portals</span><span class="sep">✦</span>
     </div>
   </div>
 
   <!-- ═══════════════════════════════
-       PROBLEM
+       WHO WE HELP
+       ═══════════════════════════════ -->
+  <section id="who-we-help" class="who-help-section">
+    <div class="container">
+      <div class="who-help-head" data-reveal>
+        <p class="section-label" style="justify-content:center">Who We Help</p>
+        <h2 data-reveal data-delay="1">Whatever stage you're at, <em>we're here to help.</em></h2>
+        <p class="who-help-sub" data-reveal data-delay="2">Whether you're starting a new business or growing an existing one, we work with:</p>
+      </div>
+      <div class="who-help-grid" data-reveal data-delay="3">
+        <span class="who-help-chip">Consultants</span>
+        <span class="who-help-chip">Professional Service Firms</span>
+        <span class="who-help-chip">Healthcare &amp; Dental Clinics</span>
+        <span class="who-help-chip">Construction Companies</span>
+        <span class="who-help-chip">Local Businesses</span>
+        <span class="who-help-chip">Membership Organizations</span>
+        <span class="who-help-chip">Growing Small Businesses</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════
+       WHY AEQUORA
        ═══════════════════════════════ -->
   <section id="problem" class="problem-section">
     <div class="container">
       <div class="problem-inner">
-        <p class="section-label" data-reveal>The Problem</p>
-        <h2 data-reveal data-delay="1">You already know the site isn't working.</h2>
+        <p class="section-label" data-reveal>Why Aequora</p>
+        <h2 data-reveal data-delay="1">Your website shouldn't make running your business harder.</h2>
         <div class="problem-body">
-          <p data-reveal data-delay="2">You already know your website isn't bringing in enough customers.</p>
-          <p data-reveal data-delay="3">Maybe it loads slowly.<br>Maybe nobody finds you on Google.<br>Maybe you paid someone once and never heard from them again.</p>
-          <p class="problem-emphasis" data-reveal data-delay="4">You don't need another redesign.<br><br>You need one team that owns the entire process.</p>
+          <p data-reveal data-delay="2">Running your business is already challenging enough.</p>
+          <p data-reveal data-delay="3">Many businesses struggle with outdated websites, confusing software, or tools that create more work than they solve.</p>
+          <p class="problem-emphasis" data-reveal data-delay="4">We believe technology should make your business easier&mdash;so everything we build is designed to help you look more professional, attract more customers, and save time.</p>
         </div>
       </div>
     </div>
@@ -2275,30 +2349,28 @@
       </div>
 
       <!-- Internal link structure reserved for future dedicated service pages:
-           Website Development → /website-development
-           Website Management  → /website-management
-           SEO                 → /seo-services
-           Google Ads          → /google-ads
-           CRM                 → /crm-development
+           Website Design & Development → /website-development
+           Business Software            → /business-software
+           Website Management & Growth  → /website-management
            Not yet linked here to avoid 404s until those pages exist. -->
       <div class="services-primary-grid">
         <article class="service-card-primary" data-reveal data-delay="1">
           <div class="sc-badge">01</div>
-          <h3>Website Development</h3>
-          <p>Modern websites built to generate leads, improve credibility, and support business growth.</p>
-          <p>Every site is custom-coded on a modern stack — typically Next.js and React — for the speed, scalability, and technical SEO foundation off-the-shelf builders can't match. From landing pages to custom web applications, the work is built to convert.</p>
+          <h3>Website Design &amp; Development</h3>
+          <p>Professional websites that help customers trust your business and choose you over the competition.</p>
+          <p>From simple landing pages to full business websites and web applications, every site is built around your goals — not just a template — so it looks professional and turns visitors into customers.</p>
         </article>
         <article class="service-card-primary" data-reveal data-delay="2">
           <div class="sc-badge">02</div>
-          <h3>Website Management</h3>
-          <p>Continuous optimization, maintenance, security, and technical support after launch.</p>
-          <p>We monitor uptime and performance, apply updates and security patches, make content changes, and keep improving the site — so it keeps working as hard as you do.</p>
+          <h3>Business Software</h3>
+          <p>Simple tools that help your team spend less time on repetitive work.</p>
+          <p>From customer portals and membership platforms to custom CRM-style systems, we build software around the way your business already runs, so your team works easier, not harder.</p>
         </article>
         <article class="service-card-primary" data-reveal data-delay="3">
           <div class="sc-badge">03</div>
-          <h3>SEO &amp; Growth</h3>
-          <p>A great website deserves to be found — and to turn visitors into customers.</p>
-          <p>We improve visibility through technical SEO, performance optimization, and structured data, and layer in Google Ads when it makes sense, so more of the right people find and choose your business.</p>
+          <h3>Website Management &amp; Growth</h3>
+          <p>Keep your website secure, updated, and easy for customers to find.</p>
+          <p>We handle hosting, security, updates, and technical SEO, and add advertising support when it makes sense, so more of the right people find and choose your business.</p>
         </article>
       </div>
     </div>
@@ -2314,7 +2386,7 @@
           <p class="section-label">What We Build</p>
           <h2>See a few <em>sample builds.</em></h2>
         </div>
-        <p class="demos-note">These are demonstration projects built to showcase our work.<br><a href="#our-work" class="demos-note-link">See our real client projects ↓</a></p>
+        <p class="demos-note">These are demonstration projects built to show you what's possible — not real client sites.</p>
       </div>
       <div class="demos-grid">
         <article class="demo-card" data-reveal data-delay="1">
@@ -2498,7 +2570,7 @@
         <div class="work-gallery-head" data-reveal>
           <p class="section-label">Our Work</p>
           <h2>Real sites, <em>for real clients.</em></h2>
-          <p>Every project below is an actual client build, not a demo. Click through for the story, then visit the live site.</p>
+          <p>Real businesses, real solutions. We've partnered with businesses across healthcare, professional services, and construction to strengthen their online presence — every project below is an actual client build, not a demo. Click through for the story, then visit the live site.</p>
         </div>
         <div class="work-grid">
 
@@ -2531,7 +2603,7 @@
           <article class="work-card" data-reveal data-delay="2" role="button" tabindex="0"
             data-name="JCM Home Builders"
             data-industry="Construction &amp; Home Building"
-            data-description="JCM needed a site that could do some of the selling for them — showcase finished and in-progress projects, walk prospects through their build process, and turn browsers into inquiries. We built a custom Next.js site with a project gallery, a step-by-step process walkthrough, and a lead-capture inquiry form."
+            data-description="JCM needed a site that could do some of the selling for them — showcase finished and in-progress projects, walk prospects through their build process, and turn browsers into inquiries. We built a custom site with a project gallery, a step-by-step process walkthrough, and a lead-capture inquiry form."
             data-url="https://jcm-home-builder-sc.vercel.app/"
             data-status="Preview build — final domain not live yet">
             <div class="work-card-visual">
@@ -2660,18 +2732,20 @@
        ═══════════════════════════════ -->
   <section id="about" class="about-section">
     <div class="container">
-      <p class="section-label" data-reveal>Why Aequora</p>
-      <h2 class="who-we-are-h2" data-reveal data-delay="1">More Than <em>a Website Agency</em></h2>
+      <p class="section-label" data-reveal>About Us</p>
+      <h2 class="who-we-are-h2" data-reveal data-delay="1">More Than <em>a Web Development Company</em></h2>
       <div class="who-we-are-copy">
-        <p data-reveal data-delay="2">A great website isn't just something that looks good&mdash;it should help your business grow. That's why we build with long-term performance, scalability, and real business outcomes in mind, not just launch day.</p>
-        <p data-reveal data-delay="3">From modern development and technical SEO to ongoing improvements and custom business solutions, we work alongside our clients long after their website goes live. Our goal isn't simply to deliver a project&mdash;it's to become the technical partner you can rely on as your business evolves.</p>
+        <p data-reveal data-delay="2">We're your digital partner. We help businesses build a stronger online presence while making everyday work simpler.</p>
+        <p data-reveal data-delay="3">We believe technology should feel easy to use&mdash;not difficult to understand. Every project starts with listening, and every solution is designed around the way your business already works.</p>
+        <p data-reveal data-delay="4">Our goal isn't simply to deliver a website. It's to become a trusted partner you can rely on as your business grows.</p>
       </div>
     </div>
   </section>
 
   <!-- ═══════════════════════════════
-       CLIENT REVIEWS (DesignRush)
+       CLIENT REVIEWS (DesignRush) — temporarily disabled, widget not rendering correctly
        ═══════════════════════════════ -->
+  <!--
   <section id="reviews" class="services-section">
     <div class="container">
       <div class="services-head" data-reveal>
@@ -2682,6 +2756,7 @@
       <noscript><a href="https://www.designrush.com/agency/profile/aequora-digital#reviews" target="_blank" aria-label="Visit Aequora Digital reviews on DesignRush">REVIEW US ON DESIGNRUSH</a></noscript>
     </div>
   </section>
+  -->
 
   <!-- ═══════════════════════════════
        FAQ
@@ -2693,6 +2768,11 @@
         <h2>Everything you need to know.</h2>
       </div>
       <div class="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-q">Do I need a new website?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>If your website no longer reflects your business, loads slowly, or isn't bringing in enquiries, it's probably time for an upgrade. We'll give you an honest opinion on the first call, not a sales pitch.</p></div>
+        </div>
 
         <div class="faq-item">
           <button class="faq-q">What's the investment for a new website?<span class="faq-icon">+</span></button>
@@ -2716,7 +2796,7 @@
 
         <div class="faq-item">
           <button class="faq-q">Can you improve or redesign my existing website?<span class="faq-icon">+</span></button>
-          <div class="faq-a"><p>Yes. We can run a full website redesign or a lighter website optimization pass — improving speed, technical SEO, and conversions — without necessarily starting from scratch. You keep your domain either way.</p></div>
+          <div class="faq-a"><p>Yes. We'll improve your website without making the process overwhelming, whether that's a full redesign or a lighter refresh to speed and conversions. You keep your domain either way.</p></div>
         </div>
 
         <div class="faq-item">
@@ -2726,22 +2806,17 @@
 
         <div class="faq-item">
           <button class="faq-q">Do you build custom software, portals, or internal systems?<span class="faq-icon">+</span></button>
-          <div class="faq-a"><p>Yes. Beyond marketing websites, we build custom web applications, member portals, and custom CRM systems tailored to how your business actually operates — we'll scope it out on a call.</p></div>
+          <div class="faq-a"><p>Yes. If your team spends too much time on repetitive work, we can build a simple custom system — a customer portal, member platform, or internal tool — that fits the way you already work.</p></div>
         </div>
 
         <div class="faq-item">
           <button class="faq-q">Can you integrate with GoHighLevel or other CRMs?<span class="faq-icon">+</span></button>
-          <div class="faq-a"><p>Yes. We can connect your website to GoHighLevel or another CRM and marketing platform you already use, or build a custom system if that serves you better long-term.</p></div>
+          <div class="faq-a"><p>Yes. We can connect your website to a CRM or marketing platform you already use, like GoHighLevel, or build something custom if that serves you better long-term.</p></div>
         </div>
 
         <div class="faq-item">
           <button class="faq-q">Do you work with WordPress, or only build custom sites?<span class="faq-icon">+</span></button>
-          <div class="faq-a"><p>We can maintain or improve an existing WordPress site, but new projects are built on modern frameworks like Next.js and React, which outperform WordPress on speed, security, and long-term maintenance costs.</p></div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-q">Do you build websites with React and Next.js?<span class="faq-icon">+</span></button>
-          <div class="faq-a"><p>Yes — Next.js and React are our default stack for custom builds. They give you faster load times, stronger technical SEO, and a foundation that scales cleanly as you add features.</p></div>
+          <div class="faq-a"><p>We can maintain or improve an existing WordPress site. For new projects, we build on a modern technical foundation chosen for speed, security, and reliability, so your site stays fast and easy to maintain for years.</p></div>
         </div>
 
         <div class="faq-item">
@@ -2762,9 +2837,9 @@
       <!-- Final CTA — dominant, booking is the primary action -->
       <div class="final-cta" data-reveal>
         <p class="section-label light" style="justify-content:center">Get In Touch</p>
-        <h2>Ready to <em>build something</em> that grows with your business?</h2>
-        <p class="final-cta-body">Whether you're launching a new website, modernizing an existing one, or planning a custom business platform, we help you create digital solutions that deliver measurable results.<br><br>Let's build something together.</p>
-        <a href="https://calendar.app.google/PEsD6mypBEHMUffH8" target="_blank" rel="noopener noreferrer" class="btn-book-primary">Let's Build Something Together →</a>
+        <h2>Ready to <em>see what your business</em> could look like?</h2>
+        <p class="final-cta-body">Let's build something that helps your business stand out and makes your day easier.<br><br>No obligation. No pressure. Just a personalised website demo built around your business.</p>
+        <a href="https://calendar.app.google/PEsD6mypBEHMUffH8" target="_blank" rel="noopener noreferrer" class="btn-book-primary">Request a Free Website Demo →</a>
         <a href="mailto:info@aequoradigital.com" class="final-cta-email">Or email us at info@aequoradigital.com</a>
       </div>
 
@@ -2802,7 +2877,7 @@
         </form>
       </div>
 
-      <p class="frame-footer-blurb">Aequora Digital is a boutique software and web development studio specializing in modern website development, website management, custom CRM platforms, member portal development, business automation, and technical SEO for growing businesses. We build high-performance, conversion-focused websites and custom web applications — on Next.js, React, and Supabase — that help companies establish credibility, improve efficiency, and grow online.</p>
+      <p class="frame-footer-blurb">Aequora Digital is a website design and web development company that helps small businesses build professional websites, redesign outdated websites, and create simple business software that supports long-term growth.</p>
 
       <div class="frame-footer">
         <span>© 2026 Aequora Digital</span>
