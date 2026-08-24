@@ -6,18 +6,18 @@
   <meta http-equiv="Content-Security-Policy"
     content="default-src 'self'; style-src 'self' https://fonts.googleapis.com https://www.designrush.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com https://www.designrush.com; script-src 'self' 'unsafe-inline' https://www.designrush.com; img-src 'self' data: https:; connect-src 'self' https://api.web3forms.com https://web3forms.com https://www.designrush.com; form-action 'self' https://api.web3forms.com; frame-src https:; frame-ancestors 'self';" />
   <title>Website Design, Development &amp; Business Software for Small Businesses | Aequora Digital</title>
-  <meta name="description" content="Aequora Digital helps small businesses build professional websites, redesign outdated sites, and create simple business software that saves time and supports growth." />
+  <meta name="description" content="Aequora Digital builds professional websites, redesigns outdated sites, and creates simple business software that saves time and supports growth for small businesses." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://aequoradigital.com/" />
   <meta property="og:title" content="Website Design, Development &amp; Business Software for Small Businesses | Aequora Digital" />
-  <meta property="og:description" content="Aequora Digital helps small businesses build professional websites, redesign outdated sites, and create simple business software that saves time and supports growth." />
+  <meta property="og:description" content="Aequora Digital builds professional websites, redesigns outdated sites, and creates simple business software that saves time and supports growth for small businesses." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://aequoradigital.com/" />
   <meta property="og:site_name" content="Aequora Digital" />
   <meta property="og:image" content="https://aequoradigital.com/aequora-logo+text.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Website Design, Development &amp; Business Software for Small Businesses | Aequora Digital" />
-  <meta name="twitter:description" content="Aequora Digital helps small businesses build professional websites, redesign outdated sites, and create simple business software that saves time and supports growth." />
+  <meta name="twitter:description" content="Aequora Digital builds professional websites, redesigns outdated sites, and creates simple business software that saves time and supports growth for small businesses." />
   <meta name="twitter:image" content="https://aequoradigital.com/aequora-logo+text.png" />
   <meta name="theme-color" content="#0D5C7A" />
   <link rel="icon" type="image/png" href="Aequora-digital-logo.png" />
@@ -229,7 +229,7 @@
       object-fit: cover;
       object-position: right center;
       z-index: 0;
-      opacity: 0.9;
+      opacity: 1;
       -webkit-mask-image: linear-gradient(to right, transparent 0%, transparent 34%, rgba(0,0,0,0.55) 56%, #000 78%);
       mask-image: linear-gradient(to right, transparent 0%, transparent 34%, rgba(0,0,0,0.55) 56%, #000 78%);
       pointer-events: none;
@@ -243,8 +243,8 @@
       width: 100%; height: 100%;
       z-index: 0;
       pointer-events: none;
-      -webkit-mask-image: linear-gradient(to right, #000 0%, #000 38%, rgba(0,0,0,0.35) 58%, transparent 80%);
-      mask-image: linear-gradient(to right, #000 0%, #000 38%, rgba(0,0,0,0.35) 58%, transparent 80%);
+      -webkit-mask-image: linear-gradient(to right, #000 0%, #000 34%, transparent 60%);
+      mask-image: linear-gradient(to right, #000 0%, #000 34%, transparent 60%);
     }
 
     .hero-inner {
@@ -2197,6 +2197,80 @@
     @media (max-width: 1024px) {
       .services-primary-grid { grid-template-columns: 1fr; }
     }
+
+    /* ── WORKING TOGETHER (PRICING) ── */
+    .pricing-section {
+      padding: 96px 0;
+      background: var(--bg-lt);
+      border-top: 1px solid var(--border);
+    }
+    .pricing-head {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 20px;
+    }
+    .pricing-intro {
+      text-align: center;
+      max-width: 660px;
+      margin: 0 auto 52px;
+      font-size: 0.94rem;
+      color: var(--text-m);
+      line-height: 1.8;
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+    .pricing-card {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 40px 34px;
+    }
+    .pricing-card h3 { font-size: 1.3rem; }
+    .pricing-price {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.01em;
+    }
+    .pricing-card > p { margin-top: -6px; }
+    .feature-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 4px 0 8px;
+    }
+    .feature-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      font-size: 0.87rem;
+      color: var(--text-b);
+      line-height: 1.6;
+    }
+    .feature-list li::before {
+      content: "";
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--terra);
+      flex-shrink: 0;
+      margin-top: 7px;
+    }
+    .pricing-note {
+      text-align: center;
+      max-width: 520px;
+      margin: 40px auto 0;
+      font-size: 0.86rem;
+      color: var(--text-m);
+      line-height: 1.7;
+    }
+    @media (max-width: 900px) {
+      .pricing-grid { grid-template-columns: 1fr; }
+    }
   </style>
   <script type="application/ld+json">
   {
@@ -2239,10 +2313,9 @@
       "@type": "OfferCatalog",
       "name": "Services",
       "itemListElement": [
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom Website Development" }, "priceSpecification": { "@type": "PriceSpecification", "minPrice": "1999", "maxPrice": "4999", "priceCurrency": "USD" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Website Management" }, "priceSpecification": { "@type": "PriceSpecification", "minPrice": "299", "priceCurrency": "USD", "unitText": "MONTH" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom Website Development" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Digital Growth Partner (Website Management & SEO)" }, "priceSpecification": { "@type": "PriceSpecification", "minPrice": "1599", "priceCurrency": "USD", "unitText": "MONTH" } },
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Technical SEO" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Google Ads Management" }, "priceSpecification": { "@type": "PriceSpecification", "minPrice": "300", "priceCurrency": "USD", "unitText": "MONTH" } },
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom CRM Development" } },
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Member Portal Development" } },
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Business Automation" } },
@@ -2263,18 +2336,18 @@
       },
       {
         "@type": "Question",
-        "name": "What's the investment for a new website?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Every business is different, so every project is quoted based on your goals and requirements. Business websites typically range from $1,999 to $4,999 depending on scope. Larger custom platforms, client portals, internal systems, and web applications are quoted individually after a discovery call. Website Management starts at $299/month, and Google Ads Management starts at $300/month plus ad spend. You'll receive a fixed proposal with clear deliverables, timeline, and pricing before any work begins." }
+        "name": "What's the investment for working with you?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Every business is different, so every project is scoped to your goals and requirements. Ongoing support through our Digital Growth Partner plan starts at $1,599/month and covers management, SEO, performance, and updates. Custom builds, websites, portals, and web applications are quoted individually after a discovery call. You'll receive a fixed proposal with clear deliverables, timeline, and pricing before any work begins, with no hidden fees or surprises." }
       },
       {
         "@type": "Question",
         "name": "How long does a project usually take?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Most websites are ready in as little as 2 weeks from approval, depending on scope. Custom platforms and larger builds take longer — we'll give you a realistic timeline on the first call." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Most websites are ready in as little as 2 weeks from approval, depending on scope. Custom platforms and larger builds take longer, and we'll give you a realistic timeline on the first call." }
       },
       {
         "@type": "Question",
         "name": "Do you provide ongoing website management?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Website Management starts at $299/month and covers hosting, security, backups, performance monitoring, and content updates, so the site keeps running well after launch." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Our Digital Growth Partner plan starts at $1,599/month and covers management, hosting, security, technical SEO, performance, and content updates, so the site keeps working well after launch." }
       },
       {
         "@type": "Question",
@@ -2284,12 +2357,12 @@
       {
         "@type": "Question",
         "name": "Can you help us get more leads?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes, through technical SEO and Google Ads (starting at $300/month plus ad spend). We track what's actually working and send a monthly report, so spend stays tied to results." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, through technical SEO and performance work that makes your site easier to find and faster to act on. We track what's actually working and send a monthly report in plain language." }
       },
       {
         "@type": "Question",
         "name": "Do you build custom software, portals, or internal systems?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes. If your team spends too much time on repetitive work, we can build a simple custom system, such as a customer portal, member platform, or internal tool, that fits the way you already work." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. If your team spends too much time on repetitive work, we can build a simple custom system, a customer portal, member platform, or internal tool, that fits the way you already work." }
       },
       {
         "@type": "Question",
@@ -2303,8 +2376,8 @@
       },
       {
         "@type": "Question",
-        "name": "How does your development process work?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Four steps: Discover, Build, Launch, Grow. We start with a call to understand your goals, send a fixed-price proposal within 24 hours, deliver a first draft in about two weeks, and stay on after launch for SEO and ongoing management." }
+        "name": "How does your process work?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Four steps: Discover, Build, Launch, Grow. We start with a call to understand your goals, send a fixed-price proposal within 24 hours, deliver a first draft in about two weeks, and stay on after launch for ongoing improvement." }
       }
     ]
   }
@@ -2424,6 +2497,52 @@
   </section>
 
   <!-- ═══════════════════════════════
+       WORKING TOGETHER
+       ═══════════════════════════════ -->
+  <section id="pricing" class="pricing-section">
+    <div class="container">
+      <div class="pricing-head" data-reveal>
+        <p class="section-label" style="justify-content:center">Working Together</p>
+        <h2>Two ways to <em>work with us.</em></h2>
+      </div>
+      <p class="pricing-intro" data-reveal data-delay="1">Every business is different, so we keep this simple. Choose ongoing support that keeps your website growing month after month, or a one-time custom build scoped exactly to what you need. Either way, we start with a conversation, not a checkout.</p>
+
+      <div class="pricing-grid">
+        <article class="service-card-primary pricing-card" data-reveal data-delay="2">
+          <div class="sc-badge">01</div>
+          <h3>Digital Growth Partner</h3>
+          <p class="pricing-price">From $1,599/month</p>
+          <p>For businesses that want their website to keep working long after launch. We handle the ongoing side so you can focus on running the business.</p>
+          <ul class="feature-list">
+            <li>Website management, hosting, and security</li>
+            <li>Technical SEO and performance</li>
+            <li>Content and page updates as your business changes</li>
+            <li>Monthly reporting in plain language</li>
+            <li>A direct line to us when you need something</li>
+          </ul>
+          <a href="#contact-form" class="btn-primary" style="align-self:flex-start;">Start a conversation</a>
+        </article>
+
+        <article class="service-card-primary pricing-card" data-reveal data-delay="3">
+          <div class="sc-badge">02</div>
+          <h3>Custom Build</h3>
+          <p class="pricing-price">Scoped to your project</p>
+          <p>For businesses that need something built right the first time. Websites, custom web apps, business systems, and integrations, delivered to fit exactly what you do.</p>
+          <ul class="feature-list">
+            <li>Modern websites and landing pages</li>
+            <li>Custom web applications and portals</li>
+            <li>CRM integrations and automations</li>
+            <li>Systems built around how your business actually runs</li>
+          </ul>
+          <a href="#contact-form" class="btn-primary" style="align-self:flex-start;">Tell us what you need</a>
+        </article>
+      </div>
+
+      <p class="pricing-note" data-reveal data-delay="4">Not sure which fits? Tell us what you are working on and we will point you in the right direction.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════
        PROOF RAIL — disabled until a real testimonial/verification is ready.
        Markup kept below so it can be switched back on without rebuilding.
        ═══════════════════════════════ -->
@@ -2450,7 +2569,7 @@
         <div class="work-gallery-head" data-reveal>
           <p class="section-label">Our Work</p>
           <h2>Real sites, <em>for real clients.</em></h2>
-          <p>Real businesses, real results. Every project below is an actual client build, not a demo. Click through for the full story.</p>
+          <p>Real businesses, real results. Every project below is an actual client build, not a demo.</p>
         </div>
         <div class="work-grid">
 
@@ -2486,11 +2605,11 @@
             data-description="JCM needed a site that could do some of the selling for them — showcase finished and in-progress projects, walk prospects through their build process, and turn browsers into inquiries. We built a custom site with a project gallery, a step-by-step process walkthrough, and a lead-capture inquiry form."
             data-features="Project gallery|Step-by-step process walkthrough|Lead-capture inquiry form"
             data-url="https://jcm-home-builder-sc.vercel.app/"
-            data-status="Preview build — final domain not live yet">
+            data-status="Preview build, final domain not live yet">
             <div class="work-card-visual">
               <div class="work-card-chrome">
                 <span class="d-dot d-red"></span><span class="d-dot d-yellow"></span><span class="d-dot d-green"></span>
-                <div class="work-card-url"><span class="d-lock">🔒</span><span>jcm-home-builder-sc.vercel.app</span></div>
+                <div class="work-card-url"><span class="d-lock">🔒</span><span>Live Preview</span></div>
               </div>
               <div class="work-iframe-wrap" data-iframe-wrap>
                 <iframe class="work-iframe" data-src="https://jcm-home-builder-sc.vercel.app/" title="JCM Home Builders — construction company website developed by Aequora Digital" tabindex="-1" sandbox="allow-scripts allow-same-origin"></iframe>
@@ -2504,18 +2623,20 @@
             </div>
           </article>
 
-          <!-- CLIENT: Gentle Smiles -->
+          <!-- CLIENT: Gentle Smiles — held off the showcase while still "In Progress",
+               per the "hold in-progress projects off the showcase until done" rule.
+               Restore this card and change data-status/badge to "Live" once confirmed live.
           <article class="work-card" data-reveal data-delay="3" role="button" tabindex="0"
             data-name="Gentle Smiles"
             data-industry="Dental &amp; Healthcare"
             data-description="Gentle Smiles needed more than a marketing site — they needed a way to run daily clinic operations without juggling separate tools. We built a custom website plus a built-in clinic CRM: patient records, billing, an appointment calendar, and inventory tracking, all in one platform."
             data-features="Patient records|Billing|Appointment calendar|Inventory tracking"
             data-url="https://gentle-smiles.vercel.app/"
-            data-status="In progress — client is currently producing assets to be added to the site">
+            data-status="In progress, client is currently producing assets to be added to the site">
             <div class="work-card-visual">
               <div class="work-card-chrome">
                 <span class="d-dot d-red"></span><span class="d-dot d-yellow"></span><span class="d-dot d-green"></span>
-                <div class="work-card-url"><span class="d-lock">🔒</span><span>gentle-smiles.vercel.app</span></div>
+                <div class="work-card-url"><span class="d-lock">🔒</span><span>Live Preview</span></div>
               </div>
               <div class="work-iframe-wrap" data-iframe-wrap>
                 <iframe class="work-iframe" data-src="https://gentle-smiles.vercel.app/" title="Gentle Smiles — clinic website and management system developed by Aequora Digital" tabindex="-1" sandbox="allow-scripts allow-same-origin"></iframe>
@@ -2528,6 +2649,7 @@
               <span class="work-card-cta">View project →</span>
             </div>
           </article>
+          -->
 
           <!-- Add the next client as another <article class="work-card"> above this line, same structure.
                Keep data-description and the <p> in work-card-info focused on what we built/the services
@@ -2660,23 +2782,20 @@
         </div>
 
         <div class="faq-item">
-          <button class="faq-q">What's the investment for a new website?<span class="faq-icon">+</span></button>
+          <button class="faq-q">What's the investment for working with you?<span class="faq-icon">+</span></button>
           <div class="faq-a">
-            <p>Every business is different, so every project is quoted based on your goals and requirements.</p>
-            <p>Business websites typically range from $1,999 to $4,999 depending on scope. Larger custom platforms, client portals, internal systems, and web applications are quoted individually after a discovery call.</p>
-            <p>Website Management starts at $299/month, and Google Ads Management starts at $300/month plus ad spend.</p>
-            <p>You'll receive a fixed proposal with clear deliverables, timeline, and pricing before any work begins&mdash;no hidden fees or surprises.</p>
+            <p>Every business is different, so every project is scoped to your goals and requirements. Ongoing support through our Digital Growth Partner plan starts at $1,599/month and covers management, SEO, performance, and updates. Custom builds, websites, portals, and web applications are quoted individually after a discovery call. You'll receive a fixed proposal with clear deliverables, timeline, and pricing before any work begins, with no hidden fees or surprises.</p>
           </div>
         </div>
 
         <div class="faq-item">
           <button class="faq-q">How long does a project usually take?<span class="faq-icon">+</span></button>
-          <div class="faq-a"><p>Most websites are ready in as little as 2 weeks from approval, depending on scope. Custom platforms and larger builds take longer — we'll give you a realistic timeline on the first call.</p></div>
+          <div class="faq-a"><p>Most websites are ready in as little as 2 weeks from approval, depending on scope. Custom platforms and larger builds take longer, and we'll give you a realistic timeline on the first call.</p></div>
         </div>
 
         <div class="faq-item">
           <button class="faq-q">Do you provide ongoing website management?<span class="faq-icon">+</span></button>
-          <div class="faq-a"><p>Yes. Website Management starts at $299/month and covers hosting, security, backups, performance monitoring, and content updates, so the site keeps running well after launch.</p></div>
+          <div class="faq-a"><p>Yes. Our Digital Growth Partner plan starts at $1,599/month and covers management, hosting, security, technical SEO, performance, and content updates, so the site keeps working well after launch.</p></div>
         </div>
 
         <div class="faq-item">
@@ -2686,12 +2805,12 @@
 
         <div class="faq-item">
           <button class="faq-q">Can you help us get more leads?<span class="faq-icon">+</span></button>
-          <div class="faq-a"><p>Yes, through technical SEO and Google Ads (starting at $300/month plus ad spend). We track what's actually working and send a monthly report, so spend stays tied to results.</p></div>
+          <div class="faq-a"><p>Yes, through technical SEO and performance work that makes your site easier to find and faster to act on. We track what's actually working and send a monthly report in plain language.</p></div>
         </div>
 
         <div class="faq-item">
           <button class="faq-q">Do you build custom software, portals, or internal systems?<span class="faq-icon">+</span></button>
-          <div class="faq-a"><p>Yes. If your team spends too much time on repetitive work, we can build a simple custom system — a customer portal, member platform, or internal tool — that fits the way you already work.</p></div>
+          <div class="faq-a"><p>Yes. If your team spends too much time on repetitive work, we can build a simple custom system, a customer portal, member platform, or internal tool, that fits the way you already work.</p></div>
         </div>
 
         <div class="faq-item">
@@ -2705,8 +2824,8 @@
         </div>
 
         <div class="faq-item">
-          <button class="faq-q">How does your development process work?<span class="faq-icon">+</span></button>
-          <div class="faq-a"><p>Four steps: Discover, Build, Launch, Grow. We start with a call to understand your goals, send a fixed-price proposal within 24 hours, deliver a first draft in about two weeks, and stay on after launch for SEO and ongoing management.</p></div>
+          <button class="faq-q">How does your process work?<span class="faq-icon">+</span></button>
+          <div class="faq-a"><p>Four steps: Discover, Build, Launch, Grow. We start with a call to understand your goals, send a fixed-price proposal within 24 hours, deliver a first draft in about two weeks, and stay on after launch for ongoing improvement.</p></div>
         </div>
 
       </div>
@@ -2762,7 +2881,7 @@
         </form>
       </div>
 
-      <p class="frame-footer-blurb">Aequora Digital is a website design and web development company that helps small businesses build professional websites, redesign outdated websites, and create simple business software that supports long-term growth.</p>
+      <p class="frame-footer-blurb">Aequora Digital builds professional websites, redesigns outdated websites, and creates simple business software that helps small businesses grow.</p>
 
       <div class="frame-footer">
         <span>© 2026 Aequora Digital</span>
@@ -3093,7 +3212,9 @@
       nameEl.textContent = card.dataset.name;
       industryEl.textContent = card.dataset.industry;
       descEl.textContent = card.dataset.description;
-      urlTextEl.textContent = card.dataset.url.replace(/^https?:\/\//, '').replace(/\/$/, '');
+      urlTextEl.textContent = card.dataset.url.includes('vercel.app')
+        ? 'Live Preview'
+        : card.dataset.url.replace(/^https?:\/\//, '').replace(/\/$/, '');
       if (card.dataset.features) {
         featuresEl.innerHTML = '';
         card.dataset.features.split('|').forEach(function (feature) {
