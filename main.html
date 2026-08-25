@@ -2623,24 +2623,22 @@
             </div>
           </article>
 
-          <!-- CLIENT: Gentle Smiles — held off the showcase while still "In Progress",
-               per the "hold in-progress projects off the showcase until done" rule.
-               Restore this card and change data-status/badge to "Live" once confirmed live.
+          <!-- CLIENT: Gentle Smiles — still in progress, no live/viewable site yet.
+               Shown with the monogram fallback (no iframe/data-url). Once it's live,
+               add data-url back and swap the mono block for a work-iframe-wrap, same
+               as the Klariti/JCM cards. -->
           <article class="work-card" data-reveal data-delay="3" role="button" tabindex="0"
             data-name="Gentle Smiles"
             data-industry="Dental &amp; Healthcare"
-            data-description="Gentle Smiles needed more than a marketing site — they needed a way to run daily clinic operations without juggling separate tools. We built a custom website plus a built-in clinic CRM: patient records, billing, an appointment calendar, and inventory tracking, all in one platform."
+            data-description="Gentle Smiles needed more than a marketing site, they needed a way to run daily clinic operations without juggling separate tools. We built a custom website plus a built-in clinic CRM: patient records, billing, an appointment calendar, and inventory tracking, all in one platform."
             data-features="Patient records|Billing|Appointment calendar|Inventory tracking"
-            data-url="https://gentle-smiles.vercel.app/"
-            data-status="In progress, client is currently producing assets to be added to the site">
+            data-status="In progress, not yet viewable as a live site">
             <div class="work-card-visual">
               <div class="work-card-chrome">
                 <span class="d-dot d-red"></span><span class="d-dot d-yellow"></span><span class="d-dot d-green"></span>
-                <div class="work-card-url"><span class="d-lock">🔒</span><span>Live Preview</span></div>
+                <div class="work-card-url"><span>Coming soon</span></div>
               </div>
-              <div class="work-iframe-wrap" data-iframe-wrap>
-                <iframe class="work-iframe" data-src="https://gentle-smiles.vercel.app/" title="Gentle Smiles — clinic website and management system developed by Aequora Digital" tabindex="-1" sandbox="allow-scripts allow-same-origin"></iframe>
-              </div>
+              <div class="work-card-mono"><span>GS</span></div>
               <span class="work-card-status">In Progress</span>
             </div>
             <div class="work-card-info">
@@ -2649,7 +2647,6 @@
               <span class="work-card-cta">View project →</span>
             </div>
           </article>
-          -->
 
           <!-- Add the next client as another <article class="work-card"> above this line, same structure.
                Keep data-description and the <p> in work-card-info focused on what we built/the services
@@ -3212,8 +3209,8 @@
       nameEl.textContent = card.dataset.name;
       industryEl.textContent = card.dataset.industry;
       descEl.textContent = card.dataset.description;
-      urlTextEl.textContent = card.dataset.url.includes('vercel.app')
-        ? 'Live Preview'
+      urlTextEl.textContent = !card.dataset.url ? 'Coming soon'
+        : card.dataset.url.includes('vercel.app') ? 'Live Preview'
         : card.dataset.url.replace(/^https?:\/\//, '').replace(/\/$/, '');
       if (card.dataset.features) {
         featuresEl.innerHTML = '';
