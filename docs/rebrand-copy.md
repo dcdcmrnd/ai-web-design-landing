@@ -169,7 +169,7 @@ A website is the first thing most prospects see, and slow, generic sites lose th
 
 **Pricing:** Website builds start at $500. Launch Page Build ($500–$650) covers one focused page. Business Website Build ($700–$1,500) covers 3 to 6 pages and is our most requested tier. Growth Website Build ($1,500–$3,000+) covers 6+ pages or advanced structure. [See full pricing →]
 
-Gentle Smiles is a completed dental clinic website build, live and running today.
+Gentle Smiles, a dental clinic build with a custom website and a built-in clinic CRM for patient records, billing, scheduling, and inventory, is in progress and not yet viewable as a live site.
 
 **CTA:** Tell us what you want your site to do, and we'll tell you what it takes to build it.
 
