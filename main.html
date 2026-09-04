@@ -220,18 +220,19 @@
       padding-top: var(--hh);
     }
 
-    /* Base background photo, sits beneath the canvas grid animation.
-       Visible on the right side of the hero, fades to transparent on the left
-       so the animated grid reads clearly there. */
+    /* Base background photo, confined to a right-anchored band so the
+       hero-section's own white background carries the left side cleanly,
+       with only a short fade at the photo's own left edge. */
     .hero-bg-photo {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%;
+      position: absolute;
+      top: 0; bottom: 0; right: 0; left: auto;
+      width: 54%; height: 100%;
       object-fit: cover;
       object-position: 82% 8%;
       z-index: 0;
       opacity: 1;
-      -webkit-mask-image: linear-gradient(to right, transparent 0%, transparent 46%, rgba(0,0,0,0.55) 65%, #000 84%);
-      mask-image: linear-gradient(to right, transparent 0%, transparent 46%, rgba(0,0,0,0.55) 65%, #000 84%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, transparent 10%, rgba(0,0,0,0.6) 32%, #000 58%);
+      mask-image: linear-gradient(to right, transparent 0%, transparent 10%, rgba(0,0,0,0.6) 32%, #000 58%);
       pointer-events: none;
     }
 
@@ -2021,6 +2022,7 @@
          so drop the photo to a faint uniform tint and let the grid animation
          show through fully behind the text. */
       .hero-bg-photo {
+        left: 0; width: 100%;
         opacity: 0.14;
         object-position: center;
         transform: none;
