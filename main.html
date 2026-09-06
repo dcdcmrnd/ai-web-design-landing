@@ -1515,6 +1515,55 @@
     }
     .process-card h3 { font-size: 1.05rem; font-weight: 700; color: var(--white); margin-bottom: 10px; }
     .process-card p  { font-size: 0.82rem; color: rgba(255,255,255,0.55); line-height: 1.72; margin-bottom: 14px; }
+
+    /* ── PROCESS: ISOMETRIC PLATFORMS (replaces the old flat 4-col grid) ── */
+    .process-iso { position: relative; z-index: 1; margin-bottom: 28px; }
+    .process-iso-scene { display: block; width: 100%; height: auto; }
+    .process-iso-connector { fill: none; stroke: var(--sand); stroke-width: 2; stroke-dasharray: 2 8; stroke-linecap: round; opacity: 0.55; }
+    .process-iso-platform { transition: transform 0.3s cubic-bezier(0.22,1,0.36,1); transform-box: fill-box; transform-origin: center; }
+    .process-iso-platform:hover { transform: translateY(-6px); }
+    .process-iso-shadow { fill: var(--navy-dk); opacity: 0.18; }
+    .process-iso-side { fill: rgba(255,255,255,0.28); }
+    .process-iso-top { fill: rgba(242,250,254,0.95); stroke: rgba(255,255,255,0.4); stroke-width: 1.5; }
+    .process-iso-edge { fill: none; stroke: rgba(255,255,255,0.3); stroke-width: 2; stroke-linecap: round; transition: stroke 0.3s; }
+    .process-iso-platform:hover .process-iso-edge { stroke: var(--sand); }
+    .process-iso-numeral { font-family: var(--sans); font-size: 68px; font-weight: 800; fill: none; stroke: rgba(255,255,255,0.3); stroke-width: 2; }
+    .process-iso-platform.is-accent .process-iso-side { fill: rgba(222,201,154,0.55); }
+    .process-iso-platform.is-accent .process-iso-top { fill: var(--sand); stroke: #C7A876; }
+    .process-iso-platform.is-accent .process-iso-edge { stroke: rgba(255,255,255,0.65); }
+    .process-iso-platform.is-accent .process-iso-numeral { stroke: var(--navy-dk); }
+
+    .process-grid-iso { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; list-style: none; margin-top: 8px; }
+    .process-card-iso { max-width: 260px; padding-left: 16px; border-left: 2px solid rgba(255,255,255,0.15); }
+    .process-card-iso h3 { font-size: 1.05rem; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+    .process-card-iso p { font-size: 0.82rem; color: rgba(255,255,255,0.55); line-height: 1.72; }
+
+    .process-mobile-iso { display: none; }
+
+    @media (max-width: 768px) {
+      .process-iso, .process-grid-iso { display: none; }
+      .process-mobile-iso {
+        display: block;
+        position: relative;
+        z-index: 1;
+        list-style: none;
+      }
+      .process-mobile-iso li { position: relative; display: flex; gap: 14px; padding-bottom: 24px; }
+      .process-mobile-iso li:not(:last-child)::before {
+        content: ""; position: absolute; left: 19px; top: 40px; bottom: 0; width: 1px; background: rgba(255,255,255,0.15);
+      }
+      .process-mobile-icon { position: relative; flex: none; width: 40px; height: 40px; }
+      .process-mobile-icon svg { width: 100%; height: 100%; }
+      .process-mobile-num { position: absolute; left: -4px; top: -10px; font-size: 11px; font-weight: 800; color: rgba(255,255,255,0.4); }
+      .process-mobile-iso li:first-child .process-mobile-num { color: var(--sand); }
+      .process-mobile-body { border-left: 2px solid rgba(255,255,255,0.15); padding-left: 14px; }
+      .process-mobile-body h3 { font-size: 1.05rem; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+      .process-mobile-body p { font-size: 0.82rem; color: rgba(255,255,255,0.55); line-height: 1.6; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .process-iso-platform { transition: none; }
+    }
     .payment-callout {
       position: relative; z-index: 1;
       margin-top: 40px;
@@ -2201,6 +2250,101 @@
       .services-primary-grid { grid-template-columns: 1fr; }
     }
 
+    /* ── WHAT WE DO: SCROLL-DRIVEN FLOATING CARDS ──
+       .wwd-static (the original 3-card grid above) is the default/fallback: always what
+       renders with JS off, and what prefers-reduced-motion users get. The pinned experience
+       below is only switched on by the inline script right after its markup, which adds
+       .wwd-enhanced to #services synchronously (no flash of the wrong version). */
+    .wwd-wrapper { display: none; }
+    #services.wwd-enhanced .wwd-static { display: none; }
+    #services.wwd-enhanced .wwd-wrapper { display: block; }
+
+    .wwd-wrapper { position: relative; height: 400vh; }
+    .wwd-sticky { position: sticky; top: 0; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .wwd-scene { position: relative; width: 100%; height: 100%; max-width: var(--max-w); margin: 0 auto; }
+
+    .wwd-card {
+      position: absolute; top: 50%; left: 50%;
+      width: 300px; margin-left: -150px; margin-top: -130px;
+      background: none; padding: 0; text-align: left;
+      will-change: transform, opacity, filter;
+    }
+    .wwd-card-float { animation: wwdFloat 9s ease-in-out infinite; }
+    .wwd-card[data-index="0"] .wwd-card-float { animation-duration: 8s; animation-delay: 0s; }
+    .wwd-card[data-index="1"] .wwd-card-float { animation-duration: 9s; animation-delay: -3s; }
+    .wwd-card[data-index="2"] .wwd-card-float { animation-duration: 10s; animation-delay: -6s; }
+    @keyframes wwdFloat {
+      0%, 100% { transform: translate3d(0,0,0) rotate(0deg); }
+      50%      { transform: translate3d(5px,-9px,0) rotate(1deg); }
+    }
+
+    .wwd-card-hover { transition: transform 0.3s cubic-bezier(0.22,1,0.36,1); }
+    .wwd-card:hover .wwd-card-hover, .wwd-card:focus-visible .wwd-card-hover { transform: translateY(-6px); }
+
+    .wwd-card-body {
+      position: relative;
+      overflow: hidden;
+      background: var(--white);
+      border: 1.5px solid rgba(13,92,122,0.2);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      padding: 28px 26px 24px;
+    }
+    .wwd-visual { position: absolute; top: -18px; right: -18px; width: 130px; height: 96px; opacity: 0.9; transform: rotate(3deg); pointer-events: none; }
+    .wwd-num { display: block; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.2em; color: var(--navy); }
+    .wwd-card-body h3 { margin-top: 14px; font-size: 1.25rem; font-weight: 700; color: var(--text-h); line-height: 1.25; letter-spacing: -0.015em; }
+    .wwd-card-body p { margin-top: 10px; max-width: 220px; font-size: 0.88rem; color: var(--text-m); line-height: 1.75; }
+    .wwd-explore { display: inline-flex; align-items: center; gap: 6px; margin-top: 18px; font-size: 0.85rem; font-weight: 700; color: var(--text-m); transition: color 0.2s; }
+    .wwd-card:hover .wwd-explore, .wwd-card:focus-visible .wwd-explore { color: var(--navy); }
+    .wwd-explore span { display: inline-block; transition: transform 0.2s; }
+    .wwd-card:hover .wwd-explore span, .wwd-card:focus-visible .wwd-explore span { transform: translateX(3px); }
+
+    .wwd-indicator { position: absolute; left: 0; right: 0; bottom: 32px; display: flex; align-items: center; justify-content: center; gap: 10px; pointer-events: none; }
+    .wwd-indicator-num { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; color: var(--text-m); transition: color 0.2s, font-weight 0.2s; }
+    .wwd-indicator-num.is-active { color: var(--text-h); font-weight: 800; }
+    .wwd-indicator-track { position: relative; width: 48px; height: 1px; background: var(--border); }
+    .wwd-indicator-dot { position: absolute; top: -3px; left: 0%; width: 7px; height: 7px; border-radius: 50%; background: var(--navy); transform: translateX(-50%); }
+
+    @media (max-width: 900px) {
+      .wwd-card { width: 260px; margin-left: -130px; margin-top: -120px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .wwd-card-float { animation: none; }
+      .wwd-card-hover { transition: none; }
+    }
+
+    /* Site-wide [data-reveal] is opacity:0 until JS adds .visible (an IntersectionObserver
+       class toggle) -- with JS off, every data-reveal element on every page stays invisible.
+       That's pre-existing behavior the rest of the site already depends on as-is, so rather
+       than changing it globally, these three sections (which have an explicit "must render
+       correctly with JS off" requirement) opt out of it directly. */
+    #services [data-reveal],
+    #process [data-reveal],
+    #reviews [data-reveal] {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── VERIFIED REVIEWS (DesignRush) ── */
+    .reviews-widget-wrap {
+      min-height: 420px; /* reserves space so the widget hydrating in doesn't shift the page */
+      background: var(--white);
+      border: 1.5px solid rgba(13,92,122,0.2);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      padding: 24px;
+    }
+    .reviews-noscript-link {
+      display: inline-block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--navy);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .reviews-noscript-link:hover { color: var(--navy-lt); }
+
     /* ── WORKING TOGETHER (PRICING) ── */
     .pricing-section {
       padding: 96px 0;
@@ -2490,7 +2634,8 @@
         <h2>Three layers. <em>Built to work together.</em></h2>
       </div>
 
-      <div class="services-primary-grid">
+      <!-- Default/fallback: always what renders with JS off or prefers-reduced-motion. -->
+      <div class="services-primary-grid wwd-static">
         <article class="service-card-primary" data-reveal data-delay="1">
           <div class="sc-badge">01</div>
           <h3>Websites & Landing Pages</h3>
@@ -2508,6 +2653,106 @@
         </article>
       </div>
     </div>
+
+    <!-- Scroll-pinned floating experience: hidden unless JS confirms motion is OK (see the
+         inline script right below, which toggles #services's .wwd-enhanced class before paint). -->
+    <div class="wwd-wrapper" id="wwd-wrapper">
+      <div class="wwd-sticky">
+        <div class="wwd-scene">
+          <button type="button" class="wwd-card" data-index="0" aria-label="Explore Websites & Landing Pages">
+            <div class="wwd-card-float">
+              <div class="wwd-card-hover">
+                <div class="wwd-card-body">
+                  <svg class="wwd-visual" aria-hidden="true" viewBox="0 0 140 100">
+                    <rect x="4" y="4" width="132" height="92" rx="10" fill="#FFFFFF" stroke="rgba(13,92,122,0.18)" />
+                    <rect x="4" y="4" width="132" height="20" rx="10" fill="var(--bg-lt)" />
+                    <circle cx="16" cy="14" r="2.5" fill="rgba(13,92,122,0.25)" />
+                    <circle cx="25" cy="14" r="2.5" fill="rgba(13,92,122,0.25)" />
+                    <circle cx="34" cy="14" r="2.5" fill="rgba(13,92,122,0.25)" />
+                    <rect x="16" y="34" width="70" height="8" rx="4" fill="var(--text-h)" opacity="0.8" />
+                    <rect x="16" y="48" width="94" height="5" rx="2.5" fill="rgba(13,92,122,0.25)" />
+                    <rect x="16" y="58" width="80" height="5" rx="2.5" fill="rgba(13,92,122,0.25)" />
+                    <rect x="16" y="72" width="34" height="12" rx="6" fill="var(--navy)" />
+                  </svg>
+                  <span class="wwd-num">01</span>
+                  <h3>Websites &amp;<br>Landing Pages</h3>
+                  <p>Sites built to convert, load fast, and rank.</p>
+                  <span class="wwd-explore">Explore <span aria-hidden="true">&rarr;</span></span>
+                </div>
+              </div>
+            </div>
+          </button>
+
+          <button type="button" class="wwd-card" data-index="1" aria-label="Explore Internal Tools & Custom Apps">
+            <div class="wwd-card-float">
+              <div class="wwd-card-hover">
+                <div class="wwd-card-body">
+                  <svg class="wwd-visual" aria-hidden="true" viewBox="0 0 140 100">
+                    <rect x="4" y="4" width="132" height="92" rx="10" fill="#FFFFFF" stroke="rgba(13,92,122,0.18)" />
+                    <rect x="4" y="4" width="34" height="92" rx="10" fill="var(--bg-lt)" />
+                    <rect x="12" y="18" width="18" height="5" rx="2.5" fill="rgba(13,92,122,0.35)" />
+                    <rect x="12" y="30" width="18" height="5" rx="2.5" fill="rgba(13,92,122,0.25)" />
+                    <rect x="12" y="42" width="18" height="5" rx="2.5" fill="rgba(13,92,122,0.25)" />
+                    <rect x="48" y="18" width="76" height="24" rx="6" fill="var(--bg)" stroke="rgba(13,92,122,0.15)" />
+                    <rect x="56" y="26" width="34" height="5" rx="2.5" fill="var(--navy)" opacity="0.7" />
+                    <rect x="56" y="34" width="50" height="4" rx="2" fill="var(--navy-lt)" />
+                    <rect x="48" y="50" width="36" height="34" rx="6" fill="var(--white)" stroke="rgba(13,92,122,0.15)" />
+                    <rect x="88" y="50" width="36" height="34" rx="6" fill="var(--white)" stroke="rgba(13,92,122,0.15)" />
+                    <rect x="55" y="58" width="20" height="4" rx="2" fill="rgba(13,92,122,0.25)" />
+                    <rect x="55" y="66" width="16" height="4" rx="2" fill="rgba(13,92,122,0.25)" />
+                    <rect x="95" y="58" width="20" height="4" rx="2" fill="rgba(13,92,122,0.25)" />
+                    <rect x="95" y="66" width="16" height="4" rx="2" fill="rgba(13,92,122,0.25)" />
+                  </svg>
+                  <span class="wwd-num">02</span>
+                  <h3>Internal Tools &amp;<br>Custom Apps</h3>
+                  <p>Software that runs a part of your business.</p>
+                  <span class="wwd-explore">Explore <span aria-hidden="true">&rarr;</span></span>
+                </div>
+              </div>
+            </div>
+          </button>
+
+          <button type="button" class="wwd-card" data-index="2" aria-label="Explore Automation, Integrations & Practical AI">
+            <div class="wwd-card-float">
+              <div class="wwd-card-hover">
+                <div class="wwd-card-body">
+                  <svg class="wwd-visual" aria-hidden="true" viewBox="0 0 140 100">
+                    <rect x="4" y="4" width="132" height="92" rx="10" fill="#FFFFFF" stroke="rgba(13,92,122,0.18)" />
+                    <path d="M28 30 L70 50 L28 70" fill="none" stroke="rgba(13,92,122,0.25)" stroke-width="1.5" stroke-dasharray="3 4" />
+                    <path d="M112 30 L70 50 L112 70" fill="none" stroke="rgba(13,92,122,0.25)" stroke-width="1.5" stroke-dasharray="3 4" />
+                    <circle cx="28" cy="30" r="7" fill="var(--bg-lt)" stroke="rgba(13,92,122,0.2)" />
+                    <circle cx="28" cy="70" r="7" fill="var(--bg-lt)" stroke="rgba(13,92,122,0.2)" />
+                    <circle cx="112" cy="30" r="7" fill="var(--bg-lt)" stroke="rgba(13,92,122,0.2)" />
+                    <circle cx="112" cy="70" r="7" fill="var(--bg-lt)" stroke="rgba(13,92,122,0.2)" />
+                    <circle cx="70" cy="50" r="11" fill="var(--navy)" />
+                    <circle cx="70" cy="50" r="4" fill="var(--white)" />
+                  </svg>
+                  <span class="wwd-num">03</span>
+                  <h3>Automation, Integrations<br>&amp; Practical AI</h3>
+                  <p>Workflows and AI features that remove manual work, with a human review layer.</p>
+                  <span class="wwd-explore">Explore <span aria-hidden="true">&rarr;</span></span>
+                </div>
+              </div>
+            </div>
+          </button>
+        </div>
+
+        <div class="wwd-indicator" aria-hidden="true">
+          <span class="wwd-indicator-num" data-i="0">01</span>
+          <span class="wwd-indicator-track"><span class="wwd-indicator-dot" id="wwd-dot"></span></span>
+          <span class="wwd-indicator-num" data-i="1">02</span>
+          <span class="wwd-indicator-track"></span>
+          <span class="wwd-indicator-num" data-i="2">03</span>
+        </div>
+      </div>
+    </div>
+    <script>
+      (function () {
+        var root = document.getElementById("services");
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (root && !reduce) root.classList.add('wwd-enhanced');
+      })();
+    </script>
   </section>
 
   <!-- ═══════════════════════════════
@@ -2685,6 +2930,23 @@
   </section>
 
   <!-- ═══════════════════════════════
+       VERIFIED REVIEWS (DesignRush) — re-enabled: the widget script was previously blocked
+       by the CSP script-src directive (vercel.json), not actually broken.
+       ═══════════════════════════════ -->
+  <section id="reviews" class="services-section">
+    <div class="container">
+      <div class="services-head" data-reveal>
+        <p class="section-label" style="justify-content:center">Verified Reviews</p>
+        <h2>Reviewed by clients. <em>Verified by DesignRush.</em></h2>
+      </div>
+      <div class="reviews-widget-wrap" data-reveal data-delay="1">
+        <div data-designrush-widget data-agency-id="122039" data-style="light" aria-label="DesignRush agency reviews section"></div>
+        <noscript><a class="reviews-noscript-link" href="https://www.designrush.com/agency/profile/aequora-digital#reviews" target="_blank" aria-label="Visit Aequora Digital reviews on DesignRush">REVIEW US ON DESIGNRUSH</a></noscript>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════
        WHO WE HELP
        ═══════════════════════════════ -->
   <section id="who-we-help" class="who-help-section">
@@ -2744,46 +3006,110 @@
         <p class="section-label light">How It Works</p>
         <h2>Four steps. <em>No surprises.</em></h2>
       </div>
-      <div class="process-grid">
-        <div class="process-card" data-reveal data-delay="1">
-          <div class="pc-num">01</div>
-          <h3>Discover</h3>
-          <p>A quick call about your business and goals, then a fixed-price proposal within 24 hours.</p>
-        </div>
-        <div class="process-card" data-reveal data-delay="2">
-          <div class="pc-num">02</div>
-          <h3>Build</h3>
-          <p>We design and build your website. Your first draft is usually ready within 2 weeks.</p>
-        </div>
-        <div class="process-card" data-reveal data-delay="3">
-          <div class="pc-num">03</div>
-          <h3>Launch</h3>
-          <p>Once you approve the build, we launch your website live.</p>
-        </div>
-        <div class="process-card" data-reveal data-delay="4">
-          <div class="pc-num">04</div>
-          <h3>Grow</h3>
-          <p>We stay on for ongoing management, SEO, and improvements, so the site keeps earning its keep.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+      <!-- Desktop/tablet: isometric staggered platforms (decorative, aria-hidden) -->
+      <div class="process-iso" data-reveal data-delay="1">
+        <svg class="process-iso-scene" viewBox="-20 -20 1200 520" aria-hidden="true" role="presentation">
+          <defs>
+            <pattern id="processGrid" width="64" height="32" patternUnits="userSpaceOnUse">
+              <path d="M0 16 L32 0 L64 16 L32 32 Z" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
+            </pattern>
+            <radialGradient id="processGridFade" cx="50%" cy="42%" r="65%">
+              <stop offset="0%" stop-color="white" />
+              <stop offset="100%" stop-color="black" />
+            </radialGradient>
+            <mask id="processGridMask">
+              <rect x="-20" y="-20" width="1200" height="520" fill="url(#processGridFade)" />
+            </mask>
+          </defs>
+          <rect x="-20" y="-20" width="1200" height="520" fill="url(#processGrid)" mask="url(#processGridMask)" opacity="0.8" />
+          <path class="process-iso-connector" d="M 175.0 420.0 L 465.0 350.0 L 755.0 280.0 L 1045.0 210.0" />
 
-  <!-- ═══════════════════════════════
-       CLIENT REVIEWS (DesignRush) — temporarily disabled, widget not rendering correctly
-       ═══════════════════════════════ -->
-  <!--
-  <section id="reviews" class="services-section">
-    <div class="container">
-      <div class="services-head" data-reveal>
-        <p class="section-label" style="justify-content:center">Client Feedback</p>
-        <h2>Verified reviews, <em>from real clients.</em></h2>
+          <g class="process-iso-platform is-accent">
+            <ellipse class="process-iso-shadow" cx="152.5" cy="454.0" rx="63.0" ry="10" />
+            <path class="process-iso-side" d="M 265.0 383.0 Q 265.0 375.0 257.8 378.6 L 182.2 416.4 Q 175.0 420.0 175.0 428.0 L 175.0 436.0 Q 175.0 444.0 182.2 440.4 L 257.8 402.6 Q 265.0 399.0 265.0 391.0 Z" />
+            <path class="process-iso-top" d="M 100.7 307.2 Q 115.0 300.0 129.3 307.2 L 250.7 367.8 Q 265.0 375.0 250.7 382.2 L 189.3 412.8 Q 175.0 420.0 160.7 412.8 L 39.3 352.2 Q 25.0 345.0 39.3 337.8 Z" />
+            <path class="process-iso-edge" d="M 115.0 300.0 L 265.0 375.0 L 175.0 420.0" />
+            <text class="process-iso-numeral" x="109.0" y="322.0">01</text>
+          </g>
+
+          <g class="process-iso-platform">
+            <ellipse class="process-iso-shadow" cx="442.5" cy="384.0" rx="63.0" ry="10" />
+            <path class="process-iso-side" d="M 555.0 313.0 Q 555.0 305.0 547.8 308.6 L 472.2 346.4 Q 465.0 350.0 465.0 358.0 L 465.0 366.0 Q 465.0 374.0 472.2 370.4 L 547.8 332.6 Q 555.0 329.0 555.0 321.0 Z" />
+            <path class="process-iso-top" d="M 390.7 237.2 Q 405.0 230.0 419.3 237.2 L 540.7 297.8 Q 555.0 305.0 540.7 312.2 L 479.3 342.8 Q 465.0 350.0 450.7 342.8 L 329.3 282.2 Q 315.0 275.0 329.3 267.8 Z" />
+            <path class="process-iso-edge" d="M 405.0 230.0 L 555.0 305.0 L 465.0 350.0" />
+            <text class="process-iso-numeral" x="399.0" y="252.0">02</text>
+          </g>
+
+          <g class="process-iso-platform">
+            <ellipse class="process-iso-shadow" cx="732.5" cy="314.0" rx="63.0" ry="10" />
+            <path class="process-iso-side" d="M 845.0 243.0 Q 845.0 235.0 837.8 238.6 L 762.2 276.4 Q 755.0 280.0 755.0 288.0 L 755.0 296.0 Q 755.0 304.0 762.2 300.4 L 837.8 262.6 Q 845.0 259.0 845.0 251.0 Z" />
+            <path class="process-iso-top" d="M 680.7 167.2 Q 695.0 160.0 709.3 167.2 L 830.7 227.8 Q 845.0 235.0 830.7 242.2 L 769.3 272.8 Q 755.0 280.0 740.7 272.8 L 619.3 212.2 Q 605.0 205.0 619.3 197.8 Z" />
+            <path class="process-iso-edge" d="M 695.0 160.0 L 845.0 235.0 L 755.0 280.0" />
+            <text class="process-iso-numeral" x="689.0" y="182.0">03</text>
+          </g>
+
+          <g class="process-iso-platform">
+            <ellipse class="process-iso-shadow" cx="1022.5" cy="244.0" rx="63.0" ry="10" />
+            <path class="process-iso-side" d="M 1135.0 173.0 Q 1135.0 165.0 1127.8 168.6 L 1052.2 206.4 Q 1045.0 210.0 1045.0 218.0 L 1045.0 226.0 Q 1045.0 234.0 1052.2 230.4 L 1127.8 192.6 Q 1135.0 189.0 1135.0 181.0 Z" />
+            <path class="process-iso-top" d="M 970.7 97.2 Q 985.0 90.0 999.3 97.2 L 1120.7 157.8 Q 1135.0 165.0 1120.7 172.2 L 1059.3 202.8 Q 1045.0 210.0 1030.7 202.8 L 909.3 142.2 Q 895.0 135.0 909.3 127.8 Z" />
+            <path class="process-iso-edge" d="M 985.0 90.0 L 1135.0 165.0 L 1045.0 210.0" />
+            <text class="process-iso-numeral" x="979.0" y="112.0">04</text>
+          </g>
+        </svg>
       </div>
-      <div data-designrush-widget data-agency-id="122039" data-style="light" aria-label="DesignRush agency reviews section"></div>
-      <noscript><a href="https://www.designrush.com/agency/profile/aequora-digital#reviews" target="_blank" aria-label="Visit Aequora Digital reviews on DesignRush">REVIEW US ON DESIGNRUSH</a></noscript>
+
+      <ol class="process-grid-iso">
+        <li class="process-card-iso" data-reveal data-delay="1"><h3>Discover</h3><p>A quick call about your business and goals, then a fixed-price proposal within 24 hours.</p></li>
+        <li class="process-card-iso" data-reveal data-delay="2"><h3>Build</h3><p>We design and build your website. Your first draft is usually ready within 2 weeks.</p></li>
+        <li class="process-card-iso" data-reveal data-delay="3"><h3>Launch</h3><p>Once you approve the build, we launch your website live.</p></li>
+        <li class="process-card-iso" data-reveal data-delay="4"><h3>Grow</h3><p>We stay on for ongoing management, SEO, and improvements, so the site keeps earning its keep.</p></li>
+      </ol>
+
+      <!-- Mobile: vertical column, slim connector, mini platform marker -->
+      <ol class="process-mobile-iso">
+        <li>
+          <div class="process-mobile-icon">
+            <span class="process-mobile-num">01</span>
+            <svg viewBox="-6 -4 48 40" aria-hidden="true">
+              <path fill="rgba(222,201,154,0.55)" d="M 32.0 23.0 Q 32.0 21.0 30.2 21.9 L 17.8 28.1 Q 16.0 29.0 16.0 31.0 L 16.0 33.0 Q 16.0 35.0 17.8 34.1 L 30.2 27.9 Q 32.0 27.0 32.0 25.0 Z" />
+              <path fill="#DEC99A" stroke="#C7A876" d="M 2.4 9.8 Q 6.0 8.0 9.6 9.8 L 28.4 19.2 Q 32.0 21.0 28.4 22.8 L 19.6 27.2 Q 16.0 29.0 12.4 27.2 L -6.4 17.8 Q -10.0 16.0 -6.4 14.2 Z" />
+            </svg>
+          </div>
+          <div class="process-mobile-body"><h3>Discover</h3><p>A quick call about your business and goals, then a fixed-price proposal within 24 hours.</p></div>
+        </li>
+        <li>
+          <div class="process-mobile-icon">
+            <span class="process-mobile-num">02</span>
+            <svg viewBox="-6 -4 48 40" aria-hidden="true">
+              <path fill="rgba(255,255,255,0.28)" d="M 32.0 23.0 Q 32.0 21.0 30.2 21.9 L 17.8 28.1 Q 16.0 29.0 16.0 31.0 L 16.0 33.0 Q 16.0 35.0 17.8 34.1 L 30.2 27.9 Q 32.0 27.0 32.0 25.0 Z" />
+              <path fill="rgba(242,250,254,0.95)" stroke="rgba(255,255,255,0.4)" d="M 2.4 9.8 Q 6.0 8.0 9.6 9.8 L 28.4 19.2 Q 32.0 21.0 28.4 22.8 L 19.6 27.2 Q 16.0 29.0 12.4 27.2 L -6.4 17.8 Q -10.0 16.0 -6.4 14.2 Z" />
+            </svg>
+          </div>
+          <div class="process-mobile-body"><h3>Build</h3><p>We design and build your website. Your first draft is usually ready within 2 weeks.</p></div>
+        </li>
+        <li>
+          <div class="process-mobile-icon">
+            <span class="process-mobile-num">03</span>
+            <svg viewBox="-6 -4 48 40" aria-hidden="true">
+              <path fill="rgba(255,255,255,0.28)" d="M 32.0 23.0 Q 32.0 21.0 30.2 21.9 L 17.8 28.1 Q 16.0 29.0 16.0 31.0 L 16.0 33.0 Q 16.0 35.0 17.8 34.1 L 30.2 27.9 Q 32.0 27.0 32.0 25.0 Z" />
+              <path fill="rgba(242,250,254,0.95)" stroke="rgba(255,255,255,0.4)" d="M 2.4 9.8 Q 6.0 8.0 9.6 9.8 L 28.4 19.2 Q 32.0 21.0 28.4 22.8 L 19.6 27.2 Q 16.0 29.0 12.4 27.2 L -6.4 17.8 Q -10.0 16.0 -6.4 14.2 Z" />
+            </svg>
+          </div>
+          <div class="process-mobile-body"><h3>Launch</h3><p>Once you approve the build, we launch your website live.</p></div>
+        </li>
+        <li>
+          <div class="process-mobile-icon">
+            <span class="process-mobile-num">04</span>
+            <svg viewBox="-6 -4 48 40" aria-hidden="true">
+              <path fill="rgba(255,255,255,0.28)" d="M 32.0 23.0 Q 32.0 21.0 30.2 21.9 L 17.8 28.1 Q 16.0 29.0 16.0 31.0 L 16.0 33.0 Q 16.0 35.0 17.8 34.1 L 30.2 27.9 Q 32.0 27.0 32.0 25.0 Z" />
+              <path fill="rgba(242,250,254,0.95)" stroke="rgba(255,255,255,0.4)" d="M 2.4 9.8 Q 6.0 8.0 9.6 9.8 L 28.4 19.2 Q 32.0 21.0 28.4 22.8 L 19.6 27.2 Q 16.0 29.0 12.4 27.2 L -6.4 17.8 Q -10.0 16.0 -6.4 14.2 Z" />
+            </svg>
+          </div>
+          <div class="process-mobile-body"><h3>Grow</h3><p>We stay on for ongoing management, SEO, and improvements, so the site keeps earning its keep.</p></div>
+        </li>
+      </ol>
     </div>
   </section>
-  -->
 
   <!-- ═══════════════════════════════
        FAQ
@@ -3143,6 +3469,99 @@
     }));
   })();
 
+  /* ── WHAT WE DO: SCROLL-DRIVEN FLOATING CARDS ──
+     Only runs when #services carries .wwd-enhanced (set synchronously, before paint, by the
+     inline script right after the section's markup -- gated on prefers-reduced-motion there).
+     Progress (0..1) comes from how far scrolled through the tall #wwd-wrapper the sticky child
+     stays pinned for; each card's "prominence" (0 = idle/secondary, 1 = fully hero) is a smooth
+     curve keyed to that progress, overlapping slightly so handoffs are continuous. Writes
+     transform/opacity/filter straight to each card's style every rAF tick -- no state, no
+     re-render, GPU-friendly transforms only. */
+  (function () {
+    var section = document.getElementById('services');
+    var wrapper = document.getElementById('wwd-wrapper');
+    if (!section || !wrapper || !section.classList.contains('wwd-enhanced')) return;
+
+    var cards = Array.prototype.slice.call(section.querySelectorAll('.wwd-card'));
+    var dot = document.getElementById('wwd-dot');
+    var indicatorNums = Array.prototype.slice.call(section.querySelectorAll('.wwd-indicator-num'));
+
+    var IDLE_DESKTOP = [
+      { xFrac: -0.17, yFrac: 0.11, rotate: -4 },
+      { xFrac: 0.15, yFrac: 0.15, rotate: 4 },
+      { xFrac: 0.21, yFrac: -0.17, rotate: -3 }
+    ];
+    var IDLE_MOBILE = [
+      { xFrac: 0, yFrac: -0.19, rotate: -2 },
+      { xFrac: 0.05, yFrac: 0.01, rotate: 1.5 },
+      { xFrac: -0.03, yFrac: 0.2, rotate: -1.5 }
+    ];
+    var CENTERS = [0.2, 0.5, 0.8];
+    var PLATEAU = 0.05, FALLOFF = 0.12;
+    var HERO_SCALE_DESKTOP = 1.42, HERO_SCALE_MOBILE = 1.16;
+
+    function clamp(v, a, b) { return Math.min(b, Math.max(a, v)); }
+    function lerp(a, b, t) { return a + (b - a) * t; }
+    function easeInOut(t) { return 0.5 - 0.5 * Math.cos(Math.PI * clamp(t, 0, 1)); }
+    function prominence(p, center, plateau, falloff) {
+      var d = Math.abs(p - center);
+      if (d <= plateau) return 1;
+      if (d >= plateau + falloff) return 0;
+      return easeInOut(1 - (d - plateau) / falloff);
+    }
+
+    var isMobile = false;
+    var idlePx = [];
+    function recomputeIdle() {
+      isMobile = window.matchMedia('(max-width: 767px)').matches;
+      var vw = window.innerWidth, vh = window.innerHeight;
+      var preset = isMobile ? IDLE_MOBILE : IDLE_DESKTOP;
+      idlePx = preset.map(function (p) { return { x: p.xFrac * vw, y: p.yFrac * vh, rotate: p.rotate }; });
+    }
+
+    function applyFrame(progress) {
+      var heroScale = isMobile ? HERO_SCALE_MOBILE : HERO_SCALE_DESKTOP;
+      var proms = CENTERS.map(function (c) { return prominence(progress, c, PLATEAU, FALLOFF); });
+      var globalActivity = Math.max.apply(null, proms);
+
+      cards.forEach(function (card, i) {
+        var idle = idlePx[i];
+        var p = proms[i];
+        var secondary = globalActivity * (1 - p);
+        var scale = lerp(1, heroScale, p) * lerp(1, 0.86, secondary);
+        var tx = lerp(idle.x, 0, p) + idle.x * 0.18 * secondary;
+        var ty = lerp(idle.y, 0, p) + idle.y * 0.18 * secondary;
+        var rotate = lerp(idle.rotate, 0, p);
+        var opacity = 1 - 0.42 * secondary;
+        var blur = 1.4 * secondary;
+        card.style.transform = 'translate3d(' + tx.toFixed(2) + 'px,' + ty.toFixed(2) + 'px,0) scale(' + scale.toFixed(3) + ') rotate(' + rotate.toFixed(2) + 'deg)';
+        card.style.opacity = opacity.toFixed(3);
+        card.style.filter = blur > 0.05 ? 'blur(' + blur.toFixed(2) + 'px)' : 'none';
+        card.style.zIndex = String(Math.round(10 + p * 30));
+      });
+
+      if (dot) dot.style.left = (clamp(progress, 0, 1) * 100).toFixed(2) + '%';
+      indicatorNums.forEach(function (el, i) {
+        el.classList.toggle('is-active', proms[Number(el.dataset.i)] > 0.5);
+      });
+    }
+
+    recomputeIdle();
+    var frame = 0;
+    function tick() {
+      frame = 0;
+      var rect = wrapper.getBoundingClientRect();
+      var total = wrapper.offsetHeight - window.innerHeight;
+      var raw = total > 0 ? -rect.top / total : 0;
+      applyFrame(clamp(raw, 0, 1));
+    }
+    function onScroll() { if (!frame) frame = requestAnimationFrame(tick); }
+    function onResize() { recomputeIdle(); onScroll(); }
+    tick();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onResize);
+  })();
+
   /* ── CARD CURSOR GLOW ── */
   (function () {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -3397,6 +3816,9 @@
     });
   })();
   </script>
+
+  <!-- Loaded once, deferred, not inline in the reviews section body -->
+  <script defer src="https://www.designrush.com/topbest/js/widgets/agency-reviews.js"></script>
 
 </body>
 </html>
